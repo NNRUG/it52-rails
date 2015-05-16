@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  apipie
-
   get 'authentications/destroy'
 
   devise_for :user,

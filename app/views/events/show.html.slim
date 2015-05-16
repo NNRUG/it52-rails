@@ -38,6 +38,7 @@
     .event-place: p
       i.fa.fa-fw.fa-map-marker'
       = @event.link_to_place
+      .event-map
   .event-organizer: p title="Организатор"
     i.fa.fa-fw.fa-user>
     a href=user_path(@event.organizer) = @event.organizer

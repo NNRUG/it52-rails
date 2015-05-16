@@ -1,11 +1,3 @@
-GIT
-  remote: https://github.com/Apipie/apipie-rails.git
-  revision: f697ec2a887cd73c00c846eceb2ce63a050ccb20
-  ref: f697ec2a887cd73c00c846eceb2ce63a050ccb20
-  specs:
-    apipie-rails (0.3.4)
-      json
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -436,7 +428,6 @@ DEPENDENCIES
   active_link_to
   active_model_serializers (~> 0.10.0.rc1)
   annotate
-  apipie-rails!
   asset_sync
   autoprefixer-rails
   awesome_print

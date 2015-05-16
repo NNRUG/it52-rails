@@ -29,3 +29,4 @@
 
 //= require marked
 //= require events
+//= require event-map
