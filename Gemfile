@@ -2,7 +2,7 @@ ruby '2.5.1'
 
 source 'https://rubygems.org'
 
-gem 'rails', '~> 5.1.0'
+gem 'rails', '~> 5.2.0'
 # gem 'rails-i18n'
 
 # Database
@@ -37,7 +37,7 @@ gem 'activemodel-serializers-xml'
 gem 'draper'
 
 # Compile and serve assets
-gem 'sass-rails'
+gem 'sassc-rails'
 gem 'babel-transpiler'
 gem 'jquery-rails'
 gem 'uglifier', '>= 1.3.0'
@@ -100,6 +100,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'bootsnap'
 
   gem 'annotate', require: false
   gem 'letter_opener'
