@@ -1,0 +1,40 @@
+= cache [@user, @user.member_in_events] do
+  .row
+    .col-sm-3
+      .avatar.image-container = image_tag @user.avatar_image.square_150.url
+
+    .col-sm-9
+      .page-header
+        h1
+          = @user
+          small< = @user.nickname
+        = @user.link_to_website
+
+        - unless @user.employment.blank?
+          h4 #{ t('activerecord.attributes.user.employment') }:  #{ @user.employment }
+
+      - if @user.bio?
+         = @user.bio
+         hr
+
+      - if @user.authentications.present?
+        section
+          h5.subheader = t('.linked_accounts')
+          ul.list-inline
+            = render @user.authentications
+          hr
+
+
+  .user-profile-page
+    - if @user.owner_of_events.any?
+      .owner-of-events
+        h2 = t('.organizer_block_title')
+        ul
+          - @user.owner_of_events.each do |event|
+            li = link_to event.title, event_path(event)
+
+    - if @user.member_in_events.any?
+      h2 = t('.member_block_title')
+      ul
+        - @user.member_in_events.each do |event|
+          li = link_to event.title, event_path(event)

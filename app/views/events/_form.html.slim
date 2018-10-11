@@ -1,27 +1,25 @@
-= bootstrap_form_for @event do |f|
-  = f.text_field :title
+= simple_form_for @event do |f|
+  = f.input :title
   .row
     .col-sm-6: .well
       - if @event.title_image.present?
         .title-image.image-container
           = image_tag @event.title_image.square_500.url
-      = f.file_field :title_image
+      = f.input :title_image, wrapper: :vertical_file_input
+      = f.input :title_image_cache, as: :hidden
     .col-sm-6
-      = f.datetime_select :started_at
-      = f.text_field :place
-  p.help-block = t('.hint')
-  = f.hidden_field :title_image_cache
+      = f.input :started_at, as: :string, input_html: { value: l(f.object.started_at || 1.month.from_now, format: :date_time_short), data: { date_format: "DD.MM.YYYY HH:mm", min_date: l(Date.today, format: :timepicker) }}
+      = f.input :place, as: :text
+      = f.input :location, as: :hidden
+      - if !@event.foreign_link.blank?
+        = check_box_tag :has_foreign_link, true, checked: 'true'
+      - if @event.foreign_link.blank?
+        = check_box_tag :has_foreign_link
+      = label_tag :has_foreign_link, t("my.events.has_foreign_link"), style: "padding-left: 10px;"
+      div#event_foreign_link_box.hidden
+        = f.input :foreign_link, as: :string, input_html: { type: :url }
 
-  ul.nav.nav-tabs.event-description
-    li.edit.active = link_to 'Описание', '#edit', 'data-toggle' => 'tab'
-    li.preview = link_to 'Предпросмотр', '#preview'
-  .tab-content
-    #edit.tab-pane.active
-      = f.text_area :description, class: 'hidden'
-
-    #preview.tab-pane
-      .md_preview
+  .row: .col-sm-12
+    = f.input :description, input_html: { rows: 10 }
     hr
-    = link_to t(:cancel), root_path, class: 'btn btn-default'
-    | &nbsp;
     = f.submit class: 'btn btn-primary'

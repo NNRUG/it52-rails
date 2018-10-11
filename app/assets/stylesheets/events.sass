@@ -1,0 +1,102 @@
+.events-index, .events-show
+  .participants
+    +clearfix
+    .participant
+      float: left
+      margin-right: 1em
+      a
+        display: block
+      .avatar
+        img
+          width: 50px
+          height: 50px
+
+.panel
+  position: relative
+
+  &::after
+    position: absolute
+    content: ' '
+    width: 100%
+    height: 100%
+    background: #444
+    bottom: -5px
+    right: -5px
+    z-index: -1
+
+
+.events-index
+  .events
+    .event
+      .panel-heading
+        .admin-info
+          margin-right: 1em
+          display: inline
+
+    .panel-footer
+      padding: 1rem $panel-body-padding
+      .participants
+        height: 50px
+        overflow: hidden
+        h4
+          float: left
+          margin-right: 1em
+          margin-top: 0
+          margin-bottom: 0
+          line-height: 50px
+
+    @media (min-width: 768px)
+      .panel-body
+        padding: 3rem 3.4rem
+      .panel-footer
+        padding: 1rem 3.4rem
+
+
+.events-show
+  .page-header
+    .admin-info
+      margin-right: 1em
+      display: inline
+  .participants
+    ul.list-unstyled
+      margin: -.5em
+    .participant
+      margin: .5em
+      .avatar
+        img
+          width: 50px
+          height: 50px
+
+form.edit_event, form.new_event
+  .tab-content
+    .tab-pane
+      padding: $line-height-computed $line-height-computed / 4 0
+      border-left: 1px solid $nav-tabs-active-link-hover-border-color
+      border-right: 1px solid $nav-tabs-active-link-hover-border-color
+      border-bottom: 1px solid $nav-tabs-active-link-hover-border-color
+      // bootstrap-form не умеет не рендерить label для text-area, поэтому скрываем ее css
+      label.control-label
+        display: none
+
+.ya-share2__container
+  display: inline
+
+.event-description
+  font-family: 'Fira Sans', sans-serif
+  line-height: 1.65
+  font-size: 110%
+
+  img
+    max-width: 100%
+    background-color: #fefefe
+  ul
+    margin-bottom: 1rem
+
+.event_description
+  .CodeMirror-fullscreen,
+  .editor-preview-side
+    top: 100px
+
+  .editor-toolbar.fullscreen
+    top: 50px
+

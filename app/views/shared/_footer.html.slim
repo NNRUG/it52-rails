@@ -1,0 +1,9 @@
+nav.navbar.navbar-default.navbar-footer
+  .container
+    ul.nav.navbar-nav.navbar-right.social-icons-wrapper
+      li: a href='https://www.facebook.com/groups/it52info/' target='_blank' title="Facebook" = icon 'fab', 'facebook', class: 'fa-lg'
+      li: a href='https://vk.com/it52info' target='_blank' title="Вконтакте" = icon 'fab', 'vk', class: 'fa-lg'
+      li: a href='mailto:events@it52.info' target='_blank' title="E-mail" = icon 'fas', 'envelope', class: 'fa-lg'
+      li: a href='https://t.me/it52info' target='_blank' title="Telegram" = icon 'fab', 'telegram-plane', class: 'fa-lg'
+    ul.nav.navbar-nav.navbar-left
+      li = link_to "2014&thinsp;—&thinsp;#{Date.today.year} © IT52.info".html_safe, root_path

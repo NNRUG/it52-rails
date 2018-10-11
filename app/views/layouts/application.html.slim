@@ -1,16 +1,30 @@
 doctype html
 html lang='ru'
   head
-    meta charset='utf-8'
+    = display_meta_tags
     meta http-equiv='X-UA-Compatible' content='IE=edge'
     meta name='viewport' content='width=device-width, initial-scale=1'
-    title = t :app_name
+    meta name="google-site-verification" content="7IUs7VM3J7n6Uf8fMjijeAvHEq1BIFosZIJoL6IDBlw"
+    meta name='yandex-verification' content='637a660a79fbb6d1'
+    meta property="fb:app_id" content=Figaro.env.facebook_id
+
+    link rel="shortcut icon" href=asset_path('it52_favicon.ico')
+
+    link rel="icon" type="image/png" href=asset_path('it52-logo-16x16.png') sizes="16x16"
+    link rel="icon" type="image/png" href=asset_path('it52-logo-32x32.png') sizes="32x32"
+    link rel="icon" type="image/png" href=asset_path('it52-logo-96x96.png') sizes="96x96"
+    link rel="icon" type="image/png" href=asset_path('it52-logo-192x192.png') sizes="192x192"
+
+    link rel="apple-touch-icon" sizes="180x180" href=asset_path('it52-logo-180x180.png')
+
+    meta name="msapplication-TileColor" content="#111111"
+    meta name="msapplication-TileImage" content=asset_path('it52-logo-144x144.png')
+    meta name="theme-color" content="#111111"
+
+    link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Mono:400,500&amp;subset=cyrillic"
+    link href="https://fonts.googleapis.com/css?family=Fira+Sans:400,600&amp;subset=cyrillic" rel="stylesheet"
 
     = stylesheet_link_tag 'application', media: 'all'
-    = javascript_include_tag 'application'
-    - if render_editor?
-      = javascript_include_tag 'editor'
-    = styx_initialize
 
     / HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
     / [if lt IE 9]
@@ -18,15 +32,42 @@ html lang='ru'
       script src='https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js'
 
     = csrf_meta_tags
+
+    javascript:
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-N5924B');
+
+    script src='https://yastatic.net/share2/share.js' async=true
+    link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css"
+    script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"
+
+    = javascript_include_tag 'application'
+
   body
-    #sidebar-container.affix data-offset-top="0" data-offset-bottom="0"
-      #sidebar.clearfix = render 'shared/sidebar'
-    #page-content
-      .container-fluid
+    script type="text/javascript" src="https://cdn.distiltag.com/api/v1/script/ybXNnCfNOJEo0cEJoqU6QUuoKhyOdbiDYqETdtG9?GA_TID=UA-54446007-1&GA_CDI=1" async=true defer=true
+
+    noscript: img src="https://cdn.distiltag.com/api/v1/noscript/ybXNnCfNOJEo0cEJoqU6QUuoKhyOdbiDYqETdtG9?GA_TID=UA-54446007-1&GA_CDI=1"
+
+    noscript: iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N5924B" height="0" width="0" style="display:none;visibility:hidden"
+
+    = render 'shared/nav'
+
+    main
+      .container
         .flash-messages
           - flash.each do |type, message|
             div class="alert alert-#{type} alert-dismissable"
               button type='button' class='close' data-dismiss='alert' aria-hidden='true' &times;
               == message
+          div.alert.alert-success.alert-dismissable.hidden
+            h4
+              |it52 +
+              i.fas.fa-paper-plane<>
+              | =
+              i.fas.fa-heart<
+            p Анонсы всех событий в Телеграме: канал <a href="https://telegram.me/it52info">@it52info</a>.
+            p Запросить информацию о событиях: бот <a href="https://telegram.me/it52_bot">@it52_bot</a>.
+            p Подписывайтесь!
+
         = yield
-        = render 'shared/small_screens_footer'
+
+    = render 'shared/footer'

@@ -1,0 +1,47 @@
+# Add application configuration variables here, as shown below.
+
+facebook_id: Facebook App ID
+facebook_secret: Facebook App Secret
+
+vk_id: VK App ID
+vk_secret: VK App Secret
+
+github_id: GitHub App ID
+github_secret: GitHub App Secret
+
+google_id: Google App ID
+google_secret: Google App Secret
+
+mailing_host: localhost:8080
+
+mandrill_apikey: Your Mandrill API key
+mandrill_username: Your Mandrill username
+mandrill_host: 'smtp.mandrillapp.com'
+
+mailchimp_api_key: Your Mailchimp API key
+mailchimp_list_id: Your Mailchimp lsit id
+mailchimp_hooks_token: Secure_token_for_Mailchimp_hooks
+
+aws_access_key_id: AKIAIDTQFPPTGR2L7XQQ
+aws_secret_access_key: kNQ2pJeh4bWzCp41x+yy6//lS1B9ZZgLvNuCJ56y
+aws_host: http://it52-dev.s3.amazonaws.com
+aws_bucket: it52-dev
+fog_host: s3.amazonaws.com
+fog_region: us-east-1
+fog_provider: AWS
+
+mailchimp_api_key: "baeee87e77fccb0a5b76278a99744919-us4"
+mailchimp_list_id: "b00b5"
+
+# Generate new secret key base with `rake secret`
+secret_key_base: 4c9d9f0e909db98be16c23563da655f61cb7cf6ea9245558e65e69fc15ae68389cd1f3ef552e7449db8b648dce32937bbca552bba7e5b85871f01ad56a585164
+devise_secret_key: c5a9472da92f93b178aedc463e88345563a980c72d4245fb9b5471d00d856f00c6c82ae3017831c574729cd6608e8e0fe373333da8c3abb0291adee2aeca9930
+devise_pepper: 74911f9b3338c1879dec7cb03dbc1e49e6a122d5a33b9e162d0870c7ac21795a3f009b43aea0a842866aa2e333fbbce072d6f4026e4bab5626226d2159cf1066
+
+# Override environment specific settings
+#
+# test:
+#   secret_key_base: b07ee5d58822ff53514adabe3c62cb518d407a442f0db0eac5a614567fe83a6cedade318c00f06315d56aabec665c0287c09415b71394ead0a992baf380f9c80
+#
+# production:
+#   secret_key_base: 2815fecfaf8763b9ee8707ac69962c79c788b582a5f66731c738e4cfd6ab4ad6c9459ba33742892083712d137ceb1ce40ed3ce7000e13a4845336290fd31e548

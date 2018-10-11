@@ -1,0 +1,33 @@
+<section layout=column layout-fill=layout-fill flex=flex class=md-calendar>
+    <md-toolbar md-swipe-right=prev() md-swipe-left=next()>
+        <div layout=column class=md-toolbar-tools>
+            <md-button ng-click=prev() class=md-calendar-left-btn>&laquo;</md-button>
+            <h2 flex=flex class=md-calendar-title>{{ start | date:"MMMM yyyy" }}</h2>
+            <md-button ng-click=next() class=md-calendar-right-btn>&raquo;</md-button>
+        </div>
+    </md-toolbar>
+    <md-subheader class="md-primary no-side-padding">
+        <div layout=row layout-fill=layout-fill class=md-subheader-content>
+            <div flex=flex ng-repeat="day in weeks[0]" class=md-calendar-subheader>{{ day.date | date:"EEEE"}}
+            </div>
+        </div>
+    </md-subheader>
+    <md-content flex=flex layout=column layout-fill=layout-fill>
+        <div flex=flex layout=row layout-fill=layout-fill ng-repeat="week in weeks" class=md-calendar-month>
+            <div flex=flex layout=column layout-fill=layout-fill layout-align="center center" ng-repeat="day in week"
+                 class=md-calendar-week>
+                <div ng-click=handleDayClick(day) flex=flex layout=column layout-fill=layout-fill
+                     data-year="{{ day.date | date:'yyyy' }}" data-month="{{ day.date | date:'M' }}"
+                     data-day="{{ day.date | date:'d' }}" class=md-calendar-day>
+                    <div class=md-calendar-number>{{ day.date | date:'d' }}</div>
+                    <div flex=flex class=md-calendar-content layout="column" layout-fill>
+                        <md-button class="md-raised md-primary" ng-repeat="e in day.events" ng-click="onEventClick(e)">
+                            {{e.started_at_js | date:'H:mm'}}
+                        </md-button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </md-content>
+</section>

@@ -1,20 +1,110 @@
 ru:
-  app_name: Ростовское IT–сообщество
+  app_name: Нижегородское IT–сообщество
+  app_description: 'IT и около в Нижнем Новгороде: конференции, митапы, хакатоны, встречи и, конечно, афтепати.'
+  app_region: 52
+  app_hashtag: it52
+  app_keywords:
+  - IT
+  - Нижний Новгород
+  - сообщество
+  - конференция
+  - митап
+  - встреча
+  - программирование
+  - стартап
+  - '52'
 
   time:
     formats:
-      date_time_full: "%d %B %Y, %H:%M"
+      default: "%d %B %Y %H:%M"
+      date_time_full: "%d %B %Y %H:%M"
+      date_time_short: "%d.%m.%Y %H:%M"
+      date: "%d.%m.%Y"
+      date_without_year: "%d %B"
+      time: "%H:%M"
+      sitemap: "%Y-%m-%d"
+  date:
+    abbr_day_names:
+    - Вс
+    - Пн
+    - Вт
+    - Ср
+    - Чт
+    - Пт
+    - Сб
+    abbr_month_names:
+    -
+    - янв.
+    - февр.
+    - марта
+    - апр.
+    - мая
+    - июня
+    - июля
+    - авг.
+    - сент.
+    - окт.
+    - нояб.
+    - дек.
+    day_names:
+    - воскресенье
+    - понедельник
+    - вторник
+    - среда
+    - четверг
+    - пятница
+    - суббота
+    formats:
+      default: "%d.%m.%Y"
+      long: "%-d %B %Y"
+      short: "%-d %b"
+    month_names:
+    -
+    - января
+    - февраля
+    - марта
+    - апреля
+    - мая
+    - июня
+    - июля
+    - августа
+    - сентября
+    - октября
+    - ноября
+    - декабря
+    order:
+    - :day
+    - :month
+    - :year
+    formats:
+      timepicker: "%d/%m/%Y"
 
   cancel: Отмена
   edit: Редактировать
 
   'true': да
   'false': нет
+  or: или
 
-  facebook: Фейсбук
-  vk: Вконтакте
-  github: GitHub
-  google: Google
+  social:
+    facebook:
+      name: Facebook
+      icon: facebook
+    vkontakte:
+      name: Вконтакте
+      icon: vk
+    vk:
+      name: Вконтакте
+      icon: vk
+    github:
+      name: GitHub
+      icon: github
+    google_oauth2:
+      name: Google
+      icon: google-plus
+    twitter:
+      name: Twitter
+      icon: twitter
 
   event_participation_created: "Заявка на участие в &laquo;%{title}&raquo; принята."
   event_participation_canceled: "Вы отказались от участия в &laquo;%{title}&raquo;."
@@ -37,62 +127,77 @@ ru:
         create: Добавить мероприятие
 
   shared:
-    sidebar:
-      login: Вход
+    sidebar: &navigation
+      login: Войти
+      logout: Выйти
       register: Регистрация
       my_profile: Мой профиль
       vk: Вконтакте
       facebook: Facebook
       events: Мероприятия
-      donations: Пожертвования
+      donations: Спонсорам
       about: О сайте
-      members: Люди
+      members: Участники
+      donate: Спонсорам
       add_event_button_title: Добавить мероприятие
-      hashtag: "Наш хештег #it61"
+      hashtag: "Наш хештег #%{hashtag}"
+    nav:
+      <<: *navigation
     small_screens_footer:
-      hashtag: "Наш хештег #it61"
+      hashtag: "Наш хештег #%{hashtag}"
       social_links: Мы в соц. сетях
     oauth_login_block:
-      social_providers: Вход через соц. сети
+      social_providers: Войти с помощью соцсети
 
-  user_registrations:
-    new:
-      title: Регистрация
-      submit_title: Зарегистрироваться
-      email_pass_registration: Регистрация по почтовому адресу
-
-  user_sessions:
-    new:
-      title: Войти на сайт
-      email: E-mail
-      password: Пароль
-      remember_me: Запомнить меня
-      submit: Войти
-      email_pass_login: Вход по почте-паролю
+  devise:
+    sessions:
+      new:
+        title: Добро пожаловать!
+        log_in: Войти
+        social_login: Войти через
+    passwords:
+      new:
+        title: Забыли пароль?
+        send: Восстановить
+      edit:
+        title: Новый пароль
+        submit: Сохранить
+    registrations:
+      new:
+        title: Регистрация
+        sign_up: Зарегистрироваться
+      edit:
+        title: Изменить пароль
+        submit: Сохранить
+    confirmations:
+      new:
+        title: Активация аккаунта
+        send: Выслать повторно
     create:
       login_failed_message: Неверный пароль или пользователь не существует.
 
-  user_profiles:
+  users:
     index:
-      title: Люди
+      title: Участники
+      counter: нас уже %{count}
     edit:
       title: Мой профиль
       edit_title: Редактирование
       change_password: Сменить пароль?
       new_password: Новый пароль
       new_password_confirmation: Подтверждение нового пароля
-    show:
+    show: &users_show
       organizer_block_title: Организатор мероприятий
       member_block_title: Участник мероприятий
-      edit: Редактировать
-      logout: Выйти
-    linked_accounts:
-      title: Аккаунты соцсетей
+      edit: Изменить
+      linked_accounts: Аккаунты в соцсетях
     available_accounts:
       title: Привязать дополнительные аккаунты
   events:
     index:
       add_event_button_title: Добавить мероприятие
+      future_events: Будут
+      past_events: Были
     new:
       title: Новое мероприятие
     edit:
@@ -100,6 +205,8 @@ ru:
     show:
       publish: Опубликовать
       cancel_publication: Отменить публикацию
+      waiting_for_approval: Событие ещё не прошло модерацию и доступно только создателю и модераторам.
+      participants_export: Выгрузить участников
     publish:
       success_message: Событие успешно опубликовано
     cancel_publication:
@@ -138,7 +245,25 @@ ru:
         title_image: Титульное изображение
         participants: Участники
         place: Место проведения
+        foreign_link: Ссылка на стороннюю регистраци
 
   unauthorized:
     create:
       event_participation: Для участия в мероприятии необходимо зарегистрироваться.
+
+  authentications:
+    destroyed: "Привязка аккаунта %{provider} удалена."
+    not_destroyed: "Невозможно удалить единственный привязанный аккаунт, если не указан email."
+    unlink: "Отвязать аккаунт?"
+
+  my:
+    users:
+      show:
+        <<: *users_show
+        linked_accounts: Привязанные акаунты
+        unlinked_accounts: Добавить аккаунт
+        edit_registration: Сменить email и пароль
+      edit:
+        title: Профиль
+    events:
+      has_foreign_link: Сторонняя регистрация

@@ -1,0 +1,14 @@
+.page-header: h1 = t('.title')
+
+.row: .col-xs-12.col-sm-6.col-md-6.col-lg-5
+
+  = simple_form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f|
+    = f.error_notification
+    = f.full_error :unlock_token
+    = f.input :email, required: true, autofocus: true
+
+    = f.button :submit, "Resend unlock instructions"
+
+  hr
+
+  = render "devise/shared/links"

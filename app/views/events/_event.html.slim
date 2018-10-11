@@ -1,36 +1,38 @@
-.event.panel.panel-default
-  .panel-heading
-    .pull-right
-      - if can? :edit, event
-        = link_to edit_event_path(event), class: 'btn btn-xs btn-default' do
-          i.fa.fa-pencil
-    h3.panel-title
-      - if can? :edit, event
-        = render partial: 'admin_info', object: event, as: :event
-      = link_to event.title, event_path(event)
-      | &nbsp;
-      small = l event.started_at, format: :date_time_full
+.event.panel.panel-default data={ id: event.id }
   .panel-body
+    .row: .col-sm-12
+      h2.event-header = link_to event.title, event_path(event)
+      h4.event-subheader
+        span<> title="Время проведения" = event.link_to_time
+        - if event.place.present?
+          span<> title="Место проведения" = event.link_to_place
+    hr
     .row
       .col-sm-4
         = link_to event_path(event) do
           .image-container = image_tag event.title_image.square_500.url
         = render partial: 'participate_block', object: event, as: :event
-      .col-sm-8
+        .text-center
+          span.ya-share2 data={ counter: true, lang: "ru", services: "vkontakte,facebook,twitter,gplus", size: 'm', title: event.title, description: event.truncated_description, url: event_url(event)}
+        hr
         .event-date: p
-          i.fa.fa-fw.fa-calendar'
-          = l event.started_at, format: :date_time_full
+          i.fas.fa-fw.fa-calendar>
+          = link_to l(event.started_at, format: :date_time_full), event_path(event, format: :ics)
         - if event.place.present?
           .event-place: p
-            i.fa.fa-fw.fa-map-marker'
-            = event.place
-        hr
-        = markdown event.description
+            i.fas.fa-fw.fa-map-marker>
+            = event.link_to_place
+        .event-organizer: p title="Организатор"
+          i.fas.fa-fw.fa-user>
+          a href=user_path(event.organizer) = event.organizer
+      .col-sm-8
+        .event-description = event.rendered_description
 
   - if event.participants.any?
-    .panel-footer
-      .participants
-        h4
-          =' Event.human_attribute_name(:participants)
-          small = event.participants.count
-        = render partial: 'participants_block', object: event, as: :event
+    = cache [event, event.participants]
+      .panel-footer
+        .participants
+          h4
+            => Event.human_attribute_name(:participants)
+            small = event.participants.size
+          = render partial: 'participants_block', object: event, as: :event

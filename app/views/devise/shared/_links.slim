@@ -1,0 +1,15 @@
+- if controller_name != 'sessions'
+  = link_to t("devise.shared_links.log_in"), new_session_path(resource_name)
+  br/
+- if devise_mapping.registerable? && controller_name != 'registrations'
+  = link_to t("devise.shared_links.sign_up"), new_registration_path(resource_name)
+  br/
+- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations'
+  = link_to t("devise.shared_links.forgot_passord"), new_password_path(resource_name)
+  br/
+- if devise_mapping.confirmable? && controller_name != 'confirmations'
+  = link_to t("devise.shared_links.resend_confirmation_instructions"), new_confirmation_path(resource_name)
+  br/
+- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks'
+  = link_to t("devise.shared_links.resend_unlock_instructions"), new_unlock_path(resource_name)
+  br/

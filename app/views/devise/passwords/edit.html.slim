@@ -1,0 +1,12 @@
+.page-header: h1 = t('.title')
+
+.row: .col-xs-12.col-sm-6.col-md-6.col-lg-5
+  = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
+    = f.input :reset_password_token, as: :hidden
+    = f.full_error :reset_password_token
+    = f.input :password, autofocus: true
+    = f.input :password_confirmation
+
+    = f.button :submit, t('.submit')
+  hr
+  = render "devise/shared/links"

@@ -1,11 +1,13 @@
 language: ruby
 rvm:
-  - 2.1.2
+  - 2.3.0
 addons:
   postgresql: '9.3'
 before_script:
   - cp config/database.yml.travis config/database.yml
   - cp config/secrets.yml.template config/secrets.yml
+  - cp config/application.yml.template config/application.yml
+bundler_args: --retry 3
 install:
   - bundle install --path vendor/bundle
 script:

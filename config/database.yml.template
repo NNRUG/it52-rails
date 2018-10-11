@@ -5,14 +5,14 @@ default: &default
 
 development:
   <<: *default
-  database: it61_rails_dev
+  database: it52_rails_dev
 
 test:
   <<: *default
-  database: it61_rails_test
+  database: it52_rails_test
 
 production:
   <<: *default
-  database: it61_rails_prod
-  username: it61_rails
+  database: it52_rails_prod
+  username: it52_rails
   password: securepass

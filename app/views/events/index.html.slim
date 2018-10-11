@@ -1,5 +1,39 @@
 .events-index
   .page-header
-    h1 = Event.model_name.human(count: 2)
+    h1
+      = Event.model_name.human(count: 2)
 
-  .events = render @events
+      small.pull-right
+        a.btn.btn-success> href=new_event_path Добавить
+        span.feed-icons
+          = link_to events_path(format: :ics), title: 'iCalendar feed', class: "icon no-underline" do
+            i.fas.fa-calendar-alt
+          = link_to events_path(format: :atom), title: 'Atom feed', class: "icon no-underline" do
+            i.fas.fa-rss
+
+  ul.nav.nav-pills role="tablist"
+    li role="presentation" class="#{'active' unless past_events_page? }"
+      = link_to t('.future_events'), events_path
+    li role="presentation" class="#{'active' if past_events_page? }"
+      = link_to t('.past_events'), past_events_path
+  br
+
+  - if @events.empty?
+    .alert.alert-success
+      p Похоже все коллеги устали митапить и хакатонить и сейчас отдыхают.
+      p
+        'Но вы всегда можете встряхнуть их,
+        = link_to 'организовав новую встречу', new_event_path, class: 'alert-link'
+        |.
+      hr
+      p: small
+        = mail_to 'events@it52.info', 'Напишите нам', class: 'alert-link'
+        ', если хотите, но не знаете как. Мы всегда поможем с организацией. Бесплатно.
+  - else
+    .events
+      = render @events
+
+  // pagination
+  - if past_events_page?
+    .text-center
+      == paginate @events

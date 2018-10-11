@@ -1,0 +1,37 @@
+ru:
+  simple_form:
+    "yes": "Да"
+    "no": "Нет"
+    required:
+      text: 'required'
+      mark: '*'
+      # You can uncomment the line below if you need to overwrite the whole required html.
+      # When using html, text and mark won't be used.
+      # html: '<abbr title="required">*</abbr>'
+      html: ''
+    error_notification:
+      default_message: "Ошибочка вышла"
+    # Labels and hints examples
+    # labels:
+    #   defaults:
+    #     password: 'Password'
+    #   user:
+    #     new:
+    #       email: 'E-mail to sign in.'
+    #     edit:
+    #       email: 'E-mail.'
+    # hints:
+    #   defaults:
+    #     username: 'User name to sign in.'
+    #     password: 'No special characters, please.'
+    placeholders:
+      user:
+        email: cool@hacker.io
+        website: http://yandex.ru
+    hints:
+      user:
+        bio: Можно использовать Markdown
+        nickname: Будет использован в качестве ссылки на профиль
+        website: Укажите ваш сайт или оставьте поле пустым.
+        subscription: Обещаем часто не беспокоить и всегда соответстовать <a target="_blank" href="http://www.business.ftc.gov/documents/bus61-can-spam-act-compliance-guide-business">US CAN-SPAM Act</a>
+

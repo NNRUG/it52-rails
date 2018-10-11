@@ -2,23 +2,20 @@ class EventParticipationsController < ApplicationController
   respond_to :html
   load_and_authorize_resource param_method: :event_participation_params
 
-  rescue_from CanCan::AccessDenied do |exception|
-    redirect_to :back, flash: { error: exception.message }
-  end
-
   def create
     @event_participation.user = current_user || nil
     @event_participation.save!
 
     flash[:success] = t(:event_participation_created, title: @event_participation.event.title)
-    redirect_to :back
+    return redirect_to @event_participation.event.foreign_link if !@event_participation.event.foreign_link.blank?
+    redirect_back(fallback_location: root_path)
   end
 
   def destroy
     @event_participation.destroy!
 
     flash[:success] = t(:event_participation_canceled, title: @event_participation.event.title)
-    redirect_to :back
+    redirect_back(fallback_location: root_path)
   end
 
   private

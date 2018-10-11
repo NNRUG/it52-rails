@@ -1,0 +1,19 @@
+<md-dialog aria-label="">
+    <form layout="column">
+        <md-content flex>
+            <md-subheader class="md-sticky-no-effect">{{event.title}}</md-subheader>
+
+            <img style="margin: auto; max-width: 100px;" alt="logo" ng-src="{{event.image_url}}">
+
+            <p btf-markdown="event.description">
+            </p>
+
+        </md-content>
+        <div class="md-actions" layout="row">
+            <span flex></span>
+            <md-button ng-click="cancel()" class="md-primary">
+                Close
+            </md-button>
+        </div>
+    </form>
+</md-dialog>

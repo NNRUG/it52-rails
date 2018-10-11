@@ -1,0 +1,119 @@
+body
+  -webkit-font-smoothing: antialiased
+  font-smoothing: antialiased
+
+#page-content
+  word-break: break-word
+  @media (min-width: $screen-xs)
+    padding: 0 0 2 * $line-height-computed
+    #social-links
+      a
+        color: $text-color
+        i.fas, span.gray
+          font-size: 1.3em
+        span.gray
+          color: $gray-lighter
+  @media (min-width: $screen-sm)
+    padding: $line-height-computed 0 2 * $line-height-computed
+
+
+.alert.alert-error
+  @extend .alert-danger
+
+.alert.alert-alert
+  @extend .alert-warning
+
+.alert.alert-notice
+  @extend .alert-success
+
+.image-container
+  margin: 0 0 $line-height-computed
+  img
+    width: 100%
+
+.line
+  margin: $line-height-computed 0
+
+.avatar
+  background-color: #fefefe
+  text-align: center
+  img
+    width: 100%
+    border-radius: 100%
+
+.nav > li.disabled > a:hover
+  border-color: transparent
+
+.help-block
+  font-size: 90%
+
+.turbolinks-progress-bar
+  background-color: #fefefe
+  height: 2px
+  // box-shadow: 0 0 10px #111, 0 0 6px #111, 0 0 3px #111
+
+.color-rosewood
+  color: lighten($color-rosewood, 10%)
+  &:hover,
+  &:active
+    color: $color-rosewood
+
+.no-underline:hover
+  text-decoration: none
+
+.fa-rss-square:before
+  transform: scale(1.1) translateY(1px)
+  display: inline-block
+
+.btn-xs,
+.btn-group-xs > .btn
+  border-radius: 1px
+
+.checkbox + .help-block
+  margin-top: -8px
+
+.alert .help-block
+  color: inherit
+
+.add-new-button
+  margin-right: .5rem
+
+.event-date-inversed
+  text-decoration: none
+  background: #111
+  color: #fefefe
+
+  .event-day
+    margin-right: 1rem
+
+.participant-link
+  position: relative
+  display: inline-block
+  &:hover
+    background: transparent
+  &::after
+    position: absolute
+    width: 100%
+    height: 100%
+    right: -5px
+    bottom: -5px
+    background-color: #444
+    border-radius: 100%
+    z-index: -1
+  &:hover::after
+    content: ' '
+
+.user-profile-preview
+  font-family: 'Fira Sans', sans-serif
+  letter-spacing: -.5px
+  overflow: hidden
+  text-overflow: ellipsis
+  a
+    &:hover,
+    &:active,
+    &:focus
+      background-color: initial
+
+.feed-icons
+  a
+    padding: 0 1rem

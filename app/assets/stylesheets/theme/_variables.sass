@@ -1,0 +1,102 @@
+$sidebar-default-links-color: #ccc
+$sidebar-bg-color: #444
+
+$social-sidebar-widgets-width: 273px
+
+$default-transition-duration: .3s
+
+$facebook-brand-color: #3b5998
+$vk-brand-color: #45668e
+$github-brand-color: #fff
+$google-brand-color: #dd4b39
+$twitter-brand-color: #55acee
+
+$sidebar-width: 250px
+$sidebar-height-sm: 120px
+$sidebar-logo-width-md: 100px
+$sidebar-logo-width-sm: 100px
+$sidebar-logo-width-xs: 80px
+
+$color-rosewood: #700F00
+
+$navbar-default-bg: #111
+
+
+.blink_me
+  animation: blinker 1s linear infinite
+
+@keyframes blinker
+  50%
+    opacity: 0
+
+.it52-logo
+  font-family: 'Fira Mono'
+  font-weight: 500
+  font-size: 26px
+  line-height: 1.4
+  color: #fefefe
+  position: relative
+  margin: 0
+  letter-spacing: -1px
+  &::first-letter
+    margin-right: -1px
+  &::after
+    content: '2'
+    position: absolute
+    top: 0
+    right: 0
+    height: 100%
+    width: 1.45rem
+    background: #fefefe
+    color: $navbar-default-bg
+    text-align: center
+  &::before
+    content: '>'
+    position: absolute
+    top: 0
+    left: -1.6rem
+  &:hover::before
+    animation: blinker 1s step-start infinite
+  &.member::before,
+  &.user::before
+    content: '~'
+  &.admin::before,
+  &.root::before
+    content: '#'
+
+body
+  padding-top: 70px
+
+.navbar.navbar-footer
+  margin-top: 20px
+  margin-bottom: 0
+  border-bottom: none
+  text-align: center
+
+.navbar-avatar
+  max-height: 20px !important
+  max-width: 20px !important
+  overflow: hidden
+  transform: scale(1.2) translateX(-5px)
+
+.nav.social-icons-wrapper
+  li
+    display: inline-block
+
+
+.event-header,
+.event-subheader
+  font-weight: 400
+  margin-top: 0
+  margin-bottom: 0
+
+  a
+    text-decoration: none
+
+.event-header
+  letter-spacing: -3px
+
+.event-subheader
+  margin-top: 1rem
+  letter-spacing: -1px
+  line-height: 1.4

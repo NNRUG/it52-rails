@@ -1,0 +1,69 @@
+h1, .h1, h2, .h2
+  font-weight: 400
+  letter-spacing: -2px
+
+h3, h4, h5, h6, .h3, .h4, .h5, .h6
+  font-weight: 500
+  letter-spacing: -1px
+
+/* Стили кнопок логина через соц. сети. */
+.btn-facebook, .btn-vk, .btn-github, .btn-google-plus, .btn-twitter, .btn-vkontakte, .btn-google_oauth2
+  margin: 0.3em 0
+  &.btn-block
+    margin-bottom: $line-height-computed
+
+.btn-facebook
+  +button-variant(white, $facebook-brand-color, darken($facebook-brand-color, 8%))
+
+.btn-vk, .btn-vkontakte
+  +button-variant(white, $vk-brand-color, darken($vk-brand-color, 8%))
+
+.btn-github
+  +button-variant($text-color, $github-brand-color, $gray-light)
+
+.btn-google-plus, .btn-google_oauth2
+  +button-variant(white, $google-brand-color, darken($google-brand-color, 12%))
+
+.btn-twitter
+  +button-variant(white, $twitter-brand-color, darken($twitter-brand-color, 8%))
+
+.fa-google_oauth2
+  @extend .fa-google-plus
+
+.fa-vkontakte
+  @extend .fa-vk
+
+.social-login
+  .btn-social
+    @extend .btn-block
+    @extend .btn-md !optional
+    border-radius: 1px
+
+a
+  color: black
+  text-decoration: underline
+  &:hover,
+  &:active,
+  &:focus
+    color: #fefefe
+    background-color: #111
+    text-decoration: none
+  &:active,
+  &:focus
+    background-color: #444
+
+.navbar a
+  color: $sidebar-bg-color
+
+.navbar,
+.nav
+  a
+    text-decoration: none
+
+.nav a:hover
+  color: #111
+
+.btn
+  text-decoration: none
+  font-weight: 400
+  letter-spacing: -1px

@@ -1,0 +1,8 @@
+{
+  "name": "it52-rails",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:NNRUG/it52-rails.git",
+  "author": "Nick Kugaevsky <nick@kugaevsky.ru>",
+  "license": "MIT"
+}

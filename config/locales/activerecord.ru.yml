@@ -1,0 +1,99 @@
+ru:
+  activerecord:
+    errors:
+      messages:
+        taken: "%{model} с таким именем уже существует"
+        record_invalid: "Валидация не прошла: %{errors}"
+        restrict_dependent_destroy:
+          one: "Невозможно удалить запись, так как существуют зависимости: %{record}"
+          many: "Невозможно удалить записи, так как существуют зависимости: %{record} "
+        inclusion: "недопустимое значение"
+        exclusion: "значение зарезерваровано"
+        invalid: "содержит недопустимое значение"
+        confirmation: "Пароль не совпадает с подтверждением"
+        accepted: "must be accepted"
+        empty: "Поле не может быть пустым"
+        blank: "Поле не может быть пустым"
+        too_long: "слишком длинно (максимум: %{count} символов)"
+        too_short: "Поле должно содержать минимум %{count} символов"
+        wrong_length: "is the wrong length (should be {{count}} characters)"
+        taken: "%{attribute} уже занята"
+        not_a_number: "может содержать только цифры"
+        greater_than: "должно быть больше %{count}"
+        greater_than_or_equal_to: "должно быть больше или равно %{count}"
+        equal_to: "значение должно быть равно %{count}"
+        less_than: "значение должно быть меньше %{count}"
+        less_than_or_equal_to: "должно быть меньше или равно %{count}"
+        odd: "может быть только нечетным"
+        even: "может быть только четным"
+        open_url_error: 'По этому адресу либо нет никакого сайта, либо он не открывается.'
+        too_many_words: 'Слишком много слов. Сформулируйте покороче.'
+        not_cyrillic: 'Можно использовать только кириллицу'
+        record_uneditable: 'Запись нельзя изменить'
+        uncreatable:   'Невозможно создать запись с указанными параметрами'
+      models:
+        user:
+          attributes:
+            email:
+              taken: 'Этот адрес уже занят'
+              invalid: 'Укажите свою электронную почту'
+              restrict_modify: 'Вы не можете изменить свой логин'
+              already_confirmed: 'Этот email уже подтверждён'
+              not_found: 'У нас нет зарегистрированной почты с таким адресом. Возможно, вы не подтвердили её.'
+            confirmation_token:
+              invalid: 'Такой код подтверждения нам неизвестен'
+            user_reset_password_token:
+              invalid: 'Запросите актуальную ссылку для смены пароля.'
+            current_password:
+              invalid: 'Не правильный пароль'
+            website:
+              invalid: 'Это не похоже на адрес сайта'
+            subscription:
+              email_absent: 'Нужно обязательно указать email, чтобы подписаться на уведомления'
+        comment:
+          attributes:
+            description:
+              too_long: "Комментарий должен уместиться в %{count} символов."
+    models:
+      event:
+        one:    Мероприятие
+        other:  Мероприятия
+      idea:
+        one:    Идея
+        other:  Идеи
+      variant:
+        one:    Вариант
+        other:  Варианты
+      comment:
+        one:    Комментарий
+        other:  Комментарии
+      user:
+        one:    Пользователь
+        other:  Пользователи
+    attributes:
+      user:
+        password:     Пароль
+        first_name:   Имя
+        last_name:    Фамилия
+        name:         Имя
+        to_s:         Имя
+        phone:        Телефон
+        email:        Email
+        admin:        Администратор
+        remember_me:  Запомнить меня
+        current_password: Текущий пароль
+        password_confirmation: Подтверждение пароля
+        created_at: Создан
+        updated_at: Изменён
+        reset_password_sent_at: Токен выслан
+        sign_in_count: Входов
+        current_sign_in_at: Текущий вход
+        current_sign_in_ip: Текущий IP
+        last_sign_in_ip: Последний IP
+        confirmed_at: Подтверждён
+        confirmation_sent_at: Подтверждение выслано
+        website: Сайт
+        bio: О себе
+        nickname: Ник
+        employment: Место работы
+        subscription: Получать уведомления о мероприятиях

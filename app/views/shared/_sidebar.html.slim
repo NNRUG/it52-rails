@@ -1,56 +1,62 @@
-#logo-and-name = link_to root_path do
-  #logotype = image_tag 'logo-it61.png'
-  #sitename = t(:app_name)
+= cache ['sidebar', 'v2', current_user] do
 
-#sidebar-menu
-  = link_to '#mobile-menu', id: 'mobile-menu-toggler', class: 'toggle', data: {toggle: 'collapse'} do
-    i.fa.fa-align-justify
+  #logo-and-name = link_to root_path do
+    #logotype = image_tag "logo-it#{t :app_region}.png"
+    #sitename = t(:app_name)
 
-  hr
+  #sidebar-menu
+    = link_to '#mobile-menu', id: 'mobile-menu-toggler', class: 'toggle', data: {toggle: 'collapse'} do
+      i.fas.fa-align-justify
 
-  - if current_user
-    .user
-      = link_to user_profile_path(current_user.id) do
-        .avatar = image_tag current_user.avatar_image.square_50.url
-        .user-name = current_user.full_name
-  - else
-    ul#registration-login-nav.nav
-      = active_link_to t('.register'), new_user_registration_path, wrap_tag: :li
-      = active_link_to t('.login'), new_user_session_path, wrap_tag: :li
+    hr
 
-  ul#mainmenu.nav
-    - if can? :create, Event
+    - if current_user
+      .user
+        = link_to my_profile_path, id: :uuid,  data: { user_id: current_user.id} do
+          .avatar = image_tag current_user.avatar_image.square_50.url
+        .user-name
+          = link_to current_user.full_name, my_profile_path, class: 'profile-link'
+          .logout< = link_to destroy_user_session_path, method: :delete, title: t('.logout') do
+            i.fas.fa-power-off
+    - else
+      ul#registration-login-nav.nav
+        = active_link_to t('.login'), new_user_session_path, wrap_tag: :li
+
+    ul#mainmenu.nav
       li.with-plus-btn
         = active_link_to t('.events'), events_path
-        = link_to '+', new_event_path, class: 'plus-btn', title: t('.add_event_button_title')
-    - else
-      = active_link_to t('.events'), events_path, wrap_tag: :li
-    = active_link_to t('.members'), user_profiles_path, wrap_tag: :li
-    = active_link_to t('.donations'), page_path(:donations), wrap_tag: :li
-    = active_link_to t('.about'), page_path(:about), wrap_tag: :li
+        = link_to '+', new_event_path, class: 'plus-btn', title: t('.add_event_button_title'), data: { no_turbolink: true }
+      = active_link_to t('.members'), users_path, wrap_tag: :li
+      = active_link_to t('.about'), page_path(:about), wrap_tag: :li
+      = active_link_to t('.donate'), page_path(:donate), wrap_tag: :li
 
-  hr
+    hr
 
-  #social-links
-    h4 = t('.hashtag')
-    ul.nav.nav-pills
-      li = link_to 'https://twitter.com/it_rostov', target: '_blank' do
-        i.fa.fa-fw.fa-twitter
-      li = link_to 'https://vk.com/it_61', target: '_blank' do
-        i.fa.fa-fw.fa-vk
-      li = link_to 'https://www.facebook.com/it61.info', target: '_blank' do
-        i.fa.fa-fw.fa-facebook
+    #mobile-menu.collapse
+      ul.nav.nav-pills.nav-stacked
+        = active_link_to t('.events'), events_path, wrap_tag: :li
+        - if can? :create, Event
+          li = link_to t('.add_event_button_title'), new_event_path, class: 'plus-btn', title: t('.add_event_button_title'), data: { no_turbolink: true }
+        = active_link_to t('.members'), users_path, wrap_tag: :li
+        = active_link_to t('.about'), '#', wrap_tag: :li
+        = active_link_to t('.donate'), page_path(:donate), wrap_tag: :li
+        - if current_user
+          = active_link_to current_user, my_profile_path , wrap_tag: :li
+        - else
+          = active_link_to t('.login'), new_user_session_path, wrap_tag: :li
 
-  #mobile-menu.collapse
-    ul.nav.nav-pills.nav-stacked
-      = active_link_to t('.events'), events_path, wrap_tag: :li
-      - if can? :create, Event
-        li = link_to t('.add_event_button_title'), new_event_path, class: 'plus-btn', title: t('.add_event_button_title')
-      = active_link_to t('.members'), user_profiles_path, wrap_tag: :li
-      = active_link_to t('.donations'), '#', wrap_tag: :li
-      = active_link_to t('.about'), '#', wrap_tag: :li
-      - if current_user
-        = active_link_to current_user.full_name, user_profile_path(current_user.id), wrap_tag: :li
-      - else
-        = active_link_to t('.register'), new_user_registration_path, wrap_tag: :li
-        = active_link_to t('.login'), new_user_session_path, wrap_tag: :li
+    .sidebar-contacts
+      ul.list-inline
+        li: a href='https://www.facebook.com/groups/it52info/' target='_blank' title="Facebook"
+          = icon 'fas', 'facebook'
+        li<> |
+        li: a href='https://vk.com/it52info' target='_blank' title="Вконтакте"
+          = icon 'fas', 'vk'
+        li<> |
+        li: a href='mailto:events@it52.info' target='_blank' title="E-mail"
+          = icon 'fas', 'envelope'
+        li<> |
+        li: a href='https://telegram.me/nnrug' target='_blank' title="Telegram"
+          = icon 'fas', 'paper-plane'
+      hr
+      p: small == "2014 - #{Date.today.year} © #{link_to 'IT52.info', root_path}"

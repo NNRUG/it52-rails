@@ -1,0 +1,37 @@
+.page-header
+  h1 = t('.title')
+
+= simple_form_for @user, url: my_profile_path do |f|
+  .row
+    .col-sm-3
+      - if @user.avatar_image.present?
+        .title-image
+          .avatar = image_tag @user.avatar_image.square_150.url
+
+      = f.input :avatar_image, wrapper: :vertical_file_input
+      = f.input :avatar_image_cache, as: :hidden
+
+    .col-sm-7.col-sm-offset-1
+      = f.input :first_name
+      = f.input :last_name
+      = f.input :nickname
+      = f.input :employment
+      = f.input :website
+
+      = f.input :bio, input_html: { rows: 7 }
+
+      - if current_user.email.present?
+        = f.input :subscription, wrapper: :vertical_boolean
+      - else
+        = f.input :subscription, wrapper: :vertical_boolean, disabled: true, hint: false
+        .alert.alert-warning
+          p
+            'Пожалуйста,
+            a.alert-link href=edit_user_registration_path укажите вашу почту
+            |, чтобы подписаться на уведомления.
+
+
+      = f.submit class: 'btn btn-primary'
+      ' &nbsp;
+      = link_to t(:cancel), my_profile_path, class: 'btn btn-default'
+

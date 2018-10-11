@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    <title>AngularJS Material - Starter App</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+
+    <link rel="stylesheet" href="./bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./bower_components/angular-material/angular-material.css">
+    <link rel="stylesheet" href="./bower_components/leaflet/dist/leaflet.css">
+    <link rel="stylesheet" href="./bower_components/leaflet.markercluster/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="./bower_components/leaflet.markercluster/dist/MarkerCluster.Default.css" />
+    <link rel="stylesheet" href="./bower_components/Leaflet.ExtraMarkers/src/leaflet.extra-markers.css">
+    <link rel="stylesheet" href="./bower_components/ng-mfb/mfb/dist/mfb.css">
+    <link rel="stylesheet" href="./assets/app.css" >
+
+  </head>
+
+  <body ng-app="it52.info" layout="column">
+
+    <div layout="row" flex >
+      <div ng-controller="MenuController">
+      <nav mfb-menu position="br" effect="zoomin" label="menu"
+           active-icon="fa fa-navicon" resting-icon="fa fa-navicon"
+           toggling-method="click" >
+        <button mfb-button icon="fa fa-home" label="Main" ng-click="navigate('home')"></button>
+        <button mfb-button icon="fa fa-photo" label="Map" ng-click="navigate('map')"></button>
+        <button mfb-button icon="fa fa-calendar" label="Calendar" ng-click="navigate('calendar')"></button>
+      </nav>
+      </div>
+
+      <md-content layout="column" flex class="content-wrapper md-padding" id="content" >
+        <div layout="column" flex ui-view></div>
+      </md-content>
+
+
+    </div>
+
+    <script src="./bower_components/angular/angular.js"></script>
+    <script src="./bower_components/angular-aria/angular-aria.js"></script>
+    <script src="./bower_components/angular-animate/angular-animate.js"></script>
+    <script src="./bower_components/leaflet/dist/leaflet.js"></script>
+    <script src="./bower_components/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
+    <script src="./bower_components/Leaflet.ExtraMarkers/src/leaflet.extra-markers.js"></script>
+    <script src="./bower_components/angular-leaflet-directive/dist/angular-leaflet-directive.js"></script>
+    <script src="./bower_components/ui-router/release/angular-ui-router.js"></script>
+    <script src="./bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="./bower_components/showdown/src/showdown.js"></script>
+    <script src="./bower_components/angular-markdown-directive/markdown.js"></script>
+
+    <script src="./bower_components/angular-material/angular-material.js"></script>
+    <script src="./bower_components/ng-mfb/src/mfb-directive.js"></script>
+
+    <script src="./src/boot.js"></script>
+
+    <script src="./src/model/event.js"></script>
+    <script src="./src/map/map.js"></script>
+    <script src="./src/map/mapController.js"></script>
+    <script src="./src/map/placemark.js"></script>
+    <script src="./src/calendar/calendar.js"></script>
+    <script src="./src/calendar/calendarController.js"></script>
+    <script src="./src/eventDetail/eventDetail.js"></script>
+    <script src="./src/eventDetail/eventDetailController.js"></script>
+    <script src="./src/menu/menu.js"></script>
+    <script src="./src/menu/menuController.js"></script>
+
+  </body>
+</html>

@@ -1,0 +1,11 @@
+h4 Добро пожаловать!
+p
+  = "Вы собираетесь зарегистрироваться (или изменить email) на сайте #{Figaro.env.mailing_host} с адресом"
+  strong< = @resource.email
+p Пожалуйста, подтвердите свой email, кликнув на ссылку ниже.
+p == link_to 'Да, это моя почта', confirmation_url(@resource, confirmation_token: @token)
+p Если вы не регистрировались на указанном сайте, просто проигнорируйте это сообщение.
+
+== "--"
+br/
+== t('devise.emails.signature')

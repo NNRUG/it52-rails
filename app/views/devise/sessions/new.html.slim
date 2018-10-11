@@ -1,0 +1,21 @@
+.page-header: h1 = t('.title')
+
+.row data-no-turbolink=true
+  - if devise_mapping.omniauthable?
+    .col-sm-6
+      h2 = t('.social_login')
+      .row: .col-sm-8
+        ul.list-unstyled.social-login
+          = render partial: 'authentications/unlinked', collection: resource_class.omniauth_providers, as: :provider
+
+  .col-sm-5.col-sm-offset-1
+    h2 = t('.log_in')
+    = simple_form_for resource, as: resource_name, url: session_path(resource_name) do |f|
+      = f.input :email, autofocus: true, required: true
+      = f.input :password, required: true
+      = f.input :remember_me, as: :boolean, wrapper: :vertical_boolean if devise_mapping.rememberable?
+      = f.button :submit, t('.log_in'), class: 'btn-success'
+
+    hr
+
+    = render "devise/shared/links"

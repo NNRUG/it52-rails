@@ -1,0 +1,17 @@
+
+
+#content  {
+
+  padding: 0;
+}
+
+.md-calendar-day {
+  border-bottom: 1px solid #eee;
+  border-right: 1px solid #eee;
+}
+
+.md-calendar-number {
+  padding: 0;
+  color: #777;
+  font-weight: bold;
+}
