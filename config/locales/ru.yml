@@ -256,7 +256,7 @@ ru:
 
   unauthorized:
     create:
-      event_participation: Для участия в мероприятии необходимо зарегистрироваться.
+      event_participation: Для участия в мероприятии необходимо войти.
 
   authentications:
     destroyed: "Привязка аккаунта %{provider} удалена."
