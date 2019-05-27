@@ -20,6 +20,7 @@ groups:
       js_nn: Javascript
       nnrug: Ruby
       golang_events_nizhny: GoLang
+      scala_nn: Scala
   interests:
     name: По интересам
     channels:
