@@ -71,7 +71,7 @@ gem 'dalli'
 gem 'jwt'
 
 # Documentation
-gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'sdoc', '~> 1.0.0', group: :doc
 # gem 'apipie-rails', git: 'https://github.com/Apipie/apipie-rails.git', ref: 'f697ec2a887cd73c00c846eceb2ce63a050ccb20'
 
 # Application server
