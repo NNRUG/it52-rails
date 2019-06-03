@@ -257,7 +257,7 @@ ru:
 
   unauthorized:
     create:
-      event_participation: Для участия в мероприятии необходимо зарегистрироваться.
+      event_participation: Для участия в мероприятии необходимо <a href="/login">зарегистрироваться</a>.
 
   authentications:
     destroyed: "Привязка аккаунта %{provider} удалена."
