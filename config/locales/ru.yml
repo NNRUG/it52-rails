@@ -140,8 +140,10 @@ ru:
       about: О сайте
       members: Участники
       communities: Сообщества
-      donate: Спонсорам
-      add_event_button_title: Добавить мероприятие
+      donate: Помочь!
+      profile: Профиль
+      settings: Настройки
+      add_event_button_title: Добавить событие
       hashtag: "Наш хештег #%{hashtag}"
     nav:
       <<: *navigation
@@ -206,6 +208,10 @@ ru:
       unapproved_events: На модерации
       new_event: Добавить
       go_home: На главную
+      kind_filter:
+        all: Все события
+        event: Митапы
+        education: Обучение
     new:
       title: Новое мероприятие
     edit:

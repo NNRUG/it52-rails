@@ -36,6 +36,7 @@ html lang='ru'
 
     link rel="alternate" type="application/atom+xml" title=t(:app_description) href=events_url(format: :atom)
 
+    = stylesheet_link_tag  'https://fonts.googleapis.com/icon?family=Material+Icons'
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': true
 
     = yield(:head) if content_for(:head)
@@ -62,7 +63,8 @@ html lang='ru'
 
     = render 'shared/nav'
 
-    main
+    .mdc-drawer-scrim
+    main#main-content.main-content
       .container
         .flash-messages
           - flash.each do |type, message|

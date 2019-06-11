@@ -1,35 +1,41 @@
 - content_for(:head) do
   link rel="canonical" href=root_path
 
+- content_for(:topbar_actions) do
+  - if user_signed_in? && !unapproved_count.zero?
+    a.mdc-chip.unapproved-chip href=events_path(status: 'unapproved') title='На модерации'
+      i.material-icons.mdc-chip__icon.mdc-chip__icon--leading warning
+      .mdc-chip__text = "(#{unapproved_count})"
+
+  a.material-icons.mdc-top-app-bar__action-item href=new_event_path title='Добавить событие' add
+
+.events-select-menu-wrapper
+  #events-select-menu.events-select-menu.mdc-select
+    input type="hidden" name="enhanced-select" role="button" aria-haspopup="listbox"
+    .mdc-select__dropdown-icon
+    .mdc-select__selected-text
+    #events-select-menu-list.mdc-select__menu.mdc-menu.mdc-menu-surface
+      ul.mdc-list
+        - t('events.index.kind_filter').each_pair do |key, title|
+          li.mdc-list-item class=('mdc-list-item--selected' if current_filter?(key)) role="option" data-value=key data-url=events_path(filter_params.merge(kind: key)) aria-selected=(current_filter?(key) ? "true" : false)
+            = filter_params[:tag] ? "#{title} с тэгом #{filter_params[:tag]}" : title
+    / span.mdc-floating-label Select something
+    / .mdc-line-ripple
+
 .events-index
   .page-header
     .pull-right
       .feed-icons
-        = link_to events_path(format: :ics), title: 'Добавить в календарь', class: "icon no-underline" do
-          i.fas.fa-calendar-alt.fa-2x
-        = link_to events_path(format: :atom), title: 'RSS', class: "icon no-underline" do
-          i.fas.fa-rss.fa-2x
+        a.mdc-icon-button href=events_path(format: :ics) title='Добавить в календарь'
+          i.material-icons.mdc-icon-button__icon aria-hidden="true" event_note
+        a.mdc-icon-button href=events_path(format: :atom) title='RSS'
+          i.material-icons.mdc-icon-button__icon aria-hidden="true" rss_feed
 
-    -unless current_page?(root_path) || current_page?(:controller => 'events', :action => 'index_past') || current_page?(:controller => 'events', :action => 'index_unapproved') || current_page?(:controller => 'events', :action => 'index_education')
-      ul.nav.nav-pills role="tablist"
-        li role="presentation" class="#{'active' if action_name == 'index' }"
-          = link_to t('.go_home'), root_path
-        li role="presentation"
-          = link_to t('.new_event'), new_event_path, class: 'btn btn-success'
-    -else
-      ul.nav.nav-pills role="tablist"
-        - unless educational?
-          li role="presentation" class="#{'active' if action_name == 'index' }"
-            = link_to t('.future_events'), root_path
-          li role="presentation" class="#{'active' if action_name == 'index_past' }"
-            = link_to t('.past_events'), past_events_path
-        - if user_signed_in? && !unapproved_count.zero?
-          li role="presentation" class="#{'active' if action_name == 'index_unapproved' }"
-            = link_to "#{t('.unapproved_events')} (#{unapproved_count})", unapproved_events_path
-        li role="presentation"
-          = link_to t('.new_event'), new_event_path, class: 'btn btn-success'
-        / a.btn.btn-success> href=new_event_path Добавить
-    end
+    nav.events-nav
+      a.mdc-button href=events_path(filter_params.merge(status: 'future')) class=('mdc-button--outlined' unless filter_params[:status].nil? || filter_params[:status] == 'future')
+        span.mdc-button__label = t('.future_events')
+      a.mdc-button href=events_path(filter_params.merge(status: 'past')) class=('mdc-button--outlined' unless filter_params[:status] == 'past')
+        span.mdc-button__label = t('.past_events')
 
   - if @events.empty?
     .alert.alert-success

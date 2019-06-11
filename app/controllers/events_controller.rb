@@ -3,7 +3,7 @@ require 'icalendar'
 class EventsController < ApplicationController
   respond_to :html
 
-  helper_method :unapproved_count, :educational?
+  helper_method :unapproved_count, :educational?, :current_filter?, :filter_params
 
   before_action :authenticate_user!, except: %i[index index_past index_education show]
   before_action :set_model, only: %i[index index_past index_unapproved index_education]
@@ -11,43 +11,28 @@ class EventsController < ApplicationController
   before_action :check_actual_slug, only: :show
   before_action :define_meta_tags, only: [:show, :edit]
   before_action :set_organizer, only: :create
+  before_action :set_filter_kind, only: :index
 
   load_and_authorize_resource param_method: :event_params, except: %i[index index_past index_unapproved index_education]
 
   has_scope :ordered_desc, type: :boolean, allow_blank: true, default: true
 
   def index
-    if params[:tag]
-      @events = @model.published.order(published_at: :desc).page(params[:page]).tagged_with(params[:tag]).decorate
+    if filter_params[:status] == 'unapproved'
+      @events = @model.unapproved.visible_by_user(current_user)
     else
-      @events = @model.event.published.future.page(params[:page]).decorate
+      @events = @model.filter_by(**filter_params).published
     end
 
-    @rss_events = @model.published.order(published_at: :desc).limit(500).decorate
-    @all_events = @model.published.order(started_at: :asc)
+    @events = @events.page(params[:page]).decorate
+    @rss_events = @model.published.order(published_at: :desc).limit(100).decorate
     respond_to do |format|
       format.html
-      format.json { render json: @all_events.to_json }
+      format.json { render json: @model.published.order(started_at: :asc).page(params[:page]).to_json }
       format.atom
-      format.ics { render body: Calendar.new(@all_events).to_ical }
+      format.ics { render body: Calendar.new(@model.published.order(started_at: :asc).page(params[:page])).to_ical }
       format.rss
     end
-  end
-
-
-  def index_past
-    @events = @model.event.published.past.page(params[:page]).decorate
-    render :index
-  end
-
-  def index_unapproved
-    @events = @model.unapproved.visible_by_user(current_user).page(params[:page]).decorate
-    render :index
-  end
-
-  def index_education
-    @events = @model.education.published.order(started_at: :desc).page(params[:page]).decorate
-    render :index
   end
 
   def show
@@ -186,6 +171,20 @@ class EventsController < ApplicationController
 
   def educational?
     action_name == 'index_education'
+  end
+
+  def set_filter_kind
+    session[:events_kind_filter] = params[:kind] || session[:events_kind_filter] || 'all'
+  end
+
+  def filter_params
+    params.permit(:kind, :status, :tag).to_h
+      .merge(kind: session[:events_kind_filter])
+      .symbolize_keys
+  end
+
+  def current_filter?(key)
+    key.to_s == session[:events_kind_filter].to_s
   end
 
   def set_organizer

@@ -22,7 +22,10 @@
 #
 
 class Event < ApplicationRecord
-  paginates_per 20
+  DEFAULT_FILTER_PARAMS = { kind: 'all',
+                            status: 'future',
+                            tag: nil }.freeze
+  paginates_per 10
 
   acts_as_taggable_on :tags
 
@@ -43,16 +46,16 @@ class Event < ApplicationRecord
   validates :description, presence: true
   validates :started_at, presence: true
 
-  scope :ordered_desc,  -> { order(started_at: :desc) }
-  scope :ordered_asc,   -> { order(started_at: :asc) }
+  scope :ordered_desc, -> { order(started_at: :desc) }
+  scope :ordered_asc,  -> { order(started_at: :asc) }
 
-  scope :published, -> { where(published: true) }
+  scope :published,  -> { where(published: true) }
   scope :unapproved, -> { where(published: false) }
 
-  scope :past,    -> { ordered_desc.where("started_at < ?", Time.now.beginning_of_day ) }
-  scope :future,  -> { ordered_asc.where("started_at >= ?", Time.now.beginning_of_day ) }
+  scope :past,    -> { ordered_desc.where("started_at < ?", Time.current.beginning_of_day).ordered_desc }
+  scope :future,  -> { ordered_asc.where("started_at >= ?", Time.current.beginning_of_day).ordered_asc }
 
-  scope :held_in,  -> (year, month) {
+  scope :held_in, -> (year, month) {
     start   = month.nil? ? Date.new(year) : Date.new(year, month)
     finish  = month.nil? ? start.end_of_year : start.end_of_month
     ordered_desc.where("started_at BETWEEN ? AND ?", start, finish)
@@ -68,6 +71,14 @@ class Event < ApplicationRecord
 
   def self.humanized_kinds_map
     kinds.map { |kind| [I18n.t("activerecord.attributes.event.kinds.#{kind[0]}"), kind[0]] }
+  end
+
+  def self.filter_by(kind: 'all', status: 'future', tag: nil)
+    records = all
+    records = records.send(kind.to_sym) if kind.in?(self.kinds.keys)
+    records = records.send(status.to_sym) if status.to_sym.in?(%i[past future])
+    records = records.tagged_with(tag) if tag
+    records
   end
 
   def slug_candidates

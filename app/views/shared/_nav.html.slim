@@ -1,43 +1,61 @@
-nav.navbar.navbar-default.navbar-fixed-top
-  .container
-    .navbar-header
-      button.navbar-toggle.collapsed type='button' data-toggle='collapse' data-target='#bs-example-navbar-collapse-1' aria-expanded='false'
-        span.sr-only Toggle navigation
-        span.icon-bar
-        span.icon-bar
-        span.icon-bar
-      a.navbar-brand href=root_url
+header.mdc-top-app-bar.mdc-top-app-bar--fixed.mdc-top-app-bar--dense
+  .mdc-top-app-bar__row.mdc-top-app-bar__row--container
+    section.mdc-top-app-bar__section.mdc-top-app-bar__section--align-start
+      a href=root_url
         - if current_page?(root_url)
           h1.it52-logo class=logo_class = "it52"
         - else
           h3.it52-logo class=logo_class = "it52"
 
-    #bs-example-navbar-collapse-1.collapse.navbar-collapse
-      ul.nav.navbar-nav.navbar-right
-        li = link_to root_path do
-          span.hidden-md.hidden-sm = t('.events')
-          i.fas.fa-calendar.visible-md-inline.visible-sm-inline
-        li = link_to education_events_path do
-          span.hidden-md.hidden-sm = t('.education')
-          i.fas.fa-calendar.visible-md-inline.visible-sm-inline
-        li = link_to page_path(:communities) do
-          span.hidden-md.hidden-sm = t('.communities')
-          i.fas.fa-users.visible-md-inline.visible-sm-inline
-        li = link_to users_path do
-          span.hidden-md.hidden-sm = t('.members')
-          i.fas.fa-user.visible-md-inline.visible-sm-inline
-        li = link_to page_path(:donate) do
-          span.hidden-md.hidden-sm = t('.donate')
-          i.fa.fa-dollar.visible-md-inline.visible-sm-inline
-        / li = link_to page_path(:about) do
-        /   span.hidden-md.hidden-sm = t('.about')
-        /   i.fas.fa-info.visible-md-inline.visible-sm-inline
-        - if current_user
-          li = link_to my_profile_path, id: :uuid, data: { user_id: current_user.id} do
-            = image_tag current_user.avatar_image.square_50.url, class: 'navbar-avatar'
-            span< = current_user.full_name
-          li = link_to destroy_user_session_path, method: :delete, title: t('.logout') do
-            i.fas.fa-power-off>
-            span.visible-xs-inline = t('.logout')
-        - else
-          li = link_to t('.login'), new_user_session_path
+    section.mdc-top-app-bar__section.mdc-top-app-bar__section--align-end
+      = yield(:topbar_actions) if content_for(:topbar_actions)
+
+      - if user_signed_in?
+        a.material-icons.mdc-top-app-bar__action-item href=my_profile_path
+          = image_tag current_user.avatar_image.square_25.url
+      - else
+        a.material-icons.mdc-top-app-bar__action-item href=new_user_session_path input
+      a.material-icons.mdc-top-app-bar__navigation-icon data-no-turbolink='' menu
+
+aside.mdc-drawer.mdc-drawer--modal
+  - if user_signed_in?
+    .mdc-drawer__header
+      h3.mdc-drawer__title = current_user.to_s
+      - if current_user.email.present?
+        h6.mdc-drawer__subtitle = current_user.email
+
+  .mdc-drawer__content
+    nav.mdc-list
+      a.mdc-list-item class=('mdc-list-item--activated' if current_page?(new_event_path)) href=new_event_path
+        span.material-icons.mdc-list-item__graphic aria-hidden="true" add
+        span.mdc-list-item__text = t('.add_event_button_title')
+      hr.mdc-list-divider
+      a.mdc-list-item class=('mdc-list-item--activated' if current_page?(root_path)) href=root_path
+        span.material-icons.mdc-list-item__graphic aria-hidden="true" date_range
+        span.mdc-list-item__text = t('.events')
+      a.mdc-list-item class=('mdc-list-item--activated' if current_page?(page_path(:communities))) href=page_path(:communities)
+        span.material-icons.mdc-list-item__graphic aria-hidden="true" group
+        span.mdc-list-item__text = t('.communities')
+      a.mdc-list-item class=('mdc-list-item--activated' if current_page?(page_path(:donate))) href=page_path(:donate)
+        span.material-icons.mdc-list-item__graphic aria-hidden="true" favorite
+        span.mdc-list-item__text = t('.donate')
+      a.mdc-list-item class=('mdc-list-item--activated' if current_page?(page_path(:about))) href=page_path(:about)
+        span.material-icons.mdc-list-item__graphic aria-hidden="true" help
+        span.mdc-list-item__text = t('.about')
+      hr.mdc-list-divider
+      - if user_signed_in?
+        a.mdc-list-item class=('mdc-list-item--activated' if current_page?(my_profile_path)) href=my_profile_path
+          span.material-icons.mdc-list-item__graphic aria-hidden="true"
+            = image_tag current_user.avatar_image.square_25.url
+          span.mdc-list-item__text = t('.profile')
+        a.mdc-list-item class=('mdc-list-item--activated' if current_page?(edit_my_profile_path)) href=edit_my_profile_path
+          span.material-icons.mdc-list-item__graphic aria-hidden="true" settings
+          span.mdc-list-item__text = t('.settings')
+        hr.mdc-list-divider
+        = link_to destroy_user_session_path, method: :delete, class: 'mdc-list-item' do
+          span.material-icons.mdc-list-item__graphic aria-hidden="true" power_settings_new
+          span.mdc-list-item__text = t('.logout')
+      - else
+        a.mdc-list-item class=('mdc-list-item--activated' if current_page?(new_user_session_path)) href=new_user_session_path
+          span.material-icons.mdc-list-item__graphic aria-hidden="true" input
+          span.mdc-list-item__text = t('.login')

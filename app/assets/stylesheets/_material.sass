@@ -1,0 +1,121 @@
+// Variables
+
+$mdc-theme-primary: #111
+$mdc-theme-secondary: #b71c1c
+$mdc-theme-on-primary: #fefefe
+$mdc-theme-on-secondary: #442b2d
+
+$mdc-theme-success: #2e7d32
+$mdc-theme-warning: #fdd835
+
+// Top app bar
+@import "@material/top-app-bar/mdc-top-app-bar"
+
+.mdc-top-app-bar__row--container
+  margin-left: auto
+  margin-right: auto
+
+  @media (min-width: 768px)
+    max-width: 750px
+
+  @media (min-width: 992px)
+    max-width: 697px
+
+  @media (min-width: 1200px)
+    max-width: 897px
+
+.it52-logo
+  margin: 0 2rem 0 2.1rem
+
+  @media (min-width: 768px)
+    margin-left: 3px
+
+
+// Layout grid
+@import "@material/layout-grid/mdc-layout-grid"
+
+// Buttons
+@import "@material/button/mdc-button"
+@import "@material/fab/mdc-fab"
+@import "@material/icon-button/mdc-icon-button"
+
+.mdc-button
+  @include mdc-button-shape-radius(0)
+  font-size: 1.2rem
+
+.events-nav
+  .mdc-button
+    margin-right: 1rem
+
+    &:last-child
+      margin-right: 0
+
+    &--success
+      @include mdc-button-filled-accessible($mdc-theme-success)
+
+.mdc-fab
+  &--success
+    @include mdc-fab-accessible($mdc-theme-success)
+
+// Lists
+@import "@material/list/mdc-list"
+
+.mdc-list
+  font-size: 16px
+
+// Drawer
+@import "@material/drawer/mdc-drawer"
+.mdc-drawer
+  @include mdc-drawer-fill-color-accessible(#222)
+  // @include mdc-drawer-surface-fill-color($mdc-theme-primary)
+  &__title
+    font-size: 2rem
+  &__subtitle
+    font-size: 1.5rem
+  .mdc-list-item
+    font-size: 16px
+    font-weight: 400
+    line-height: 1.75rem
+
+// Tabs
+@import "@material/tab-bar/mdc-tab-bar"
+@import "@material/tab-scroller/mdc-tab-scroller"
+@import "@material/tab-indicator/mdc-tab-indicator"
+@import "@material/tab/mdc-tab"
+
+
+// Menu
+@import "@material/menu-surface/mdc-menu-surface"
+@import "@material/menu/mdc-menu"
+@import "@material/select/mdc-select"
+
+.mdc-select__native-control, .mdc-select__selected-text
+  font-size: 16px
+
+.mdc-select.events-select-menu
+  @include mdc-select-bottom-line-color(rgba(0,0,0,0))
+  @include mdc-select-shape-radius(0)
+  // @include mdc-select-ink-color($mdc-theme-primary)
+  max-width: 100%
+
+  .mdc-select__selected-text
+    font-size: 2rem
+
+  .mdc-list
+    font-size: 1.5rem
+
+.events-select-menu-wrapper
+  margin-top: 1rem
+  margin-bottom: -2.5rem
+  max-width: 100%
+
+// Chips
+@import "@material/chips/mdc-chips"
+
+.unapproved-chip
+  @include mdc-chip-fill-color-accessible($mdc-theme-warning)
+
+  &:hover
+    background-color: #ffff6b
+  .mdc-chip__text
+    font-size: 1.4rem
