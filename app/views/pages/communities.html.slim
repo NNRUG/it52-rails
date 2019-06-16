@@ -4,4 +4,4 @@ h1 IT-сообщества Нижнего Новгорода
   h3 = group[:name]
   ul.chevron-bullets
     - group[:channels].each_pair do |id, description|
-      li #{link_to "@#{id}", "tg://resolve=#{id}"} — #{description}
+      li #{link_to "@#{id}", "tg://resolve/?domain=#{id}"} — #{description}
