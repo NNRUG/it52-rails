@@ -59,7 +59,7 @@ GEM
       activerecord (>= 3.2, < 7.0)
       rake (>= 10.4, < 13.0)
     arel (9.0.0)
-    asset_sync (2.7.0)
+    asset_sync (2.8.0)
       activemodel (>= 4.1.0)
       fog-core
       mime-types (>= 2.99)
