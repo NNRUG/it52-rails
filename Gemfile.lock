@@ -59,7 +59,7 @@ GEM
       activerecord (>= 3.2, < 7.0)
       rake (>= 10.4, < 13.0)
     arel (9.0.0)
-    asset_sync (2.7.0)
+    asset_sync (2.8.0)
       activemodel (>= 4.1.0)
       fog-core
       mime-types (>= 2.99)
@@ -325,7 +325,7 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
-    rollbar (2.20.1)
+    rollbar (2.20.2)
       multi_json
     rspec-core (3.8.0)
       rspec-support (~> 3.8.0)
