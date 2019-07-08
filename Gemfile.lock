@@ -65,7 +65,7 @@ GEM
       mime-types (>= 2.99)
       unf
     ast (2.4.0)
-    autoprefixer-rails (9.6.0)
+    autoprefixer-rails (9.6.1)
       execjs
     awesome_print (1.8.0)
     bcrypt (3.1.13)
