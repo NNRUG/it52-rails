@@ -25,11 +25,11 @@ language: ruby
 rvm:
 - 2.6.3
 before_install:
-- sudo sed -i -e '/local.*peer/s/postgres/all/' -e 's/peer\|md5/trust/g' /etc/postgresql/*/main/pg_hba.conf
-- sudo service postgresql restart
+- gem update --system
+- gem install bundler
 - sleep 1
 install:
-- bundle install --path vendor/bundle --retry 3
+- bundle install --jobs=3 --retry=3 --path=vendor/bundle
 - yarn install
 before_script:
 - cp config/database.yml.travis config/database.yml

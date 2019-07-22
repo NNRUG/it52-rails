@@ -1591,6 +1591,11 @@ Lint/ScriptPermission:
   VersionAdded: '0.49'
   VersionChanged: '0.50'
 
+Lint/SendWithMixinArgument:
+  Description: 'Checks for `send` method when using mixin.'
+  Enabled: true
+  VersionAdded: '0.75'
+
 Lint/ShadowedArgument:
   Description: 'Avoid reassigning arguments before they were used.'
   Enabled: true
@@ -1662,6 +1667,7 @@ Lint/UnneededSplatExpansion:
   Description: 'Checks for splat unnecessarily being called on literals.'
   Enabled: true
   VersionAdded: '0.43'
+  VersionChanged: '0.74'
 
 Lint/UnreachableCode:
   Description: 'Unreachable code.'
@@ -1745,7 +1751,7 @@ Metrics/AbcSize:
                  branches, and conditions.
   Reference:
     - http://c2.com/cgi/wiki?AbcMetric
-    - https://en.wikipedia.org/wiki/ABC_Software_Metric'
+    - https://en.wikipedia.org/wiki/ABC_Software_Metric
   Enabled: true
   VersionAdded: '0.27'
   VersionChanged: '0.66'
@@ -1983,6 +1989,13 @@ Naming/MethodName:
   SupportedStyles:
     - snake_case
     - camelCase
+  # Method names matching patterns are always allowed.
+  #
+  #   IgnoredPatterns:
+  #     - '\A\s*onSelectionBulkChange\s*'
+  #     - '\A\s*onSelectionCleared\s*'
+  #
+  IgnoredPatterns: []
 
 Naming/PredicateName:
   Description: 'Check the names of predicate methods.'
@@ -2705,7 +2718,7 @@ Style/FormatStringToken:
     - template
     - unannotated
   VersionAdded: '0.49'
-  VersionChanged: '0.52'
+  VersionChanged: '0.75'
 
 Style/FrozenStringLiteralComment:
   Description: >-
@@ -2898,6 +2911,7 @@ Style/MethodCallWithArgsParentheses:
   VersionChanged: '0.61'
   IgnoreMacros: true
   IgnoredMethods: []
+  IgnoredPatterns: []
   IncludedMacros: []
   AllowParenthesesInMultilineCall: false
   AllowParenthesesInChaining: false
@@ -3585,6 +3599,8 @@ Style/StringHashKeys:
   StyleGuide: '#symbols-as-keys'
   Enabled: false
   VersionAdded: '0.52'
+  VersionChanged: '0.75'
+  Safe: false
 
 Style/StringLiterals:
   Description: 'Checks if uses of quotes match the configured preference.'
