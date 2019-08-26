@@ -27,6 +27,7 @@ rvm:
 - 2.6.3
 before_install:
 - sudo sed -i -e '/local.*peer/s/postgres/all/' -e 's/peer\|md5/trust/g' /etc/postgresql/*/main/pg_hba.conf
+- cp config/database.yml.travis config/database.yml
 - ls /etc/init.d/
 - sudo /etc/init.d/postgresql restart
 # - sudo systemctl restart postgresql@10-main
@@ -35,7 +36,6 @@ install:
 - bundle install --path vendor/bundle --retry 3
 - yarn install
 before_script:
-- cp config/database.yml.travis config/database.yml
 - cp config/secrets.yml.template config/secrets.yml
 - cp config/application.yml.template config/application.yml
 - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
