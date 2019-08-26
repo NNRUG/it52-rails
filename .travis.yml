@@ -44,7 +44,7 @@ before_script:
 script:
 - yarn run lint
 - bundle exec rubocop
-- bundle exec rails db:create
+# - bundle exec rails db:create
 - bundle exec rails db:schema:load
 - travis_wait 15 bundle exec rspec
 after_script:
