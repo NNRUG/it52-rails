@@ -22,6 +22,7 @@ cache:
   - /home/travis/.rvm/
   - node_modules
 language: ruby
+sudo: required
 rvm:
 - 2.6.3
 before_install:
