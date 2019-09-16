@@ -24,6 +24,7 @@ groups:
       kotlin_nn: Kotlin
       android_nn: Android (Java, Kotlin)
       iosnndevs: iOS (Objective-C, Swift)
+      php_nn: PHP NN
 
   interests:
     name: По интересам
