@@ -30,10 +30,7 @@ Main branch is [it52](https://github.com/NNRUG/it52-rails/tree/it52)
 
 ```bash
     git clone git@github.com:NNRUG/it52-rails.git
-    docker-compose pull rails
-    docker-compose run rails yarn install
-    docker-compose run rails bundle
-    docker-compose run rails bin/rails db:setup
+    make prepare
 ```
 
 #### Для запуска сервера разработки

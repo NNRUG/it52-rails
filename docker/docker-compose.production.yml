@@ -1,0 +1,40 @@
+version: '3.2'
+services:
+  redis:
+    image: redis:alpine
+    volumes:
+      - 'redis:/data'
+
+  backend: &backend
+    image: ${COMPOSE_PROJECT_NAME}/rails:production
+    tmpfs:
+      - /tmp
+    stdin_open: true
+    tty: true
+    env_file:
+      - '/opt/${COMPOSE_PROJECT_NAME}/docker/.env'
+
+  rails:
+    <<: *backend
+    command: bin/rails s -b 0.0.0.0 -p 3000
+    depends_on:
+      - redis
+    ports:
+      - '3000:3000'
+    volumes:
+      - log:/${COMPOSE_PROJECT_NAME}/log
+      - rails_cache:/${COMPOSE_PROJECT_NAME}/tmp/cache
+      - tmp_uploads:/${COMPOSE_PROJECT_NAME}/tmp/uploads
+      - /opt/${COMPOSE_PROJECT_NAME}/public:/${COMPOSE_PROJECT_NAME}/public:delegated
+
+  sidekiq:
+    <<: *backend
+    command: bundle exec sidekiq -C config/sidekiq.yml
+    depends_on:
+      - redis
+
+volumes:
+  redis:
+  log:
+  rails_cache:
+  tmp_uploads:

@@ -1,7 +1,7 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  pool: <%= ENV.fetch('RAILS_MAX_THREADS') { 4 } %>
+  pool: <%= Integer(ENV.fetch('RAILS_MAX_THREADS') { 4 }) %>
   min_messages: WARNING
   username: postgres
   host: postgres

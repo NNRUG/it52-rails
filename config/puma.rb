@@ -2,7 +2,7 @@
 
 require 'barnes'
 
-workers Integer(ENV.fetch('WEB_CONCURRENCY') { 2 })
+workers Integer(ENV.fetch('WEB_CONCURRENCY') { 1 })
 threads_count = Integer(ENV.fetch('RAILS_MAX_THREADS') { 4 })
 threads 2, threads_count
 

@@ -1,7 +1,7 @@
 .byebug_history
-.bundle
-.env*
+.bundle/
 .dockerignore
+.env*
 .git
 .github/*
 .gitignore
@@ -9,10 +9,8 @@
 .vagrant/*
 coverage/*
 config/master.key
-db/*.sqlite3
-db/*.sqlite3-journal
-docker-compose.*
-Dockerfile*
+docker/Dockerfile*
+docker/docker-compose.*
 log/*
 node_modules/*
 Procfile*
@@ -24,6 +22,7 @@ public/sitemap*
 public/uploads/*
 storage/*
 tmp/*
+vendor/*
 yarn-error.log
 
 *.sublime-project

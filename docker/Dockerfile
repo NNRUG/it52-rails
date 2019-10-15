@@ -1,20 +1,8 @@
 FROM ruby:2.6.5-alpine
 
-ARG RAILS_MASTER_KEY
-
-ENV LANG=C.UTF-8 \
-    APP_HOME=/it52
-ENV BUNDLE_PATH=$APP_HOME/vendor/bundle \
-    BUNDLE_JOBS=24 \
-    BUNDLE_RETRY=3
-ENV PATH=it52/bin:$BUNDLE_PATH/bin:$PATH \
-    NODE_ENV=production \
-    RAILS_ENV=production \
-    RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
-
 # Build-time metadata as defined at http://label-schema.org
 
-RUN apk --no-cache add  build-base \
+RUN apk add --no-cache  build-base \
                         postgresql-dev \
                         tzdata \
                         nodejs \
@@ -22,26 +10,41 @@ RUN apk --no-cache add  build-base \
                         vips-dev \
                         git
 
-# Install latest rubygems, bundler and rake
-RUN gem update --system
-RUN gem install bundler rake pry
+ENV LANG=C.UTF-8 \
+    APP_HOME=/it52 \
+    EDITOR=vi \
+    MALLOC_ARENA_MAX=2 \
+    RAILS_LOG_TO_STDOUT=true \
+    BUNDLE_PATH=/bundle \
+    BUNDLE_JOBS=6 \
+    BUNDLE_RETRY=3
 
-ENV APP_HOME /it52
+ENV HISTFILE=$APP_HOME/log/.bash_history \
+    PSQL_HISTFILE=$APP_HOME/log/.psql_history \
+    IRB_HISTFILE=$APP_HOME/log/.irb_history \
+    PRY_HISTFILE=$APP_HOME/log/.pry_history \
+    PATH=$APP_HOME/bin:$BUNDLE_PATH/bin:$PATH
+
+
+# Install latest rubygems, bundler and rake
+RUN mkdir $BUNDLE_PATH
+
+RUN gem update --system && gem install bundler rake pry
+
 RUN mkdir $APP_HOME
 
 WORKDIR $APP_HOME
 
 COPY Gemfile* $APP_HOME/
-RUN bundle config --global frozen 1 \
- && bundle install --deployment --without development test
+
+RUN bundle install
 
 COPY package.json yarn.lock $APP_HOME/
-RUN yarn install
+RUN yarn install && yarn cache clean
 
 ADD . $APP_HOME
 
-RUN SKIP_CONNECTIONS=true bin/rails assets:precompile
-RUN rm -fr spec node_modules tmp/cache
+EXPOSE 3000
 
 ARG BUILD_DATE
 ARG VCS_REF
@@ -58,4 +61,4 @@ LABEL org.label-schema.build-date=$BUILD_DATE \
       org.label-schema.version=$VERSION \
       org.label-schema.schema-version="1.0"
 
-CMD ["bin/rails", "server", "-p 3000"]
+CMD ["bundle", "exec", "rails", "console"]

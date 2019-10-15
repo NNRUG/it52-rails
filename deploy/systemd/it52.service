@@ -1,0 +1,14 @@
+[Unit]
+Description=it52 service with docker-compose
+Requires=docker.service
+After=docker.service
+
+[Service]
+Restart=always
+WorkingDirectory=/opt/it52
+
+ExecStart=/usr/bin/docker-compose -f docker/docker-compose.production.yml up rails sidekiq
+ExecStop=/usr/bin/docker-compose -f docker/docker-compose.production.yml down rails sidekiq
+
+[Install]
+WantedBy=multi-user.target

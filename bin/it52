@@ -39,7 +39,7 @@ class It52CLI < Thor
       current_line = ''
       prng = Random.new
       line.chars.each do |char|
-        current_line << char
+        current_line += char
         print "\r#{current_line}"
         sleep prng.rand(0.3)
       end

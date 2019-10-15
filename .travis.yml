@@ -4,32 +4,26 @@ services:
   - docker
 
 before_install:
-  - docker-compose pull rails
+  - docker pull it52/rails:latest
 
 install:
-  - docker-compose build rails
+  - make build
 
 before_script:
-  - docker-compose run rails bin/rails db:create
-  - docker-compose run rails bin/rails db:schema:load
+  - docker-compose -f docker/docker-compose.yml run rails sh -c "bin/rails db:create && bin/rails db:schema:load"
 
 script:
-  - docker-compose run rails yarn run lint
-  - docker-compose run rails bin/rubocop
-  - docker-compose run rails bin/rspec
+  - make test
 
 before_cache:
   - sudo rm -fr coverage public/uploads/* tmp/cache tmp/uploads
 
-after_success:
-  - docker-compose down --volumes --remove-orphans
-
 before_deploy:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker-compose push rails
+  - docker push it52/rails:latest
 
 deploy:
   provider: script
-  script: bash ./build_production.sh
+  script: bash -c "make build_prod"
   on:
     branch: it52

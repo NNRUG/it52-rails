@@ -1,13 +1,11 @@
-version: '3.2'
+version: '3.7'
 services:
   postgres:
     image: postgres:11.3-alpine
     volumes:
       - postgres:/var/lib/postgresql/data
-    environment:
-      - PSQL_HISTFILE=/it52/log/.psql_history
     env_file:
-      - '.env'
+      - '../.env'
 
   redis:
     image: redis:alpine
@@ -15,30 +13,33 @@ services:
       - 'redis:/data'
 
   backend: &backend
-    image: it52/rails:latest
+    image: ${COMPOSE_PROJECT_NAME}/rails:latest
     build:
-      context: .
+      context: ../.
+      dockerfile: docker/Dockerfile
       cache_from:
-        - it52/rails:latest
+        - ${COMPOSE_PROJECT_NAME}/rails:latest
       args:
         - VERSION="lastest"
+        - BUNDLE_PATH
     tmpfs:
       - /tmp
     stdin_open: true
     tty: true
     volumes:
-      - .:/it52:cached
-      - node_modules:/it52/node_modules
-      - bundle:/it52/vendor/bundle
+      - ../.:/${COMPOSE_PROJECT_NAME}:cached
+      - log:/${COMPOSE_PROJECT_NAME}/log
+      - rails_cache:/${COMPOSE_PROJECT_NAME}/tmp/cache
+      - bundle:/bundle
+      - node_modules:/${COMPOSE_PROJECT_NAME}/node_modules
+      - packs:/${COMPOSE_PROJECT_NAME}/public/packs
+      - uploads:/${COMPOSE_PROJECT_NAME}/public/uploads
     env_file:
-      - '.env'
-    environment:
-      - NODE_ENV=${NODE_ENV:-development}
-      - RAILS_ENV=${RAILS_ENV:-development}
+      - '../.env'
 
   rails:
     <<: *backend
-    command: bundle exec rails server -b 0.0.0.0
+    command: bin/rails server -b 0.0.0.0
     ports:
       - '3000:3000'
     depends_on:
@@ -61,5 +62,9 @@ services:
 volumes:
   postgres:
   redis:
+  log:
+  rails_cache:
   bundle:
   node_modules:
+  packs:
+  uploads:
