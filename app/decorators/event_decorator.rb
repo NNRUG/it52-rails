@@ -57,7 +57,7 @@ class EventDecorator < Draper::Decorator
     if delta > 0
       "#{delta_in_words} назад"
     elsif delta < 0
-      "через #{delta_in_words}"
+      "осталось #{delta_in_words}"
     else
       'сегодня'
     end
