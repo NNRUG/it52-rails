@@ -51,15 +51,33 @@ class EventDecorator < Draper::Decorator
     [object.place, object.address_comment].select(&:present?).join(', ')
   end
 
+  def human_time_distance
+    days_to_event = Date.current - object.started_at.to_date
+    case days_to_event
+    when 2 then 'позавчера'
+    when 1 then 'вчера'
+    when 0 then 'сегодня'
+    when -1 then 'завтра'
+    when -2 then 'послезавтра'
+    else time_distance
+    end
+  end
+
   def time_distance
-    delta = (Time.current.to_date - object.started_at.to_date).to_i
-    delta_in_words = h.distance_of_time_in_words(Time.current, object.started_at)
-    if delta > 0
+    delta = object.started_at.to_date - Date.current
+    delta_in_words = h.distance_of_time_in_words_to_now(object.started_at)
+    if delta < 0
       "#{delta_in_words} назад"
-    elsif delta < 0
+    elsif delta <= 30
+      "через #{delta_in_words}"
+    elsif delta <= 45
+      'через месяц'
+    elsif delta <= 75
+      'через пару месяцев'
+    elsif delta <= 365
       "через #{delta_in_words}"
     else
-      'сегодня'
+      "ещё #{delta_in_words}"
     end
   end
 

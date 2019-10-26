@@ -4,7 +4,7 @@ script type="application/ld+json" == @structured_data.to_json
   .event-page-header
     h2
       = @event.local_started_at
-      div = @event.time_distance
+      div = @event.human_time_distance
 
     h1 = @event.title
     h3

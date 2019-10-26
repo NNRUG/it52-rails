@@ -2,6 +2,7 @@
 
 require 'icalendar'
 
+# rubocop:disable Metrics/ClassLength
 class EventsController < ApplicationController
   respond_to :html
 
@@ -215,3 +216,4 @@ class EventsController < ApplicationController
     Event.unapproved.visible_by_user(current_user).count
   end
 end
+# rubocop:enable Metrics/ClassLength
