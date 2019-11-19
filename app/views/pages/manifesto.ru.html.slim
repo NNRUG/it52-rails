@@ -1,39 +1,3 @@
-ruby:
-  structured_data = {
-    '@context': 'http://schema.org',
-    '@type': 'Organization',
-    name: 'it52',
-    legalName: 'it52',
-    url: 'https://www.it52.info',
-    logo: asset_url('it52-logo-192x192.png'),
-    foundingDate: '2014',
-    founders: [{
-      '@type': 'Person',
-      'name': 'Nick Kugaevsky'
-    },{
-      '@type': 'Person',
-      'name': 'Igor Pozumentov'
-    }],
-    address: {
-      '@type': 'PostalAddress',
-      addressRegion: 'Nizhniy Novgorod',
-      postalCode: '603000',
-      addressCountry: 'Russia'
-    },
-    contactPoint: {
-      '@type': 'ContactPoint',
-      contactType: 'customer support',
-      email: 'events@it52.info',
-      url: 'https://www.it52.info/about'
-    },
-    sameAs: [
-      'http://www.facebook.com/it52info',
-      'http://vk.com/it52info',
-      'https://t.me/it52info'
-    ]}
-
-script type="application/ld+json" == structured_data.to_json
-
 .page-header
   h1 Нижегородское IT-сообщество
 
