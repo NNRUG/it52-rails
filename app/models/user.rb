@@ -110,7 +110,9 @@ class User < ApplicationRecord
     user = current_user || authentication.user
     user ||= where(email: auth['info']['email']).first_or_create
 
-    user.authentications << authentication unless user.has_identity? auth[:provider]
+    unless user.has_identity? auth[:provider]
+      user.authentications << authentication
+    end
     user.skip_confirmations! if user.confirmed? || !user.email_required?
     user = UpdateUserFromOmniauth.new(user, auth[:provider], auth[:info]).set_attributes
     user.save

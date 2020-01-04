@@ -15,7 +15,9 @@ module Telegram
     attr_reader :response, :uri, :query, :result
 
     def initialize(type, chat_id = CHAT_ID)
-      raise ArgumentError, "Unknown message type '#{type}'. Acceptable types are #{TYPES_MAP.keys.to_sentence}." unless TYPES_MAP.key?(type)
+      unless TYPES_MAP.key?(type)
+        raise ArgumentError, "Unknown message type '#{type}'. Acceptable types are #{TYPES_MAP.keys.to_sentence}."
+      end
 
       @query = { chat_id: chat_id }
       @uri = URI "#{BASE_URI}/bot#{API_KEY}/#{TYPES_MAP[type]}"
@@ -46,8 +48,12 @@ module Telegram
     end
 
     def handle_error
-      klass = LongMessageError if @result['description'] == 'Message is too long'
-      klass = ParseError if /Can\'t parse message/.match?(@result['description'])
+      if @result['description'] == 'Message is too long'
+        klass = LongMessageError
+      end
+      if /Can\'t parse message/.match?(@result['description'])
+        klass = ParseError
+      end
       klass ||= Error
       raise klass, @result['description']
     end

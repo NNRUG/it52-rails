@@ -76,7 +76,9 @@ class EventsController < ApplicationController
   end
 
   def destroy
-    redirect_back(fallback_location: root_path, alert: 'Вы не можете удалить опубликованное событие') && return if @event.published?
+    if @event.published?
+      redirect_back(fallback_location: root_path, alert: 'Вы не можете удалить опубликованное событие') && return
+    end
     notice_text = if @event.destroy
                     'Событие удалено'
                   else
@@ -167,7 +169,9 @@ class EventsController < ApplicationController
 
   def check_actual_slug
     slug_correct = request.path == event_path(@event, format: request.format.symbol.to_s)
-    slug_correct = request.path == event_path(@event) if request.format.symbol == :html
+    if request.format.symbol == :html
+      slug_correct = request.path == event_path(@event)
+    end
     redirect_to @event, status: :moved_permanently unless slug_correct
   end
 

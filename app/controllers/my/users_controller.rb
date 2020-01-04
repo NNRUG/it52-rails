@@ -37,7 +37,9 @@ module My
     def sync_with_mailchimp
       attributes = %i[first_name last_name subscription]
       @user.reload
-      @user.sync_with_mailchimp if attributes.any? { |attribute| @user.send(attribute) != user_profile_params[attribute] }
+      if attributes.any? { |attribute| @user.send(attribute) != user_profile_params[attribute] }
+        @user.sync_with_mailchimp
+      end
     end
   end
 end

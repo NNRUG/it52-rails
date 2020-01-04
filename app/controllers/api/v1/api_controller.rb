@@ -2,7 +2,7 @@
 
 module Api
   module V1
-    class ApiController < ActionController::Base
+    class ApiController < ApplicationController
       # before_action :authenticate_with_basic
       before_action :set_default_options
       before_action :set_allow_cors_headers

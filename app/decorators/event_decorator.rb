@@ -85,7 +85,9 @@ class EventDecorator < Draper::Decorator
     base = 'http://maps.yandex.ru/?text='
     h.link_to URI.encode(base + object.place), target: '_blank', itemprop: 'location', itemscope: true, itemtype: 'http://schema.org/Place', rel: 'noopener' do
       link_arr = [h.content_tag(:span, object.place, itemprop: 'address')]
-      link_arr << h.content_tag(:span, object.address_comment, itemprop: 'name') if object.address_comment.present?
+      if object.address_comment.present?
+        link_arr << h.content_tag(:span, object.address_comment, itemprop: 'name')
+      end
       link_arr.join(', ').html_safe
     end
   end
@@ -100,7 +102,9 @@ class EventDecorator < Draper::Decorator
            when -2 then 'Послезавтра'
     end
 
-    text ||= h.localize(object.started_at, format: :date_without_year) if object.started_at.year == Time.current.year
+    if object.started_at.year == Time.current.year
+      text ||= h.localize(object.started_at, format: :date_without_year)
+    end
     text ||= h.localize(object.started_at, format: :date)
     h.link_to h.event_path(object, format: :ics), class: 'event-date-inversed' do
       (h.content_tag :span, text, class: 'event-day') +

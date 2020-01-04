@@ -23,7 +23,9 @@ class Authentication < ApplicationRecord
 
   def set_attributes_from_omniauth(auth)
     urls = auth['info']['urls']
-    self.link = urls['GitHub'] || urls['Twitter'] || urls['Facebook'] || urls['Vkontakte'] || urls['Google'] if urls.present?
+    if urls.present?
+      self.link = urls['GitHub'] || urls['Twitter'] || urls['Facebook'] || urls['Vkontakte'] || urls['Google']
+    end
     self.link ||= auth['extra']['raw_info']['link']
     self.token = auth['credentials']['token']
     self.token_expires = auth['credentials']['expires_at']
