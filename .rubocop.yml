@@ -28,6 +28,9 @@ AllCops:
     - 'bin/**/*'
     - 'db/schema.rb'
 
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
 Style/HashSyntax:
   Exclude:
     - 'app/controllers/events_controller.rb'

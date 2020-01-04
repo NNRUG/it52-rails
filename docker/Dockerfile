@@ -1,11 +1,12 @@
-FROM ruby:2.6.5-alpine
+FROM ruby:2.7.0-alpine
 
 RUN apk add --no-cache  build-base \
                         postgresql-dev \
                         tzdata \
                         nodejs \
                         yarn \
-                        git
+                        git \
+                        less
 
 RUN apk add --no-cache  jpeg-dev \
                         tiff-dev \
@@ -44,7 +45,7 @@ WORKDIR $APP_HOME
 
 COPY Gemfile* $APP_HOME/
 
-RUN bundle install
+RUN bundle update --bundler && bundle install
 
 COPY package.json yarn.lock $APP_HOME/
 RUN yarn install && yarn cache clean

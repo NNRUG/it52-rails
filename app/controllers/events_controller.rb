@@ -24,7 +24,7 @@ class EventsController < ApplicationController
     @events = if filter_params[:status] == 'unapproved'
                 @model.unapproved.visible_by_user(current_user)
               else
-                @model.filter_by(**filter_params).published
+                @model.published.filter_by(**filter_params)
               end
 
     @events = @events.page(params[:page]).decorate
@@ -33,7 +33,7 @@ class EventsController < ApplicationController
       format.html
       format.json { render json: @model.published.order(started_at: :asc).page(params[:page]).to_json }
       format.atom
-      format.ics { render body: Calendar.new(@model.published.order(started_at: :asc).page(params[:page])).to_ical }
+      format.ics { render body: Calendar.new(@model.published.order(started_at: :desc).page(params[:page])).to_ical }
       format.rss
     end
   end

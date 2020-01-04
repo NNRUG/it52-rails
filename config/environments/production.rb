@@ -104,7 +104,7 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { host: ENV.fetch('mailing_host', 'it52.info') }
   config.action_mailer.default_options = { from: "robot@#{ENV.fetch('mailing_host', 'it52.info')}" }
-  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.delivery_method = :mailgun
 
   config.action_mailer.mailgun_settings = {
     api_key: ENV.fetch('mailgun_api_key', 'mailgun_api_key'),

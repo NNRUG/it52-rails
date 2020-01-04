@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-ruby '2.6.5'
+ruby '2.7.0'
 
 source 'https://rubygems.org'
 
@@ -109,6 +109,7 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 
   gem 'annotate', require: false
+  gem 'capistrano', require: false
   gem 'letter_opener'
 end
 
