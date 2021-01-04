@@ -20,7 +20,7 @@ gem 'mailchimp-api', require: 'mailchimp'
 gem 'mailgun-ruby'
 
 # Normalization and locales
-gem 'postrank-uri'
+gem 'postrank-uri', '>= 1.0.24'
 gem 'rails-i18n', '>= 5.1.3'
 gem 'unicode'
 
@@ -82,7 +82,7 @@ gem 'ruby-vips', '2.0.15'
 gem 'asset_sync', '>= 2.9.0'
 gem 'carrierwave', '>= 2.0.2'
 gem 'carrierwave-vips', '>= 1.2.0'
-gem 'fog-aws', '< 3'
+gem 'fog-aws', '>= 2.0.1', '< 3'
 
 # Monitoring
 gem 'barnes'
@@ -124,8 +124,8 @@ group :development, :test do
   gem 'ffaker'
 
   # Model factories
-  gem 'factory_bot_rails', '>= 5.1.1'
-  gem 'rspec-rails', '>= 3.9.0'
+  gem 'factory_bot_rails', '>= 5.2.0'
+  gem 'rspec-rails', '>= 4.0.1'
   gem 'rubocop', require: false
   gem 'rubocop-faker', require: false
   gem 'rubocop-i18n', require: false
