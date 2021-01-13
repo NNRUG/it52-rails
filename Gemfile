@@ -27,12 +27,12 @@ gem 'unicode'
 # Authentication and authorization
 gem 'cancancan'
 gem 'devise', '>= 4.7.1'
-gem 'omniauth', '>= 1.9.0'
-gem 'omniauth-facebook', '>= 5.0.0'
+gem 'omniauth', '>= 2.0.0'
+gem 'omniauth-facebook', '>= 6.0.0'
 gem 'omniauth-github', github: 'omniauth/omniauth-github'
 gem 'omniauth-google-oauth2', '>= 0.8.0'
 gem 'omniauth-twitter', '>= 1.4.0'
-gem 'omniauth-vkontakte', '>= 1.5.1'
+gem 'omniauth-vkontakte', '>= 1.7.0'
 
 # Request handling
 gem 'friendly_id', '>= 5.3.0'
@@ -55,7 +55,7 @@ gem 'webpacker', '>= 4.2.2'
 
 # View template compilers and helpers
 gem 'jbuilder', '~> 2.9', '>= 2.9.1'
-gem 'redcarpet'
+gem 'redcarpet', '>= 3.5.1'
 gem 'slim-rails', '>= 3.2.0'
 # gem 'active_link_to'
 gem 'high_voltage'
