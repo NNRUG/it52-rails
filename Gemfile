@@ -4,7 +4,7 @@ ruby '2.7.1'
 
 source 'https://rubygems.org'
 
-gem 'rails', '~> 5.2.4', '>= 5.2.4.3'
+gem 'rails', '~> 5.2.4', '>= 5.2.4.4'
 
 # Databases
 gem 'hiredis'
@@ -124,8 +124,8 @@ group :development, :test do
   gem 'ffaker'
 
   # Model factories
-  gem 'factory_bot_rails', '>= 5.1.1'
-  gem 'rspec-rails', '>= 3.9.0'
+  gem 'factory_bot_rails', '>= 5.2.0'
+  gem 'rspec-rails', '>= 4.0.1'
   gem 'rubocop', require: false
   gem 'rubocop-faker', require: false
   gem 'rubocop-i18n', require: false
