@@ -4,7 +4,7 @@ ruby '2.7.1'
 
 source 'https://rubygems.org'
 
-gem 'rails', '~> 5.2.4', '>= 5.2.4.3'
+gem 'rails', '~> 6.0.3', '>= 6.0.3.5'
 
 # Databases
 gem 'hiredis'
@@ -21,7 +21,7 @@ gem 'mailgun-ruby'
 
 # Normalization and locales
 gem 'postrank-uri'
-gem 'rails-i18n', '>= 5.1.3'
+gem 'rails-i18n', '>= 6.0.0'
 gem 'unicode'
 
 # Authentication and authorization
@@ -108,7 +108,7 @@ group :development do
   gem 'spring-commands-rspec'
   gem 'spring-watcher-listen', '~> 2.0.0'
 
-  gem 'annotate', '>= 3.0.3', require: false
+  gem 'annotate', '>= 3.1.1', require: false
   gem 'capistrano', require: false
   gem 'letter_opener'
 end
@@ -124,8 +124,8 @@ group :development, :test do
   gem 'ffaker'
 
   # Model factories
-  gem 'factory_bot_rails', '>= 5.1.1'
-  gem 'rspec-rails', '>= 3.9.0'
+  gem 'factory_bot_rails', '>= 5.2.0'
+  gem 'rspec-rails', '>= 4.0.1'
   gem 'rubocop', require: false
   gem 'rubocop-faker', require: false
   gem 'rubocop-i18n', require: false
