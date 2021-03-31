@@ -34,7 +34,7 @@
     "flatpickr": "^4.6.1",
     "rails-ujs": "^5.2.3",
     "simplemde": "^1.11.2",
-    "snyk": "^1.278.2",
+    "snyk": "^1.518.0",
     "ts-loader": "^6.0.2",
     "turbolinks": "^5.2.0",
     "typescript": "^3.5.1",
