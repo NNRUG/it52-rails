@@ -15,12 +15,12 @@ gem 'redis'
 gem 'sidekiq', '>= 5.2.7'
 
 # Integrations
-gem 'http'
+gem 'http', '>= 4.3.0'
 gem 'mailchimp-api', require: 'mailchimp'
 gem 'mailgun-ruby'
 
 # Normalization and locales
-gem 'postrank-uri'
+gem 'postrank-uri', '>= 1.0.24'
 gem 'rails-i18n', '>= 5.1.3'
 gem 'unicode'
 
@@ -110,7 +110,7 @@ group :development do
 
   gem 'annotate', '>= 3.0.3', require: false
   gem 'capistrano', require: false
-  gem 'letter_opener'
+  gem 'letter_opener', '>= 1.7.0'
 end
 
 group :development, :test do
@@ -142,7 +142,7 @@ group :test do
   gem 'shoulda-matchers', '>= 4.2.0', require: false
   gem 'simplecov', require: false
   gem 'test-prof', require: false
-  gem 'webmock', require: false
+  gem 'webmock', '>= 3.8.3', require: false
 end
 
 # Heroku compatibility
