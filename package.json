@@ -44,7 +44,7 @@
   "devDependencies": {
     "tslint": "^5.18.0",
     "tslint-config-airbnb": "^5.11.1",
-    "webpack-dev-server": "^3.11.0"
+    "webpack-dev-server": "^4.0.0"
   },
   "scripts": {
     "snyk-protect": "snyk protect",
