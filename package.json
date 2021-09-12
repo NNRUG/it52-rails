@@ -34,7 +34,7 @@
     "flatpickr": "^4.6.1",
     "rails-ujs": "^5.2.3",
     "simplemde": "^1.11.2",
-    "snyk": "^1.518.0",
+    "snyk": "^1.685.0",
     "ts-loader": "^6.0.2",
     "turbolinks": "^5.2.0",
     "typescript": "^3.5.1",
@@ -44,7 +44,7 @@
   "devDependencies": {
     "tslint": "^5.18.0",
     "tslint-config-airbnb": "^5.11.1",
-    "webpack-dev-server": "^3.11.0"
+    "webpack-dev-server": "^4.0.0"
   },
   "scripts": {
     "snyk-protect": "snyk protect",
