@@ -30,6 +30,7 @@ groups:
   interests:
     name: По интересам
     channels:
+      agile_nn: Сообщество Agile 
       itarchitect_nn: Сообщество "IT Architects" Нижнего Новгорода
       defcon_nn_ch: новости ITSecurity
       defcon_nn: ITSecurity
