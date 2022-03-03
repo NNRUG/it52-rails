@@ -84,7 +84,7 @@ gem 'pry-rails'
 gem 'ruby-vips'
 
 gem 'asset_sync', '>= 2.9.0'
-gem 'carrierwave', '>= 2.0.2'
+gem 'carrierwave', '>= 2.2.2'
 gem 'carrierwave-vips', '>= 1.2.0'
 gem 'fog-aws', '< 3'
 
