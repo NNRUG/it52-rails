@@ -4,8 +4,8 @@ ruby '3.1.1'
 
 source 'https://rubygems.org'
 
-gem 'rails', '~> 6.1'
-gem 'rails-i18n', '~> 6.0'
+gem 'rails', '~> 6.1', '>= 6.1.4.6'
+gem 'rails-i18n', '~> 6.0', '>= 6.0.0'
 
 # Databases
 gem 'hiredis'
@@ -30,7 +30,7 @@ gem 'unicode'
 
 # Authentication and authorization
 gem 'cancancan'
-gem 'devise', '>= 4.7.1'
+gem 'devise', '>= 4.8.1'
 gem 'omniauth', '>= 1.9.0'
 gem 'omniauth-facebook', '>= 5.0.0'
 gem 'omniauth-github', github: 'omniauth/omniauth-github'
@@ -40,12 +40,12 @@ gem 'omniauth-vkontakte', '>= 1.5.1'
 
 # Request handling
 gem 'friendly_id', '>= 5.3.0'
-gem 'has_scope', '>= 0.7.2'
+gem 'has_scope', '>= 0.8.0'
 
 # Decoration
-gem 'active_model_serializers', '>= 0.10.10'
+gem 'active_model_serializers', '>= 0.10.13'
 gem 'activemodel-serializers-xml', '>= 1.0.2'
-gem 'draper', '>= 3.1.0'
+gem 'draper', '>= 4.0.2'
 gem 'fast_jsonapi', '>= 1.5'
 gem 'oj'
 gem 'ox'
@@ -58,13 +58,13 @@ gem 'uglifier'
 gem 'webpacker'
 
 # View template compilers and helpers
-gem 'jbuilder', '~> 2.9', '>= 2.9.1'
+gem 'jbuilder', '~> 2.11', '>= 2.11.5'
 gem 'redcarpet'
-gem 'slim-rails', '>= 3.2.0'
+gem 'slim-rails', '>= 3.3.0'
 # gem 'active_link_to'
 gem 'high_voltage'
-gem 'meta-tags', '>= 2.13.0'
-gem 'simple_form', '>= 5.0.2'
+gem 'meta-tags', '>= 2.16.0'
+gem 'simple_form', '>= 5.1.0'
 
 # Reporting
 gem 'jwt'
@@ -86,7 +86,7 @@ gem 'ruby-vips'
 gem 'asset_sync', '>= 2.9.0'
 gem 'carrierwave', '>= 2.0.2'
 gem 'carrierwave-vips', '>= 1.2.0'
-gem 'fog-aws', '< 3'
+gem 'fog-aws', '>= 2.0.1', '< 3'
 
 # Monitoring
 gem 'newrelic_rpm'
@@ -94,7 +94,7 @@ gem 'rollbar'
 gem 'silencer'
 
 # paginator
-gem 'kaminari', '>= 1.2.1'
+gem 'kaminari', '>= 1.2.2'
 
 # tags
 gem 'acts-as-taggable-on', '>= 6.5.0'
@@ -105,7 +105,7 @@ gem 'icalendar'
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'listen'
-  gem 'web-console', '>= 3.7.0'
+  gem 'web-console', '>= 4.2.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-commands-rspec'
@@ -127,8 +127,8 @@ group :development, :test do
   gem 'ffaker'
 
   # Model factories
-  gem 'factory_bot_rails', '>= 5.1.1'
-  gem 'rspec-rails', '>= 3.9.0'
+  gem 'factory_bot_rails', '>= 6.2.0'
+  gem 'rspec-rails', '>= 5.1.0'
   gem 'rubocop', require: false
   gem 'rubocop-faker', require: false
   gem 'rubocop-i18n', require: false
