@@ -55,7 +55,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       format.csv do
-        send_data RenderARCollectionToCsv.perform(participants, columns_to_export),
+        send_data RenderArCollectionToCsv.perform(participants, columns_to_export),
                   type: Mime::Type.lookup('text/csv'),
                   disposition: "attachment; filename=#{filename}.csv"
       end

@@ -1,4 +1,4 @@
-FROM ruby:3.1.1-alpine
+FROM quay.io/evl.ms/fullstaq-ruby:3.1-jemalloc-slim
 
 RUN apk add --no-cache  build-base \
                         postgresql-dev \

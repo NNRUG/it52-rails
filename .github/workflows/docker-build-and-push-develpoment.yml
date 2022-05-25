@@ -1,8 +1,6 @@
 name: Docker build and push develpoment
 on:
-  push:
-    branches:
-      - 'it52'
+  push
 jobs:
   build-development:
     runs-on: ubuntu-latest
