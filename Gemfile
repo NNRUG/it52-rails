@@ -4,7 +4,7 @@ ruby '3.1.1'
 
 source 'https://rubygems.org'
 
-gem 'rails', '~> 6.1'
+gem 'rails', '~> 6.1', '>= 6.1.6.1'
 gem 'rails-i18n', '~> 6.0'
 
 # Databases
