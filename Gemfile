@@ -4,7 +4,7 @@ ruby '3.1.1'
 
 source 'https://rubygems.org'
 
-gem 'rails', '~> 6.1'
+gem 'rails', '~> 6.1', '>= 6.1.6.1'
 gem 'rails-i18n', '~> 6.0'
 
 # Databases
@@ -39,7 +39,7 @@ gem 'omniauth-twitter', '>= 1.4.0'
 gem 'omniauth-vkontakte', '>= 1.5.1'
 
 # Request handling
-gem 'friendly_id', '>= 5.3.0'
+gem 'friendly_id', '>= 5.4.2'
 gem 'has_scope', '>= 0.7.2'
 
 # Decoration
@@ -94,10 +94,10 @@ gem 'rollbar'
 gem 'silencer'
 
 # paginator
-gem 'kaminari', '>= 1.2.1'
+gem 'kaminari', '>= 1.2.2'
 
 # tags
-gem 'acts-as-taggable-on', '>= 6.5.0'
+gem 'acts-as-taggable-on', '>= 9.0.1'
 
 # Utils
 gem 'icalendar'
@@ -111,7 +111,7 @@ group :development do
   gem 'spring-commands-rspec'
   gem 'spring-watcher-listen', '~> 2.0.0'
 
-  gem 'annotate', '>= 3.0.3', require: false
+  gem 'annotate', '>= 3.2.0', require: false
   gem 'capistrano', require: false
   gem 'letter_opener'
 end
