@@ -4,8 +4,8 @@ ruby '3.1.1'
 
 source 'https://rubygems.org'
 
-gem 'rails', '~> 6.1'
-gem 'rails-i18n', '~> 6.0'
+gem 'rails', '~> 6.1', '>= 6.1.4.6'
+gem 'rails-i18n', '~> 6.0', '>= 6.0.0'
 
 # Databases
 gem 'hiredis'
@@ -30,22 +30,22 @@ gem 'unicode'
 
 # Authentication and authorization
 gem 'cancancan'
-gem 'devise', '>= 4.7.1'
-gem 'omniauth', '>= 1.9.0'
-gem 'omniauth-facebook', '>= 5.0.0'
+gem 'devise', '>= 4.8.1'
+gem 'omniauth', '>= 2.1.0'
+gem 'omniauth-facebook', '>= 6.0.0'
 gem 'omniauth-github', github: 'omniauth/omniauth-github'
 gem 'omniauth-google-oauth2', '>= 0.8.0'
 gem 'omniauth-twitter', '>= 1.4.0'
-gem 'omniauth-vkontakte', '>= 1.5.1'
+gem 'omniauth-vkontakte', '>= 1.7.0'
 
 # Request handling
 gem 'friendly_id', '>= 5.3.0'
-gem 'has_scope', '>= 0.7.2'
+gem 'has_scope', '>= 0.8.0'
 
 # Decoration
-gem 'active_model_serializers', '>= 0.10.10'
+gem 'active_model_serializers', '>= 0.10.13'
 gem 'activemodel-serializers-xml', '>= 1.0.2'
-gem 'draper', '>= 3.1.0'
+gem 'draper', '>= 4.0.2'
 gem 'fast_jsonapi', '>= 1.5'
 gem 'oj'
 gem 'ox'
@@ -60,11 +60,11 @@ gem 'webpacker'
 # View template compilers and helpers
 gem 'jbuilder', '~> 2.9', '>= 2.9.1'
 gem 'redcarpet'
-gem 'slim-rails', '>= 3.2.0'
+gem 'slim-rails', '>= 3.4.0'
 # gem 'active_link_to'
 gem 'high_voltage'
-gem 'meta-tags', '>= 2.13.0'
-gem 'simple_form', '>= 5.0.2'
+gem 'meta-tags', '>= 2.16.0'
+gem 'simple_form', '>= 5.1.0'
 
 # Reporting
 gem 'jwt'
@@ -105,7 +105,7 @@ gem 'icalendar'
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'listen'
-  gem 'web-console', '>= 3.7.0'
+  gem 'web-console', '>= 4.2.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-commands-rspec'
@@ -127,14 +127,14 @@ group :development, :test do
   gem 'ffaker'
 
   # Model factories
-  gem 'factory_bot_rails', '>= 5.1.1'
-  gem 'rspec-rails', '>= 3.9.0'
+  gem 'factory_bot_rails', '>= 6.2.0'
+  gem 'rspec-rails', '>= 5.1.2'
   gem 'rubocop', require: false
   gem 'rubocop-faker', require: false
   gem 'rubocop-i18n', require: false
   gem 'rubocop-md', require: false
   gem 'rubocop-performance', require: false
-  gem 'rubocop-rails', '>= 2.4.2', require: false
+  gem 'rubocop-rails', '>= 2.13.2', require: false
   gem 'rubocop-rake', require: false
   gem 'rubocop-rspec', require: false
 end
