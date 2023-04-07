@@ -13,7 +13,7 @@ gem 'pg'
 gem 'redis'
 
 # Queue
-gem 'sidekiq', '>= 5.2.7'
+gem 'sidekiq', '>= 7.0.8'
 
 # Integrations
 gem 'http'
