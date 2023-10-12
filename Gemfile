@@ -64,7 +64,7 @@ gem 'slim-rails', '>= 3.2.0'
 # gem 'active_link_to'
 gem 'high_voltage'
 gem 'meta-tags', '>= 2.13.0'
-gem 'simple_form', '>= 5.0.2'
+gem 'simple_form', '>= 5.3.0'
 
 # Reporting
 gem 'jwt'
