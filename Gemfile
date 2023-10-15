@@ -97,7 +97,7 @@ gem 'silencer'
 gem 'kaminari', '>= 1.2.1'
 
 # tags
-gem 'acts-as-taggable-on', '>= 6.5.0'
+gem 'acts-as-taggable-on', '>= 10.0.0'
 
 # Utils
 gem 'icalendar'
