@@ -60,7 +60,7 @@ gem 'webpacker'
 # View template compilers and helpers
 gem 'jbuilder', '~> 2.9', '>= 2.9.1'
 gem 'redcarpet'
-gem 'slim-rails', '>= 3.2.0'
+gem 'slim-rails', '>= 3.6.3'
 # gem 'active_link_to'
 gem 'high_voltage'
 gem 'meta-tags', '>= 2.13.0'
