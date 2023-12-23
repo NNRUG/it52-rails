@@ -474,7 +474,7 @@ GEM
     sdoc (2.6.1)
       rdoc (>= 5.0)
     semantic_range (3.0.0)
-    shoulda-matchers (5.3.0)
+    shoulda-matchers (6.0.0)
       activesupport (>= 5.2.0)
     sidekiq (6.4.2)
       connection_pool (>= 2.2.2)
@@ -626,7 +626,7 @@ DEPENDENCIES
   ruby-vips
   sassc-rails (>= 2.1.2)
   sdoc
-  shoulda-matchers (>= 4.2.0)
+  shoulda-matchers (>= 6.0.0)
   sidekiq (>= 5.2.7)
   silencer
   simple_form (>= 5.0.2)
@@ -647,4 +647,4 @@ RUBY VERSION
    ruby 3.2.2p53
 
 BUNDLED WITH
-   2.3.26
+   2.4.6
