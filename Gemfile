@@ -58,7 +58,7 @@ gem 'uglifier'
 gem 'webpacker'
 
 # View template compilers and helpers
-gem 'jbuilder', '~> 2.9', '>= 2.9.1'
+gem 'jbuilder', '~> 2.12', '>= 2.12.0'
 gem 'redcarpet'
 gem 'slim-rails', '>= 3.2.0'
 # gem 'active_link_to'
