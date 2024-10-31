@@ -129,7 +129,7 @@ group :development, :test do
   # Model factories
   gem 'factory_bot_rails', '>= 5.1.1'
   gem 'rspec-rails', '>= 3.9.0'
-  gem 'rubocop', require: false
+  gem 'rubocop', '>= 1.66.0', require: false
   gem 'rubocop-faker', require: false
   gem 'rubocop-i18n', require: false
   gem 'rubocop-md', require: false
