@@ -4,7 +4,7 @@ ruby '3.2.2'
 
 source 'https://rubygems.org'
 
-gem 'rails', '~> 6.1'
+gem 'rails', '~> 7.0', '>= 7.0.0'
 gem 'rails-i18n', '~> 6.0'
 
 # Databases
@@ -130,8 +130,8 @@ group :development, :test do
   gem 'factory_bot_rails', '>= 5.1.1'
   gem 'rspec-rails', '>= 3.9.0'
   gem 'rubocop', require: false
-  gem 'rubocop-faker', require: false
-  gem 'rubocop-i18n', require: false
+  gem 'rubocop-faker', '>= 1.3.0', require: false
+  gem 'rubocop-i18n', '>= 3.2.0', require: false
   gem 'rubocop-md', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', '>= 2.4.2', require: false
