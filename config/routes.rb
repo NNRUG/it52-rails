@@ -55,7 +55,8 @@ Rails.application.routes.draw do
   # Let's encrypt cert route
   get '/.well-known/acme-challenge/:id' => 'letsencrypt#approve'
 
-  get ':id' => 'pages#show', as: :page, format: false, constraints: { id: /#{HighVoltage.page_ids.map.map { |p| "(#{p})" }.join('|')}/ }
+  get ':id' => 'pages#show', as: :page, format: false
+  # , constraints: { id: /#{HighVoltage.page_ids.map.map { |p| "(#{p})" }.join('|')}/ }
 
   namespace :api do
     namespace :v1 do

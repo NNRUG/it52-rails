@@ -1,5 +1,7 @@
-- icon = t("social.#{provider}.icon")
-
-li = link_to omniauth_authorize_path(:user, provider), class: %(btn btn-#{icon} btn-social), :"data-turbolinks" => false do
-  i.fab> class="fa-#{icon}"
-  span< = t("social.#{provider}.name")
+- provider_s = provider.to_s
+- icon = t("social.#{provider_s}.icon")
+  
+li = link_to omniauth_authorize_path(:user, provider), class: %(btn btn-#{provider_s} btn-social), :"data-turbolinks" => false do
+    i.fab> class="fa-#{provider_s}"
+    -
+    span< = t("social.#{provider_s}.#{provider_s == 'telegram' ? '' : 'name'}")

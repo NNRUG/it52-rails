@@ -65,6 +65,7 @@ class User < ApplicationRecord
   friendly_id :slug_candidates, use: :slugged
 
   mount_uploader :avatar_image, UserAvatarUploader
+  #attr_accessor :remote_avatar_image_url
 
   def full_name
     [first_name, last_name].compact.join(' ').presence || nickname.presence || email

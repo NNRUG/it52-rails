@@ -259,7 +259,7 @@ Devise.setup do |config|
   # so you need to do it manually. For the users scope, it would be:
   config.omniauth_path_prefix = '/oauth'
 
-  config.omniauth :github, ENV.fetch('github_id') { 'github_id' }, ENV.fetch('github_secret') { 'github_secret' },
+  config.omniauth :github, ENV.fetch('github_id') { 'Iv23ligqhhYmvGimHSG3' }, ENV.fetch('github_secret') { 'ef4a092bcf0add77e4a33441a078e6f0374f492a' },
                   scope: 'user:email, read:org'
   config.omniauth :google_oauth2, ENV.fetch('google_id') { 'google_id' }, ENV.fetch('google_secret') { 'google_secret' }
   config.omniauth :facebook, ENV.fetch('facebook_id') { 'facebook_id' }, ENV.fetch('facebook_secret') { 'facebook_secret' },
@@ -270,4 +270,6 @@ Devise.setup do |config|
   config.omniauth :vkontakte, ENV.fetch('vk_id') { 'vk_id' }, ENV.fetch('vk_secret') { 'vk_secret' }, scope: 'email'
   config.omniauth :twitter, ENV.fetch('twitter_key') { 'twitter_key' }, ENV.fetch('twitter_secret') { 'twitter_secret' },
                   image_size: 'original'
+  config.omniauth :telegram, ENV.fetch('telegram_bot_nickname') {'telegram_bot_nickname'}, ENV.fetch('telegram_bot_token') {'telegram_bot_token'},
+                button_config: {'request-access' => 'write'} 
 end
