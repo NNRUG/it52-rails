@@ -19,7 +19,7 @@ gem 'sidekiq', '>= 5.2.7'
 gem 'http'
 gem 'net-smtp'
 gem 'net-pop'
-gem 'net-imap'
+gem 'net-imap', '>= 0.2.5'
 gem 'multipart-post'
 gem 'mailchimp-api', require: 'mailchimp'
 gem 'mailgun-ruby'
@@ -128,7 +128,7 @@ group :development, :test do
 
   # Model factories
   gem 'factory_bot_rails', '>= 5.1.1'
-  gem 'rspec-rails', '>= 3.9.0'
+  gem 'rspec-rails', '>= 8.0.0'
   gem 'rubocop', require: false
   gem 'rubocop-faker', require: false
   gem 'rubocop-i18n', require: false
