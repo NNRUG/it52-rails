@@ -1,0 +1,13 @@
+doctype html
+html
+    head 
+        meta http-equiv="Content-Type" content="text/html; charset=utf-8"
+        title Telegram Login
+    body 
+        = javascript_tag nonce: true do 
+            | console.log("Hello World")
+        script async
+              src="https://telegram.org/js/telegram-widget.js?4"
+              data-telegram-login="#{options.bot_name}"
+              data-auth-url="#{callback_url}"
+              data_attrs="#{data_attrs}"

@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require Rails.root.join('lib/omniauth/strategies/TelegramOverride')
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
@@ -270,6 +271,5 @@ Devise.setup do |config|
   config.omniauth :vkontakte, ENV.fetch('vk_id') { 'vk_id' }, ENV.fetch('vk_secret') { 'vk_secret' }, scope: 'email'
   config.omniauth :twitter, ENV.fetch('twitter_key') { 'twitter_key' }, ENV.fetch('twitter_secret') { 'twitter_secret' },
                   image_size: 'original'
-  config.omniauth :telegram, ENV.fetch('telegram_bot_nickname') {'telegram_bot_nickname'}, ENV.fetch('telegram_bot_token') {'telegram_bot_token'},
-                button_config: {'request-access' => 'write'} 
+  config.omniauth :telegram, ENV.fetch('telegram_bot_nickname') {'telegram_bot_nickname'}, ENV.fetch('telegram_bot_token') {'telegram_bot_token'} 
 end
