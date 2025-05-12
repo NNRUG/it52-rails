@@ -3,5 +3,4 @@
   
 li = link_to omniauth_authorize_path(:user, provider), class: %(btn btn-#{provider_s} btn-social), :"data-turbolinks" => false do
     i.fab> class="fa-#{provider_s}"
-    -
     span< = t("social.#{provider_s}.#{provider_s == 'telegram' ? '' : 'name'}")

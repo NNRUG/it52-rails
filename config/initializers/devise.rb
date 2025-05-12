@@ -271,5 +271,5 @@ Devise.setup do |config|
   config.omniauth :vkontakte, ENV.fetch('vk_id') { 'vk_id' }, ENV.fetch('vk_secret') { 'vk_secret' }, scope: 'email'
   config.omniauth :twitter, ENV.fetch('twitter_key') { 'twitter_key' }, ENV.fetch('twitter_secret') { 'twitter_secret' },
                   image_size: 'original'
-  config.omniauth :telegram, ENV.fetch('telegram_bot_nickname') {'telegram_bot_nickname'}, ENV.fetch('telegram_bot_token') {'telegram_bot_token'} 
+  config.omniauth :telegram, ENV.fetch('telegram_bot_token') {'telegram_bot_token'} 
 end
