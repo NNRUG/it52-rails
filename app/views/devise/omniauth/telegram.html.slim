@@ -10,12 +10,10 @@ html
                 |       if(!data) {
                 |           alert("faild authentication"); } 
                 |       else {
-                |           console.log(data);
                 |           const first_name_param = data.first_name ? '&first_name=' + encodeURIComponent(data.first_name) : '';
                 |           const last_name_param = data.last_name ? '&last_name=' + encodeURIComponent(data.last_name) : '';
                 |           const photo_url_param = data.photo_url ? '&photo_url=' + data.photo_url : '';
-                |           var url = '#{callback_url}?id=' + data.id + first_name_param + last_name_param + '&username=' + data.username + photo_url_param + '&auth_date=' + data.auth_date + '&hash=' + data.hash;
-                |           console.log(url);
+                |           const url = '#{callback_url}?id=' + data.id + first_name_param + last_name_param + '&username=' + data.username + photo_url_param + '&auth_date=' + data.auth_date + '&hash=' + data.hash;
                 |           document.location.href=url;
                 |       } 
                 |   });
