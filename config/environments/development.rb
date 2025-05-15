@@ -70,4 +70,7 @@ Rails.application.configure do
 
   # Web Console
   config.web_console.whitelisted_ips = ENV.fetch('DOCKER_HOST_IP') { ['::1', '127.0.0.0/8', '172.16.0.0/12'] }
+
+  # For HTTP tunnels
+  #config.hosts << ""
 end
