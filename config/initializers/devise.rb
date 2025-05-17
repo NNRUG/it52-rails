@@ -260,7 +260,7 @@ Devise.setup do |config|
   # so you need to do it manually. For the users scope, it would be:
   config.omniauth_path_prefix = '/oauth'
 
-  config.omniauth :github, ENV.fetch('github_id') { 'github_id' }, ENV.fetch('github_secret') { 'github_id' },
+  config.omniauth :github, ENV.fetch('github_id') { 'github_id' }, ENV.fetch('github_secret') { 'github_secret' },
                   scope: 'user:email, read:org'
   config.omniauth :google_oauth2, ENV.fetch('google_id') { 'google_id' }, ENV.fetch('google_secret') { 'google_secret' }
   config.omniauth :facebook, ENV.fetch('facebook_id') { 'facebook_id' }, ENV.fetch('facebook_secret') { 'facebook_secret' },
