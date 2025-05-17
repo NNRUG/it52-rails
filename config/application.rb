@@ -42,10 +42,19 @@ module It52Rails
     config.active_job.queue_name_delimiter = '.'
 
     # Mailing host
+    config.action_mailer.perform_deliveries    = true
+    config.action_mailer.raise_delivery_errors = true
     config.action_mailer.default_url_options = { host: ENV.fetch('mailing_host') { 'it52.info' } }
-    config.action_mailer.default_options = { from: "robot@#{ENV.fetch('mailing_host') { 'it52.info' }}" }
-    config.action_mailer.smtp_settings = {}
-    config.action_mailer.delivery_method = :letter_opener
+    config.action_mailer.default_options = { from: ENV.fetch('mailer_sender') {'robot@it52.info'} }
+    config.action_mailer.smtp_settings = {
+      tls: true,
+      address: ENV.fetch('mail_server_address') {'mail_server_address'},
+      port: ENV.fetch('mail_port') {'mail_port'},
+      user_name: ENV.fetch('mail_user_name') {'mail_user_name'},
+      password: ENV.fetch('mail_password') {'mail_password'},
+      enable_starttls_auto: true
+    }
+    config.action_mailer.delivery_method = :smtp
 
     # Middleware
     config.middleware.insert_after ActionDispatch::Static, Rack::Deflater
