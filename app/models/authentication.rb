@@ -22,13 +22,14 @@ class Authentication < ApplicationRecord
   belongs_to :user, touch: true
 
   def set_attributes_from_omniauth(auth)
-    urls = auth['info']['urls']
+    urls = auth.dig('info', 'urls')
     if urls.present?
-      self.link = urls['GitHub'] || urls['Twitter'] || urls['Facebook'] || urls['Vkontakte'] || urls['Google']
+      self.link = urls['GitHub'] || urls['Twitter'] || urls['Facebook'] || urls['Vkontakte'] || urls['Google'] || urls['Telegram']
     end
-    self.link ||= auth['extra']['raw_info']['link']
-    self.token = auth['credentials']['token']
-    self.token_expires = auth['credentials']['expires_at']
+    raw_info = auth.dig('extra', 'raw_info')
+    self.link ||= raw_info['link'] if raw_info.present? && raw_info.key?('link') && raw_info['link'].present?
+    self.token = auth.dig('credentials', 'token')
+    self.token_expires = auth.dig('credentials', 'expires_at')
     self
   end
 end

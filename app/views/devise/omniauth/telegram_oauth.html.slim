@@ -1,0 +1,22 @@
+doctype html
+html
+    head 
+        meta http-equiv="Content-Type" content="text/html; charset=utf-8"
+        title Telegram Login
+    body
+        script nonce="#{csp_nonce}"
+                |const telegramWidgetScript = document.createElement("script");
+                |telegramWidgetScript.src = "https://telegram.org/js/telegram-widget.js?4";
+                |telegramWidgetScript.async = true;
+                |telegramWidgetScript.onload = openTelegramWidget;
+                |document.body.appendChild(telegramWidgetScript);
+                |
+                |function openTelegramWidget() {   
+                |   let widget = window.Telegram.Login.auth({bot_id: #{bot_id}, request_access: true}, (data) => {
+                |       const first_name_param = data.first_name ? '&first_name=' + encodeURIComponent(data.first_name) : '';
+                |       const last_name_param = data.last_name ? '&last_name=' + encodeURIComponent(data.last_name) : '';
+                |       const photo_url_param = data.photo_url ? '&photo_url=' + data.photo_url : '';
+                |       const url = '#{callback_url}?id=' + data.id + first_name_param + last_name_param + '&username=' + data.username + photo_url_param + '&auth_date=' + data.auth_date + '&hash=' + data.hash;
+                |       document.location.href=url;
+                |   }); 
+                |}

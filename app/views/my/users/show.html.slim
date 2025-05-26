@@ -1,11 +1,11 @@
 .row
   .col-sm-3
     .avatar.image-container = image_tag @user.avatar_image.square_150.url
-    = link_to edit_my_profile_path, class: 'btn btn-warning btn-block' do
+    = button_to edit_my_profile_path, class: 'btn btn-warning btn-block' do
       i.fas.fa-pen>
       = t('.edit')
     br
-    = link_to destroy_user_session_path, method: :delete, class: 'btn btn-danger btn-block' do
+    = button_to destroy_user_session_path, method: :delete, class: 'btn btn-danger btn-block' do
       i.fas.fa-power-off>
       = t('shared.sidebar.logout')
     br
