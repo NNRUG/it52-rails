@@ -15,7 +15,7 @@ class AuthenticationDecorator < Draper::Decorator
   def link_to_social(css_classes = [])
     @css_classes = css_classes
     h.link_to object.link, class: css_class, target: :_blank, rel: :noopener do
-      [icon, h.t("social.#{authentication.provider}.name")].join(' ').html_safe
+      [icon, h.t("social.#{authentication.provider}.#{authentication.provider.to_s == 'telegram' ? '' : 'name'}")].join(' ').html_safe
     end
   end
 

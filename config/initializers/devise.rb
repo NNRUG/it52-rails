@@ -257,6 +257,8 @@ Devise.setup do |config|
   #
   # When using omniauth, Devise cannot automatically set Omniauth path,
   # so you need to do it manually. For the users scope, it would be:
+  require 'omniauth/telegram_override'
+  
   config.omniauth_path_prefix = '/oauth'
 
   config.omniauth :github, ENV.fetch('github_id') { 'github_id' }, ENV.fetch('github_secret') { 'github_secret' },
@@ -270,4 +272,5 @@ Devise.setup do |config|
   config.omniauth :vkontakte, ENV.fetch('vk_id') { 'vk_id' }, ENV.fetch('vk_secret') { 'vk_secret' }, scope: 'email'
   config.omniauth :twitter, ENV.fetch('twitter_key') { 'twitter_key' }, ENV.fetch('twitter_secret') { 'twitter_secret' },
                   image_size: 'original'
+  config.omniauth :telegram, ENV.fetch('bot_name') {'bot_name'}, ENV.fetch('bot_secret') {'bot_secret'}                
 end

@@ -11,11 +11,11 @@ production:
   - it52_active_job_production_mailers
   - default
   - low
-  - it52.<%= ENV.fetch('RAILS_ENV') { 'develpoment' } %>.critical
-  - it52.<%= ENV.fetch('RAILS_ENV') { 'develpoment' } %>.mailers
-  - it52.<%= ENV.fetch('RAILS_ENV') { 'develpoment' } %>.default
-  - it52.<%= ENV.fetch('RAILS_ENV') { 'develpoment' } %>.low
-  - it52.<%= ENV.fetch('RAILS_ENV') { 'develpoment' } %>_critical
-  - it52.<%= ENV.fetch('RAILS_ENV') { 'develpoment' } %>_mailers
-  - it52.<%= ENV.fetch('RAILS_ENV') { 'develpoment' } %>_default
-  - it52.<%= ENV.fetch('RAILS_ENV') { 'develpoment' } %>_low
+  - it52.<%= ENV.fetch('RAILS_ENV') { 'development' } %>.critical
+  - it52.<%= ENV.fetch('RAILS_ENV') { 'development' } %>.mailers
+  - it52.<%= ENV.fetch('RAILS_ENV') { 'development' } %>.default
+  - it52.<%= ENV.fetch('RAILS_ENV') { 'development' } %>.low
+  - it52.<%= ENV.fetch('RAILS_ENV') { 'development' } %>_critical
+  - it52.<%= ENV.fetch('RAILS_ENV') { 'development' } %>_mailers
+  - it52.<%= ENV.fetch('RAILS_ENV') { 'development' } %>_default
+  - it52.<%= ENV.fetch('RAILS_ENV') { 'development' } %>_low

@@ -37,6 +37,7 @@ gem 'omniauth-github', github: 'omniauth/omniauth-github'
 gem 'omniauth-google-oauth2', '>= 0.8.0'
 gem 'omniauth-twitter', '>= 1.4.0'
 gem 'omniauth-vkontakte', '>= 1.5.1'
+gem 'omniauth-telegram', '~> 0.2.1'
 
 # Request handling
 gem 'friendly_id', '>= 5.3.0'
