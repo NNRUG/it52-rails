@@ -129,14 +129,14 @@ group :development, :test do
   # Model factories
   gem 'factory_bot_rails', '>= 5.1.1'
   gem 'rspec-rails', '>= 3.9.0'
-  gem 'rubocop', require: false
-  gem 'rubocop-faker', require: false
-  gem 'rubocop-i18n', require: false
-  gem 'rubocop-md', require: false
-  gem 'rubocop-performance', require: false
-  gem 'rubocop-rails', '>= 2.4.2', require: false
-  gem 'rubocop-rake', require: false
-  gem 'rubocop-rspec', require: false
+  gem 'rubocop', '>= 1.66.0', require: false
+  gem 'rubocop-faker', '>= 1.2.0', require: false
+  gem 'rubocop-i18n', '>= 3.1.0', require: false
+  gem 'rubocop-md', '>= 1.1.0', require: false
+  gem 'rubocop-performance', '>= 1.13.3', require: false
+  gem 'rubocop-rails', '>= 2.14.0', require: false
+  gem 'rubocop-rake', '>= 0.7.0', require: false
+  gem 'rubocop-rspec', '>= 2.9.0', require: false
 end
 
 group :test do
