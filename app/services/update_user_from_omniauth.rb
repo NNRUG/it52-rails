@@ -25,15 +25,18 @@ class UpdateUserFromOmniauth
   end
 
   def set_email
-    user.email = data['email'] || ''
+    # Some providers (or privacy settings) may not return email.
+    user.email = data['email'].presence || ''
   end
 
   def set_first_name
-    user.first_name = data['first_name'] || data['name'].split.first
+    full_name = data['name'].presence || data['nickname'].presence
+    user.first_name = data['first_name'].presence || full_name&.split&.first
   end
 
   def set_last_name
-    user.last_name  = data['last_name'] || data['name'].split.last
+    full_name = data['name'].presence || data['nickname'].presence
+    user.last_name = data['last_name'].presence || full_name&.split&.last
   end
 
   def set_bio
@@ -42,6 +45,9 @@ class UpdateUserFromOmniauth
 
   def set_avatar_image
     image_url = data['image']
+    return if image_url.blank?
+
+    image_url = image_url.dup
     image_url.gsub!(/sz\=\d+/, 'sz=1024') if provider == 'google_oauth2'
     user.remote_avatar_image_url = image_url
   end

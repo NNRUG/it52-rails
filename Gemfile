@@ -31,12 +31,22 @@ gem 'unicode'
 # Authentication and authorization
 gem 'cancancan'
 gem 'devise', '>= 4.7.1'
-gem 'omniauth', '>= 1.9.0'
-gem 'omniauth-facebook', '>= 5.0.0'
-gem 'omniauth-github', github: 'omniauth/omniauth-github'
-gem 'omniauth-google-oauth2', '>= 0.8.0'
-gem 'omniauth-twitter', '>= 1.4.0'
-gem 'omniauth-vkontakte', '>= 1.5.1'
+# OmniAuth 2.x (Ruby 3.2 / Rails 6.1 compatible)
+gem 'omniauth', '~> 2.1'
+gem 'omniauth-rails_csrf_protection', '~> 2.0'
+
+# OAuth2 base strategy
+# NOTE: pinned to 1.8.x because `omniauth-vkontakte` currently caps `omniauth-oauth2` at <= 1.8.0.
+gem 'omniauth-oauth2', '~> 1.8.0'
+
+# Providers
+gem 'omniauth-github', '~> 2.0.1'
+gem 'omniauth-google-oauth2', '~> 1.2'
+gem 'omniauth-facebook', '~> 10.0'
+gem 'omniauth-vkontakte', '~> 1.9.0'
+
+# Twitter: OmniAuth 2 + OAuth2
+gem 'omniauth-twitter2', '~> 1.0'
 
 # Request handling
 gem 'friendly_id', '>= 5.3.0'

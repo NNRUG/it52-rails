@@ -12,7 +12,7 @@ class ErrorsController < ApplicationController
   private
 
   def build_attachment_path
-    production_prefix = 'https://assets.it52.info'
+    production_prefix = 'https://it52.website.yandexcloud.net'
     [production_prefix, request.path.gsub('uploads/development', 'uploads/production')].join
   end
 end

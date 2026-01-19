@@ -104,6 +104,9 @@ ru:
     twitter:
       name: Twitter
       icon: twitter
+    twitter2:
+      name: Twitter
+      icon: twitter
 
   event_participation_created: "Заявка на участие в &laquo;%{title}&raquo; принята."
   event_participation_canceled: "Вы отказались от участия в &laquo;%{title}&raquo;."

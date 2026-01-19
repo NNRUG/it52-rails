@@ -268,6 +268,7 @@ Devise.setup do |config|
                   secure_image_url: true,
                   image_size: 'large'
   config.omniauth :vkontakte, ENV.fetch('vk_id') { 'vk_id' }, ENV.fetch('vk_secret') { 'vk_secret' }, scope: 'email'
-  config.omniauth :twitter, ENV.fetch('twitter_key') { 'twitter_key' }, ENV.fetch('twitter_secret') { 'twitter_secret' },
-                  image_size: 'original'
+  # Twitter OAuth2 (omniauth-twitter2 gem)
+  # NOTE: twitter2 uses OAuth2 client credentials (client_id/client_secret), not OAuth1 consumer key/secret.
+  config.omniauth :twitter2, ENV.fetch('twitter_id') { 'twitter_id' }, ENV.fetch('twitter_secret') { 'twitter_secret' }
 end
