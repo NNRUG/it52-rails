@@ -37,7 +37,7 @@ gem 'omniauth-rails_csrf_protection', '~> 2.0'
 
 # OAuth2 base strategy
 # NOTE: pinned to 1.8.x because `omniauth-vkontakte` currently caps `omniauth-oauth2` at <= 1.8.0.
-gem 'omniauth-oauth2', '~> 1.8.0'
+gem 'omniauth-oauth2', '~> 1.9.0'
 
 # Providers
 gem 'omniauth-github', '~> 2.0.1'
