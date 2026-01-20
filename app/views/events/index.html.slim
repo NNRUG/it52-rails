@@ -5,7 +5,7 @@
   - if user_signed_in? && !unapproved_count.zero?
     a.mdc-chip.unapproved-chip href=events_path(status: 'unapproved') title='На модерации'
       i.material-icons.mdc-chip__icon.mdc-chip__icon--leading warning
-      .mdc-chip__text = "(#{unapproved_count})"
+      .mdc-chip__text = "#{unapproved_count}"
 
   a.material-icons.mdc-top-app-bar__action-item href=new_event_path title='Добавить событие' add
 

@@ -84,8 +84,7 @@ class EventsController < ApplicationController
                   else
                     "Невозможно удалить событие. #{@event.errors.error_messages.to_sentence}"
     end
-
-    redirect_back(fallback_location: root_path, notice: 'Событие удалено')
+    redirect_to root_path, status: :see_other, alert: "Событие было полностью удалено из базы it52"
   end
 
   def update

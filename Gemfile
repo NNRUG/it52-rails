@@ -52,10 +52,10 @@ gem 'ox'
 
 # Compile and serve assets
 gem 'autoprefixer-rails'
-gem 'font-awesome-sass'
+gem 'font-awesome-sass', '= 5.15.1 '
 gem 'sassc-rails', '>= 2.1.2'
 gem 'uglifier'
-gem 'webpacker'
+gem 'webpacker','= 4.0.7'
 
 # View template compilers and helpers
 gem 'jbuilder', '~> 2.9', '>= 2.9.1'
@@ -91,7 +91,7 @@ gem 'fog-aws', '< 3'
 # Monitoring
 gem 'newrelic_rpm'
 gem 'rollbar'
-gem 'silencer'
+gem 'silencer', '= 1.0.1'
 
 # paginator
 gem 'kaminari', '>= 1.2.1'
@@ -101,6 +101,8 @@ gem 'acts-as-taggable-on', '>= 6.5.0'
 
 # Utils
 gem 'icalendar'
+
+gem 'psych', '< 4'
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.

@@ -80,6 +80,7 @@ ru:
 
   cancel: Отмена
   edit: Редактировать
+  destroy: Удалить мероприятие
 
   'true': да
   'false': нет
@@ -222,6 +223,7 @@ ru:
     show:
       publish: Опубликовать
       cancel_publication: Отменить публикацию
+      destroy: Удалить мероприятие  
       waiting_for_approval: Событие ещё не прошло модерацию и доступно только создателю и модераторам.
       participants_export: Выгрузить участников
     publish:

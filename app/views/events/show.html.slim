@@ -21,8 +21,13 @@ script type="application/ld+json" == @structured_data.to_json
       - if can? :publish, @event.object
         - if !@event.published?
           = link_to t('.publish'), publish_event_path(@event), class: 'btn btn-warning', method: :patch
+          | &nbsp;
         - else
           = link_to t('.cancel_publication'), cancel_publication_event_path(@event), class: 'btn btn-warning', method: :patch
+          | &nbsp;  
+      - if can? :destroy, @event.object
+        = link_to t(:destroy), event_path(@event), class: 'btn btn-warning', method: :delete
+        | &nbsp;
 
 .events-show.event data={ id: @event.id }
   .row
