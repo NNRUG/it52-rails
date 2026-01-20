@@ -31,12 +31,12 @@ gem 'unicode'
 # Authentication and authorization
 gem 'cancancan'
 gem 'devise', '>= 4.7.1'
-gem 'omniauth', '>= 1.9.0'
-gem 'omniauth-facebook', '>= 5.0.0'
+gem 'omniauth', '>= 2.1.0'
+gem 'omniauth-facebook', '>= 7.0.0'
 gem 'omniauth-github', github: 'omniauth/omniauth-github'
-gem 'omniauth-google-oauth2', '>= 0.8.0'
+gem 'omniauth-google-oauth2', '>= 0.8.1'
 gem 'omniauth-twitter', '>= 1.4.0'
-gem 'omniauth-vkontakte', '>= 1.5.1'
+gem 'omniauth-vkontakte', '>= 1.7.0'
 
 # Request handling
 gem 'friendly_id', '>= 5.3.0'
