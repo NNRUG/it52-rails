@@ -48,7 +48,7 @@ WORKDIR $APP_HOME
 
 COPY Gemfile* $APP_HOME/
 
-RUN bundle update --bundler && bundle install --without development test
+RUN bundle update --bundler && bundle install
 
 COPY package.json yarn.lock $APP_HOME/
 RUN yarn install && yarn cache clean
