@@ -127,7 +127,7 @@ group :development, :test do
   gem 'ffaker'
 
   # Model factories
-  gem 'factory_bot_rails', '>= 5.1.1'
+  gem 'factory_bot_rails', '>= 6.3.0'
   gem 'rspec-rails', '>= 3.9.0'
   gem 'rubocop', require: false
   gem 'rubocop-faker', require: false
