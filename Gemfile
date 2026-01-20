@@ -4,8 +4,8 @@ ruby '3.2.2'
 
 source 'https://rubygems.org'
 
-gem 'rails', '~> 6.1'
-gem 'rails-i18n', '~> 6.0'
+gem 'rails', '~> 7.0', '>= 7.0.8.1'
+gem 'rails-i18n', '~> 7.0', '>= 7.0.1'
 
 # Databases
 gem 'hiredis'
@@ -13,7 +13,7 @@ gem 'pg'
 gem 'redis'
 
 # Queue
-gem 'sidekiq', '>= 5.2.7'
+gem 'sidekiq', '>= 6.5.0'
 
 # Integrations
 gem 'http'
@@ -25,25 +25,25 @@ gem 'mailchimp-api', require: 'mailchimp'
 gem 'mailgun-ruby'
 
 # Normalization and locales
-gem 'postrank-uri'
+gem 'postrank-uri', '>= 1.1'
 gem 'unicode'
 
 # Authentication and authorization
 gem 'cancancan'
-gem 'devise', '>= 4.7.1'
-gem 'omniauth', '>= 1.9.0'
-gem 'omniauth-facebook', '>= 5.0.0'
+gem 'devise', '>= 4.9.0'
+gem 'omniauth', '>= 1.9.2'
+gem 'omniauth-facebook', '>= 7.0.0'
 gem 'omniauth-github', github: 'omniauth/omniauth-github'
-gem 'omniauth-google-oauth2', '>= 0.8.0'
+gem 'omniauth-google-oauth2', '>= 0.8.1'
 gem 'omniauth-twitter', '>= 1.4.0'
-gem 'omniauth-vkontakte', '>= 1.5.1'
+gem 'omniauth-vkontakte', '>= 1.6.1'
 
 # Request handling
 gem 'friendly_id', '>= 5.3.0'
-gem 'has_scope', '>= 0.7.2'
+gem 'has_scope', '>= 0.8.1'
 
 # Decoration
-gem 'active_model_serializers', '>= 0.10.10'
+gem 'active_model_serializers', '>= 0.10.14'
 gem 'activemodel-serializers-xml', '>= 1.0.2'
 gem 'draper', '>= 3.1.0'
 gem 'fast_jsonapi', '>= 1.5'
@@ -60,11 +60,11 @@ gem 'webpacker'
 # View template compilers and helpers
 gem 'jbuilder', '~> 2.9', '>= 2.9.1'
 gem 'redcarpet'
-gem 'slim-rails', '>= 3.2.0'
+gem 'slim-rails', '>= 3.6.3'
 # gem 'active_link_to'
 gem 'high_voltage'
-gem 'meta-tags', '>= 2.13.0'
-gem 'simple_form', '>= 5.0.2'
+gem 'meta-tags', '>= 2.17.0'
+gem 'simple_form', '>= 5.3.0'
 
 # Reporting
 gem 'jwt'
@@ -84,9 +84,9 @@ gem 'pry-rails'
 gem 'ruby-vips'
 
 gem 'asset_sync', '>= 2.9.0'
-gem 'carrierwave', '>= 2.0.2'
+gem 'carrierwave', '>= 2.2.6'
 gem 'carrierwave-vips', '>= 1.2.0'
-gem 'fog-aws', '< 3'
+gem 'fog-aws', '~> 3.0'
 
 # Monitoring
 gem 'newrelic_rpm'
@@ -127,14 +127,14 @@ group :development, :test do
   gem 'ffaker'
 
   # Model factories
-  gem 'factory_bot_rails', '>= 5.1.1'
-  gem 'rspec-rails', '>= 3.9.0'
+  gem 'factory_bot_rails', '>= 6.3.0'
+  gem 'rspec-rails', '>= 6.0.4'
   gem 'rubocop', require: false
   gem 'rubocop-faker', require: false
   gem 'rubocop-i18n', require: false
   gem 'rubocop-md', require: false
   gem 'rubocop-performance', require: false
-  gem 'rubocop-rails', '>= 2.4.2', require: false
+  gem 'rubocop-rails', '>= 2.14.0', require: false
   gem 'rubocop-rake', require: false
   gem 'rubocop-rspec', require: false
 end
