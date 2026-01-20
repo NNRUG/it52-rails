@@ -108,16 +108,7 @@ class User < ApplicationRecord
                                    .first_or_initialize.set_attributes_from_omniauth(auth)
 
     user = current_user || authentication.user
-    if user.nil?
-      # VK (and some other providers) may not return email; DB column is NOT NULL.
-      email = auth.dig('info', 'email').presence || auth.dig(:info, :email).presence
-      user =
-        if email.present?
-          where(email: email).first_or_initialize
-        else
-          new(email: '')
-        end
-    end
+    user ||= where(email: auth['info']['email']).first_or_create
 
     unless user.has_identity? auth[:provider]
       user.authentications << authentication

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
-  %i[facebook github twitter2 vkontakte google_oauth2].each do |provider|
+  %i[facebook github twitter vkontakte google_oauth2].each do |provider|
     define_method provider do
       auth_for provider
     end

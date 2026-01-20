@@ -1,10 +1,5 @@
 - icon = t("social.#{provider}.icon")
 
-li
-  = button_to omniauth_authorize_path(:user, provider),
-              method: :post,
-              class: %(btn btn-#{icon} btn-social),
-              form: { class: 'd-inline' },
-              data: { turbolinks: false } do
-    i.fab> class="fa-#{icon}"
-    span< = t("social.#{provider}.name")
+li = link_to omniauth_authorize_path(:user, provider), class: %(btn btn-#{icon} btn-social), :"data-turbolinks" => false do
+  i.fab> class="fa-#{icon}"
+  span< = t("social.#{provider}.name")
