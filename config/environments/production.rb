@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
-Rails.application.credentials.production.each { |key, value| ENV[key.to_s] = value }
+# NOTE:
+# `Rails.application.credentials[:production]` may be absent (nil) depending on how credentials
+# are structured (single credentials vs environment-specific credentials). We must not crash
+# boot/assets:precompile when it's missing.
+production_creds = Rails.application.credentials[:production] || {}
+production_creds.each { |key, value| ENV[key.to_s] ||= value }
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
@@ -117,8 +122,8 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     enable_starttls_auto: true,
     tls: true,
-    user_name: Rails.application.credentials.production[:mailyandex_smtp_account],
-    password: Rails.application.credentials.production[:mailyandex_smtp_password],
+    user_name: production_creds[:mailyandex_smtp_account],
+    password: production_creds[:mailyandex_smtp_password],
     address: 'smtp.yandex.ru',
     port: 465
   }
