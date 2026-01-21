@@ -58,7 +58,7 @@ ADD . $APP_HOME
 ARG RAILS_MASTER_KEY
 ENV RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
 
-RUN SECRET_KEY_BASE_DUMMY=1 SKIP_CONNECTIONS=true bin/rails assets:precompile
+RUN SECRET_KEY_BASE=${RAILS_MASTER_KEY} SKIP_CONNECTIONS=true bin/rails assets:precompile
 RUN rm -fr spec node_modules tmp/cache /bundle/cache
 RUN apk del build-base yarn git
 
