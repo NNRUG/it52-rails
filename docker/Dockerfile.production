@@ -28,10 +28,9 @@ ENV LANG=C.UTF-8 \
     BUNDLE_RETRY=3 \
     RAILS_ENV=production \
     NODE_ENV=production \
-    NODE_OPTIONS=--openssl-legacy-provider\
+    NODE_OPTIONS=--openssl-legacy-provider \
     fog_region=ru-central1 \
-    fog_endpoint=https://storage.yandexcloud.net\
-    fog_host=https://storage.yandexcloud.net
+    fog_endpoint=https://storage.yandexcloud.net
 
 ENV HISTFILE=$APP_HOME/log/.bash_history \
     PSQL_HISTFILE=$APP_HOME/log/.psql_history \
