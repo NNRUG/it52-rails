@@ -14,8 +14,11 @@ CarrierWave.configure do |config|
     provider: 'AWS',
     aws_access_key_id: ENV.fetch('aws_access_key_id') { 'aws_access_key_id' },
     aws_secret_access_key: ENV.fetch('aws_secret_access_key') { 'aws_secret_access_key' },
-    region: ENV.fetch('fog_region') { 'fog_region' },
-    host: ENV.fetch('fog_host') { 'fog_host' }
+    region: ENV.fetch('fog_region') { 'fog_region', 'ru-central1' },
+    host: ENV.fetch('fog_host') { 'fog_host', 'https://storage.yandexcloud.net'},
+    path_style: true,
+    aws_signature_version: 4
+
   }
   config.fog_use_ssl_for_aws = true
   config.fog_directory    = ENV.fetch('aws_bucket') { 'aws_bucket' }

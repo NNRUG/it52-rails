@@ -8,6 +8,12 @@ AssetSync.configure do |config|
   # config.aws_reduced_redundancy = true
   config.fog_directory = ENV.fetch('aws_bucket') { 'aws_bucket' }
 
+  config.fog_path_style = true
+  config.fog_options = {
+    endpoint: ENV.fetch('fog_host, 'https://storage.yandexcloud.net'),
+    aws_signature_version: 4
+  }
+
   # Invalidate a file on a cdn after uploading files
   # config.cdn_distribution_id = "12345"
   # config.invalidate = ['file1.js']
