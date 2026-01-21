@@ -83,7 +83,7 @@ gem 'pry-rails'
 # Image and AWS S3 management
 gem 'ruby-vips'
 
-gem 'asset_sync', '>= 2.9.0'
+gem 'asset_sync', '>= 2.19.2'
 gem 'carrierwave', '>= 2.0.2'
 gem 'carrierwave-vips', '>= 1.2.0'
 gem 'fog-aws', '< 3'
