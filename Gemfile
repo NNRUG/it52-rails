@@ -4,7 +4,7 @@ ruby '3.2.2'
 
 source 'https://rubygems.org'
 
-gem 'rails', '~> 6.1'
+gem 'rails', '~> 7.0', '>= 7.0.0'
 gem 'rails-i18n', '~> 6.0'
 
 # Databases
@@ -13,7 +13,7 @@ gem 'pg'
 gem 'redis'
 
 # Queue
-gem 'sidekiq', '>= 5.2.7'
+gem 'sidekiq', '>= 8.0.0'
 
 # Integrations
 gem 'http'
