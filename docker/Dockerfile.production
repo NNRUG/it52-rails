@@ -26,7 +26,6 @@ ENV LANG=C.UTF-8 \
     BUNDLE_PATH=/bundle \
     BUNDLE_JOBS=6 \
     BUNDLE_RETRY=3 \
-    BUNDLER_VERSION=2.3.26 \
     RAILS_ENV=production \
     NODE_ENV=production \
     NODE_OPTIONS=--openssl-legacy-provider
@@ -38,10 +37,10 @@ ENV HISTFILE=$APP_HOME/log/.bash_history \
     PATH=$APP_HOME/bin:$BUNDLE_PATH/bin:$PATH
 
 
-# Install rubygems + pinned bundler
+# Install latest rubygems, bundler and rake
 RUN mkdir $BUNDLE_PATH
 
-RUN gem update --system && gem install -N bundler -v "${BUNDLER_VERSION}" && gem install -N rake pry
+RUN gem update --system && gem install bundler -v '2.3.26' && gem install rake pry
 
 RUN mkdir $APP_HOME
 
@@ -49,7 +48,7 @@ WORKDIR $APP_HOME
 
 COPY Gemfile* $APP_HOME/
 
-RUN bundle ${BUNDLER_VERSION} install --without development test
+RUN bundle update --bundler && bundle install --without development test
 
 COPY package.json yarn.lock $APP_HOME/
 RUN yarn install && yarn cache clean
@@ -59,7 +58,7 @@ ADD . $APP_HOME
 ARG RAILS_MASTER_KEY
 ENV RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
 
-RUN SECRET_KEY_BASE_DUMMY=1 SKIP_CONNECTIONS=true bundle ${BUNDLER_VERSION} exec rails assets:precompile
+RUN bin/rails assets:precompile SKIP_CONNECTIONS=true
 RUN rm -fr spec node_modules tmp/cache /bundle/cache
 RUN apk del build-base yarn git
 
