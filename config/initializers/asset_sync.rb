@@ -10,8 +10,7 @@ AssetSync.configure do |config|
 
   config.fog_path_style = true
   config.fog_options = {
-    endpoint: ENV.fetch('fog_host, 'https://storage.yandexcloud.net'),
-    aws_signature_version: 4
+    endpoint: ENV.fetch('fog_host')
   }
 
   # Invalidate a file on a cdn after uploading files
