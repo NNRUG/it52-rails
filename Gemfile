@@ -31,12 +31,12 @@ gem 'unicode'
 # Authentication and authorization
 gem 'cancancan'
 gem 'devise', '>= 4.7.1'
-gem 'omniauth', '>= 1.9.0'
-gem 'omniauth-facebook', '>= 5.0.0'
+gem 'omniauth', '>= 1.9.1'
+gem 'omniauth-facebook', '>= 6.0.0'
 gem 'omniauth-github', github: 'omniauth/omniauth-github'
 gem 'omniauth-google-oauth2', '>= 0.8.0'
 gem 'omniauth-twitter', '>= 1.4.0'
-gem 'omniauth-vkontakte', '>= 1.5.1'
+gem 'omniauth-vkontakte', '>= 1.6.0'
 
 # Request handling
 gem 'friendly_id', '>= 5.3.0'
@@ -127,8 +127,8 @@ group :development, :test do
   gem 'ffaker'
 
   # Model factories
-  gem 'factory_bot_rails', '>= 5.1.1'
-  gem 'rspec-rails', '>= 3.9.0'
+  gem 'factory_bot_rails', '>= 5.2.0'
+  gem 'rspec-rails', '>= 4.0.1'
   gem 'rubocop', require: false
   gem 'rubocop-faker', require: false
   gem 'rubocop-i18n', require: false
