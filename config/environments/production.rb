@@ -27,6 +27,13 @@ Rails.application.configure do
   # or in config/master.key. This key is used to decrypt credentials (and other encrypted files).
   config.require_master_key = true
 
+  # OAuth (VK, Google, etc.): set APPLICATION_HOST so callback URL matches what is registered at the provider.
+  # Without this, behind a proxy the callback URL can be wrong and authorization fails.
+  app_host = ENV.fetch('APPLICATION_HOST', ENV.fetch('mailing_host', 'it52.info')).to_s.strip
+  app_host = 'it52.info' if app_host.blank?
+  config.action_controller.default_url_options = { host: app_host, protocol: 'https' }
+  OmniAuth.config.full_host = "https://#{app_host}"
+
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
   config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?

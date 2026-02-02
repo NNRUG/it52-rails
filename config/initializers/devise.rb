@@ -267,7 +267,16 @@ Devise.setup do |config|
                   info_fields: 'email,name',
                   secure_image_url: true,
                   image_size: 'large'
-  config.omniauth :vkontakte, ENV.fetch('vk_id') { 'vk_id' }, ENV.fetch('vk_secret') { 'vk_secret' }, scope: 'email'
+  # VK: prefer credentials (production) then ENV; log masked vk_id and secret status to console (never log secret value)
+  vk_creds = Rails.application.credentials.dig(:production, :vk_id).present? ? Rails.application.credentials[:production] : nil
+  vk_id = (vk_creds && vk_creds[:vk_id].to_s.presence) || ENV['vk_id'].presence || 'vk_id'
+  vk_secret = (vk_creds && vk_creds[:vk_secret].to_s.presence) || ENV['vk_secret'].presence || 'vk_secret'
+  config.omniauth :vkontakte, vk_id, vk_secret, scope: 'email'
+  masked_id = vk_id.to_s.size > 6 ? "#{vk_id.to_s[0, 4]}***#{vk_id.to_s[-2, 2]}" : '***'
+  vk_secret_status = vk_secret.present? && vk_secret != 'vk_secret' ? '[SET]' : '[NOT SET]'
+  vk_log_msg = "[Devise VK] vk_id=#{masked_id} vk_secret=#{vk_secret_status} (source: #{vk_creds ? 'credentials' : 'ENV'})"
+  puts vk_log_msg
+  Rails.logger.info vk_log_msg if defined?(Rails.logger) && Rails.logger
   config.omniauth :twitter, ENV.fetch('twitter_key') { 'twitter_key' }, ENV.fetch('twitter_secret') { 'twitter_secret' },
                   image_size: 'original'
 end
