@@ -108,7 +108,7 @@ class EventsController < ApplicationController
   private
 
   def define_common_meta_tags
-    image_path = ActionController::Base.helpers.asset_url('it52_logo_fb@2x.png', type: :image)
+    image_path = helpers.asset_url('it52_logo_fb@2x.png', type: :image)
     set_meta_tags(
       site: t(:app_name),
       description: t(:app_description),

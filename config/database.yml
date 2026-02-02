@@ -1,31 +1,31 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  username: postgres
-  password: postgres
+  username: ujifyxbr
+  password: test_123
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  host: postgres
+  host: localhost
   timeout: 5000
 
 development:
   adapter: postgresql
   encoding: unicode
-  username: postgres
-  password: postgres
+  username: ujifyxbr
+  password: test_123
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   host: localhost
   timeout: 5000
-  database: it52_rails_dev
+  database: it52_exp
 
 test:
   adapter: postgresql
   encoding: unicode
-  username: postgres
-  password: postgres
+  username: ujifyxbr
+  password: test_123
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  host: postgres
+  host: localhost
   timeout: 5000
-  database: it52_rails_test
+  database: it52_exp
 
 production:
   adapter: postgresql

@@ -71,7 +71,7 @@ class StartupsController < ApplicationController
   private
 
   def set_index_meta_tags!
-    image_path = ActionController::Base.helpers.image_url('it52_logo_fb@2x.png')
+    image_path = helpers.image_url('it52_logo_fb@2x.png')
     set_meta_tags(
       title: I18n.t('meta.startups.index.title'),
       description: I18n.t('meta.startups.index.description'),
