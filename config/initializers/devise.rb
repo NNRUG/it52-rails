@@ -261,7 +261,15 @@ Devise.setup do |config|
 
   config.omniauth :github, ENV.fetch('github_id') { 'github_id' }, ENV.fetch('github_secret') { 'github_secret' },
                   scope: 'user:email, read:org'
-  config.omniauth :google_oauth2, ENV.fetch('google_id') { 'google_id' }, ENV.fetch('google_secret') { 'google_secret' }
+  # Google: prefer credentials (production) then ENV. "OAuth client was not found" = wrong/missing client id (e.g. placeholder).
+  google_creds = Rails.application.credentials.dig(:production, :google_id).present? ? Rails.application.credentials[:production] : nil
+  google_id = (google_creds && google_creds[:google_id].to_s.presence) || ENV['google_id'].presence || 'google_id'
+  google_secret = (google_creds && google_creds[:google_secret].to_s.presence) || ENV['google_secret'].presence || 'google_secret'
+  config.omniauth :google_oauth2, google_id, google_secret
+  g_masked = google_id.to_s.size > 6 ? "#{google_id.to_s[0, 6]}***#{google_id.to_s[-4, 4]}" : '***'
+  g_secret_status = google_secret.present? && google_secret != 'google_secret' ? '[SET]' : '[NOT SET]'
+  puts "[Devise Google] google_id=#{g_masked} google_secret=#{g_secret_status} (source: #{google_creds ? 'credentials' : 'ENV'})"
+  Rails.logger.info "[Devise Google] google_id=#{g_masked} google_secret=#{g_secret_status}" if defined?(Rails.logger) && Rails.logger
   config.omniauth :facebook, ENV.fetch('facebook_id') { 'facebook_id' }, ENV.fetch('facebook_secret') { 'facebook_secret' },
                   scope: 'public_profile, email',
                   info_fields: 'email,name',

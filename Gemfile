@@ -36,7 +36,8 @@ gem 'omniauth-facebook', '>= 5.0.0'
 gem 'omniauth-github', github: 'omniauth/omniauth-github'
 gem 'omniauth-google-oauth2', '>= 0.8.0'
 gem 'omniauth-twitter', '>= 1.4.0'
-gem 'omniauth-vkontakte', '>= 1.5.1'
+# 1.9.0 requires Ruby >= 3.2; use >= 1.8.1 for Ruby 3.1, or >= 1.9.0 when on Ruby 3.2
+gem 'omniauth-vkontakte', '>= 1.8.1'
 
 # Request handling
 gem 'friendly_id', '>= 5.3.0'
