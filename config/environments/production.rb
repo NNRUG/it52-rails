@@ -116,24 +116,20 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.action_mailer.default_url_options = { host: ENV.fetch('mailing_host', 'it52.info') }
-  config.action_mailer.default_options = { from: "webmaster@#{ENV.fetch('mailing_host', 'it52.info')}" }
+  config.action_mailer.default_options = { from: "events@#{ENV.fetch('mailing_host', 'it52.info')}" }
   config.action_mailer.logger = ActiveSupport::Logger.new("log/mailer.log")
   config.action_mailer.perform_deliveries    = true
   config.action_mailer.raise_delivery_errors = true
+  # Отправка почты: SMTP через аккаунт Яндекс.Почты (mail.yandex.ru).
+  # Credentials: production[:mailyandex_smtp_account] (полный email), production[:mailyandex_smtp_password] (пароль или пароль приложения).
   config.action_mailer.delivery_method = :smtp
-
-  #config.action_mailer.mailgun_settings = {
-   # api_key: ENV.fetch('mailgun_api_key', 'mailgun_api_key'),
-    #domain: ENV.fetch('mailing_host', 'it52.info')
-  #}
-
   config.action_mailer.smtp_settings = {
+    address: 'smtp.yandex.ru',
+    port: 465,
     authentication: :plain,
-    enable_starttls_auto: true,
-    tls: true,
     user_name: production_creds[:mailyandex_smtp_account],
     password: production_creds[:mailyandex_smtp_password],
-    address: 'smtp.yandex.ru',
-    port: 465
+    enable_starttls_auto: true,
+    tls: true
   }
 end
