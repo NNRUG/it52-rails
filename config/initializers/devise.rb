@@ -261,36 +261,46 @@ Devise.setup do |config|
 
   config.omniauth :github, ENV.fetch('github_id') { 'github_id' }, ENV.fetch('github_secret') { 'github_secret' },
                   scope: 'user:email, read:org'
-  # Google: read from credentials (production key or top-level) then ENV. "OAuth client was not found" = wrong/missing client id.
+  # Google OAuth2 (OmniAuth 1.9.x): client_id + client_secret, optional scope/prompt.
+  # Credentials: production[:google_id] / production[:google_secret] или верхний уровень, иначе ENV.
   production_creds = Rails.application.credentials[:production]
-  google_id_from_creds = production_creds&.dig(:google_id).to_s.presence || Rails.application.credentials[:google_id].to_s.presence
-  google_secret_from_creds = production_creds&.dig(:google_secret).to_s.presence || Rails.application.credentials[:google_secret].to_s.presence
-  google_creds = google_id_from_creds.present?
-  google_id = google_id_from_creds.presence || ENV['google_id'].presence || 'google_id'
-  google_secret = google_secret_from_creds.presence || ENV['google_secret'].presence || 'google_secret'
-  config.omniauth :google_oauth2, google_id, google_secret
+  google_id = production_creds&.dig(:google_id).to_s.presence ||
+              Rails.application.credentials[:google_id].to_s.presence ||
+              ENV['google_id'].presence
+  google_secret = production_creds&.dig(:google_secret).to_s.presence ||
+                  Rails.application.credentials[:google_secret].to_s.presence ||
+                  ENV['google_secret'].presence
+  config.omniauth :google_oauth2, google_id, google_secret, {
+    scope: 'email,profile',
+    prompt: 'consent'
+  }
   g_masked = google_id.to_s.size > 6 ? "#{google_id.to_s[0, 6]}***#{google_id.to_s[-4, 4]}" : '***'
   g_secret_status = google_secret.present? && google_secret != 'google_secret' ? '[SET]' : '[NOT SET]'
-  puts "[Devise Google] google_id=#{g_masked} google_secret=#{g_secret_status} (source: #{google_creds ? 'credentials' : 'ENV'})"
+  puts "[Devise Google] google_id=#{g_masked} google_secret=#{g_secret_status}"
   Rails.logger.info "[Devise Google] google_id=#{g_masked} google_secret=#{g_secret_status}" if defined?(Rails.logger) && Rails.logger
   config.omniauth :facebook, ENV.fetch('facebook_id') { 'facebook_id' }, ENV.fetch('facebook_secret') { 'facebook_secret' },
                   scope: 'public_profile, email',
                   info_fields: 'email,name',
                   secure_image_url: true,
                   image_size: 'large'
-  # VK: read from credentials (production key or top-level) then ENV so client_id is in the OAuth URL
+  # VK OAuth2 (OmniAuth 1.9.x): client_id + client_secret, scope для доступа к email.
+  # Credentials: production[:vk_id] / production[:vk_secret] или верхний уровень, иначе ENV.
   production_creds_vk = Rails.application.credentials[:production]
-  vk_id_from_creds = production_creds_vk&.dig(:vk_id).to_s.presence || Rails.application.credentials[:vk_id].to_s.presence
-  vk_secret_from_creds = production_creds_vk&.dig(:vk_secret).to_s.presence || Rails.application.credentials[:vk_secret].to_s.presence
-  vk_creds = vk_id_from_creds.present?
-  vk_id = vk_id_from_creds.presence || ENV['vk_id'].presence || 'vk_id'
-  vk_secret = vk_secret_from_creds.presence || ENV['vk_secret'].presence || 'vk_secret'
-  config.omniauth :vkontakte, vk_id, vk_secret, scope: 'email'
-  masked_id = vk_id.to_s.size > 6 ? "#{vk_id.to_s[0, 4]}***#{vk_id.to_s[-2, 2]}" : '***'
+  vk_id = production_creds_vk&.dig(:vk_id).to_s.presence ||
+           Rails.application.credentials[:vk_id].to_s.presence ||
+           ENV['vk_id'].presence 
+  vk_secret = production_creds_vk&.dig(:vk_secret).to_s.presence ||
+              Rails.application.credentials[:vk_secret].to_s.presence ||
+              ENV['vk_secret'].presence
+  config.omniauth :vkontakte, vk_id, vk_secret, {
+    scope: 'email',
+    display: 'page',
+    lang: 'ru'
+  }
+  vk_masked = vk_id.to_s.size > 6 ? "#{vk_id.to_s[0, 4]}***#{vk_id.to_s[-2, 2]}" : '***'
   vk_secret_status = vk_secret.present? && vk_secret != 'vk_secret' ? '[SET]' : '[NOT SET]'
-  vk_log_msg = "[Devise VK] vk_id=#{masked_id} vk_secret=#{vk_secret_status} (source: #{vk_creds ? 'credentials' : 'ENV'})"
-  puts vk_log_msg
-  Rails.logger.info vk_log_msg if defined?(Rails.logger) && Rails.logger
+  puts "[Devise VK] vk_id=#{vk_masked} vk_secret=#{vk_secret_status}"
+  Rails.logger.info "[Devise VK] vk_id=#{vk_masked} vk_secret=#{vk_secret_status}" if defined?(Rails.logger) && Rails.logger
   config.omniauth :twitter, ENV.fetch('twitter_key') { 'twitter_key' }, ENV.fetch('twitter_secret') { 'twitter_secret' },
                   image_size: 'original'
 end
