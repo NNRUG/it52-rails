@@ -21,6 +21,8 @@ Rails.application.config.after_initialize do
       enable_starttls_auto: settings[:enable_starttls_auto]
     }.compact
     smtp_logger.info("[SMTP] config loaded: #{conn_info.inspect}")
+    yandex_login = settings[:user_name].to_s.presence
+    smtp_logger.info("[SMTP] Yandex SMTP auth login: #{yandex_login.present? ? yandex_login : '(not set)'}")
   end
 
   ActiveSupport::Notifications.subscribe('deliver.action_mailer') do |_name, start, finish, _id, payload|
@@ -30,9 +32,13 @@ Rails.application.config.after_initialize do
     smtp = ActionMailer::Base.smtp_settings
     conn_info = smtp ? { address: smtp[:address], port: smtp[:port] }.compact : {}
     duration_ms = ((finish - start) * 1000).round
-    from_val = mail.respond_to?(:from) ? Array(mail.from).first : nil
-    to_val = mail.respond_to?(:to) ? Array(mail.to).join(',') : nil
-    subject_val = mail.respond_to?(:subject) ? mail.subject : nil
+    # Mail::Message has #from/#to; String has ActiveSupport's #from(n), so avoid calling .from on String
+    from_val = to_val = subject_val = nil
+    if mail.respond_to?(:header) && mail.header
+      from_val = mail.header['From']&.value
+      to_val = mail.header['To']&.value
+      subject_val = mail.header['Subject']&.value
+    end
 
     smtp_logger.info(
       "[SMTP] connection=#{conn_info.inspect} from=#{from_val} to=#{to_val} " \
