@@ -121,6 +121,17 @@ Rails.application.configure do
   config.action_mailer.perform_deliveries = true
   config.action_mailer.logger = ActiveSupport::Logger.new(Rails.root.join('log', 'mailer.log'))
   config.action_mailer.logger.level = Logger::DEBUG
+  # Логин/пароль SMTP: credentials (production или верхний уровень) или ENV SMTP_USER, SMTP_PASSWORD
+  creds = Rails.application.credentials
+  smtp_user = creds.dig(:production, :mailyandex_smtp_account).to_s.presence ||
+              creds.dig(:production, 'mailyandex_smtp_account').to_s.presence ||
+              creds[:mailyandex_smtp_account].to_s.presence ||
+              ENV['SMTP_USER'].to_s.presence
+  smtp_password = creds.dig(:production, :mailyandex_smtp_password).to_s.presence ||
+                 creds.dig(:production, 'mailyandex_smtp_password').to_s.presence ||
+                 creds[:mailyandex_smtp_password].to_s.presence ||
+                 ENV['SMTP_PASSWORD'].to_s.presence
+
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     tls: true,
@@ -129,7 +140,7 @@ Rails.application.configure do
     domain: 'yandex.com',
     authentication: 'plain',
     enable_starttls_auto: true,
-    user_name: Rails.application.credentials.mailyandex_smtp_account,
-    password: Rails.application.credentials.mailyandex_smtp_password
+    user_name: smtp_user,
+    password: smtp_password
   }
 end
