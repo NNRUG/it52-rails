@@ -129,7 +129,7 @@ Rails.application.configure do
     domain: 'yandex.com',
     authentication: 'plain',
     enable_starttls_auto: true,
-    user_name: production_creds[:mailyandex_smtp_account].to_s.presence || ENV['SMTP_USER'],
-    password: production_creds[:mailyandex_smtp_password].to_s.presence || ENV['SMTP_PASSWORD']
+    user_name: Rails.application.credentials.mailyandex_smtp_account,
+    password: Rails.application.credentials.mailyandex_smtp_password
   }
 end
