@@ -43,7 +43,7 @@ module It52Rails
 
     # Mailing host
     config.action_mailer.default_url_options = { host: ENV.fetch('mailing_host') { 'it52.info' } }
-    config.action_mailer.default_options = { from: "robot@#{ENV.fetch('mailing_host') { 'it52.info' }}" }
+    config.action_mailer.default_options = { from: "events@#{ENV.fetch('mailing_host') { 'it52.info' }}" }
     config.action_mailer.smtp_settings = {}
     config.action_mailer.delivery_method = :letter_opener
 

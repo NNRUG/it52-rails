@@ -12,7 +12,7 @@ Devise.setup do |config|
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = "robot@#{ENV.fetch('mailing_host') { 'it52.info' }}"
+  config.mailer_sender = "events@#{ENV.fetch('mailing_host') { 'it52.info' }}"
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
@@ -261,18 +261,13 @@ Devise.setup do |config|
 
   config.omniauth :github, ENV.fetch('github_id') { 'github_id' }, ENV.fetch('github_secret') { 'github_secret' },
                   scope: 'user:email, read:org'
-  config.omniauth :google_oauth2, ENV.fetch('google_id') { 'google_id' }, ENV.fetch('google_secret') { 'google_secret' },
-                  scope: 'email,profile',
-                  prompt: 'consent'
+  config.omniauth :google_oauth2, ENV.fetch('google_id') { 'google_id' }, ENV.fetch('google_secret') { 'google_secret' }
   config.omniauth :facebook, ENV.fetch('facebook_id') { 'facebook_id' }, ENV.fetch('facebook_secret') { 'facebook_secret' },
                   scope: 'public_profile, email',
                   info_fields: 'email,name',
                   secure_image_url: true,
                   image_size: 'large'
-  config.omniauth :vkontakte, ENV.fetch('vk_id') { 'vk_id' }, ENV.fetch('vk_secret') { 'vk_secret' },
-                  scope: 'email',
-                  display: 'page',
-                  lang: 'ru'
+  config.omniauth :vkontakte, ENV.fetch('vk_id') { 'vk_id' }, ENV.fetch('vk_secret') { 'vk_secret' }, scope: 'email'
   config.omniauth :twitter, ENV.fetch('twitter_key') { 'twitter_key' }, ENV.fetch('twitter_secret') { 'twitter_secret' },
                   image_size: 'original'
 end

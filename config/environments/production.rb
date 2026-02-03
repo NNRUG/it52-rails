@@ -119,6 +119,8 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: host }
   config.action_mailer.default_options = { from: "events@it52.info" }
   config.action_mailer.perform_deliveries = true
+  config.action_mailer.logger = ActiveSupport::Logger.new(Rails.root.join('log', 'mailer.log'))
+  config.action_mailer.logger.level = Logger::DEBUG
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     tls: true,
@@ -127,7 +129,7 @@ Rails.application.configure do
     domain: 'yandex.com',
     authentication: 'plain',
     enable_starttls_auto: true,
-    user_name: production_creds[:mailyandex_smtp_account].to_s.presence,
-    password: production_creds[:mailyandex_smtp_password].to_s.presence
+    user_name: production_creds[:mailyandex_smtp_account].to_s.presence || ENV['SMTP_USER'],
+    password: production_creds[:mailyandex_smtp_password].to_s.presence || ENV['SMTP_PASSWORD']
   }
 end
