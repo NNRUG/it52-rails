@@ -121,16 +121,14 @@ Rails.application.configure do
   config.action_mailer.perform_deliveries = true
   config.action_mailer.logger = ActiveSupport::Logger.new(Rails.root.join('log', 'mailer.log'))
   config.action_mailer.logger.level = Logger::DEBUG
-  # Логин/пароль SMTP: credentials (production или верхний уровень) или ENV SMTP_USER, SMTP_PASSWORD
-  creds = Rails.application.credentials
-  smtp_user = creds.dig(:production, :mailyandex_smtp_account).to_s.presence ||
-              creds.dig(:production, 'mailyandex_smtp_account').to_s.presence ||
-              creds[:mailyandex_smtp_account].to_s.presence ||
+  # SMTP: логин и пароль из config/credentials.yml.enc (ключи в секции production: или ENV)
+  # Добавить: rails credentials:edit → в секции production: указать mailyandex_smtp_account и mailyandex_smtp_password
+  smtp_user = production_creds[:mailyandex_smtp_account].to_s.presence ||
+              production_creds['mailyandex_smtp_account'].to_s.presence ||
               ENV['SMTP_USER'].to_s.presence
-  smtp_password = creds.dig(:production, :mailyandex_smtp_password).to_s.presence ||
-                 creds.dig(:production, 'mailyandex_smtp_password').to_s.presence ||
-                 creds[:mailyandex_smtp_password].to_s.presence ||
-                 ENV['SMTP_PASSWORD'].to_s.presence
+  smtp_password = production_creds[:mailyandex_smtp_password].to_s.presence ||
+                  production_creds['mailyandex_smtp_password'].to_s.presence ||
+                  ENV['SMTP_PASSWORD'].to_s.presence
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
@@ -143,4 +141,13 @@ Rails.application.configure do
     user_name: smtp_user,
     password: smtp_password
   }
+
+  config.after_initialize do
+    if ActionMailer::Base.smtp_settings[:user_name].blank?
+      Rails.logger.warn(
+        "[SMTP] Yandex login not set. Add mailyandex_smtp_account and mailyandex_smtp_password to config/credentials.yml.enc " \
+        "(run: rails credentials:edit, under production:), or set ENV SMTP_USER and SMTP_PASSWORD."
+      )
+    end
+  end
 end
