@@ -30,10 +30,13 @@ Rails.application.config.after_initialize do
     smtp = ActionMailer::Base.smtp_settings
     conn_info = smtp ? { address: smtp[:address], port: smtp[:port] }.compact : {}
     duration_ms = ((finish - start) * 1000).round
+    from_val = mail.respond_to?(:from) ? Array(mail.from).first : nil
+    to_val = mail.respond_to?(:to) ? Array(mail.to).join(',') : nil
+    subject_val = mail.respond_to?(:subject) ? mail.subject : nil
 
     smtp_logger.info(
-      "[SMTP] connection=#{conn_info.inspect} from=#{mail.from&.first} to=#{mail.to&.join(',')} " \
-      "subject=#{mail.subject.inspect} duration_ms=#{duration_ms}"
+      "[SMTP] connection=#{conn_info.inspect} from=#{from_val} to=#{to_val} " \
+      "subject=#{subject_val.inspect} duration_ms=#{duration_ms}"
     )
   end
 
