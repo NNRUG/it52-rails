@@ -61,7 +61,22 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
-  config.action_mailer.delivery_method = :letter_opener
+  # Письма: при YANDEX_SMTP_USER и YANDEX_SMTP_PASSWORD в ENV — отправка через Яндекс.Почту, иначе letter_opener
+  if ENV['YANDEX_SMTP_USER'].present? && ENV['YANDEX_SMTP_PASSWORD'].present?
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.smtp_settings = {
+      tls: true,
+      address: ENV.fetch('YANDEX_SMTP_ADDRESS', 'smtp.yandex.com'),
+      port: (ENV['YANDEX_SMTP_PORT'] || '465').to_i,
+      domain: 'yandex.com',
+      authentication: 'plain',
+      enable_starttls_auto: true,
+      user_name: ENV['YANDEX_SMTP_USER'],
+      password: ENV['YANDEX_SMTP_PASSWORD']
+    }
+  else
+    config.action_mailer.delivery_method = :letter_opener
+  end
 
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
