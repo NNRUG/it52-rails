@@ -267,7 +267,11 @@ Devise.setup do |config|
                   info_fields: 'email,name',
                   secure_image_url: true,
                   image_size: 'large'
-  config.omniauth :vkontakte, ENV.fetch('vk_id') { 'vk_id' }, ENV.fetch('vk_secret') { 'vk_secret' }, scope: 'email'
+  # VK OAuth: из .env — VK_APP_ID, VK_APP_SECRET (или vk_id, vk_secret)
+  config.omniauth :vkontakte,
+                  ENV.fetch('VK_APP_ID') { ENV.fetch('vk_id') { 'vk_id' } },
+                  ENV.fetch('VK_APP_SECRET') { ENV.fetch('vk_secret') { 'vk_secret' } },
+                  scope: 'email'
   config.omniauth :twitter, ENV.fetch('twitter_key') { 'twitter_key' }, ENV.fetch('twitter_secret') { 'twitter_secret' },
                   image_size: 'original'
 end
