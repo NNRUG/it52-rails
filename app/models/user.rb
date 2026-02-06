@@ -35,12 +35,19 @@
 #
 
 class User < ApplicationRecord
+  # OAuth providers shown on login and "link account" (others stay configured for existing users)
+  VISIBLE_OMNIAUTH_PROVIDERS = %i[vkontakte].freeze
+
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable and
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
          :trackable, :validatable, :confirmable, :omniauthable
 
   enum role: { member: 0, admin: 1 }
+
+  def self.visible_omniauth_providers
+    omniauth_providers & VISIBLE_OMNIAUTH_PROVIDERS
+  end
 
   has_many :authentications, dependent: :destroy
   accepts_nested_attributes_for :authentications
@@ -129,7 +136,9 @@ class User < ApplicationRecord
   end
 
   def unlinked_providers
-    self.class.omniauth_providers.map(&:to_s) - authentications.pluck(:provider)
+    all_unlinked = self.class.omniauth_providers.map(&:to_s) - authentications.pluck(:provider)
+    visible = self.class.visible_omniauth_providers.map(&:to_s)
+    all_unlinked & visible
   end
 
   def password_required?

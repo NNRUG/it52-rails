@@ -6,7 +6,7 @@
       h2 = t('.social_login')
       .row: .col-sm-8
         ul.list-unstyled.social-login
-          = render partial: 'authentications/unlinked', collection: resource_class.omniauth_providers, as: :provider
+          = render partial: 'authentications/unlinked', collection: resource_class.visible_omniauth_providers, as: :provider
 
   .col-sm-5.col-sm-offset-1
     h2 = t('.log_in')
