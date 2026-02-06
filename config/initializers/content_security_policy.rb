@@ -20,7 +20,7 @@ Rails.application.config.content_security_policy do |policy|
   if Rails.env.development?
     policy.connect_src :self, :https, 'http://localhost:3035', 'ws://localhost:3035'
   else
-    policy.connect_src :self, :https
+    policy.connect_src :self, :https, 'https://mc.yandex.ru', 'wss://mc.yandex.ru'
   end
   #   policy.connect_src :self, :https, 'http://localhost:3035', 'ws://localhost:3035'
   #   policy.script_src :self, :https, 'bam.nr-data.net', 'js-agent.newrelic.com', '*.newrelic.com', 'www.googletagmanager.com'
