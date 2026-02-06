@@ -41,8 +41,9 @@ class UpdateUserFromOmniauth
   end
 
   def set_avatar_image
-    image_url = data['image']
-    image_url.gsub!(/sz\=\d+/, 'sz=1024') if provider == 'google_oauth2'
+    raw = data['image']
+    return if raw.blank? || !raw.is_a?(String)
+    image_url = provider == 'google_oauth2' ? raw.gsub(/sz\=\d+/, 'sz=1024') : raw
     user.remote_avatar_image_url = image_url
   end
 
