@@ -29,8 +29,9 @@ Rails.application.configure do
 
   # OAuth (VK, Google, etc.): set APPLICATION_HOST so callback URL matches what is registered at the provider.
   # Without this, behind a proxy the callback URL can be wrong and authorization fails.
+  # host.docker.internal не резолвится в Linux-контейнере — подменяем на реальный домен, иначе Sidekiq падает при десериализации.
   app_host = ENV.fetch('APPLICATION_HOST', ENV.fetch('mailing_host', 'it52.info')).to_s.strip
-  app_host = 'it52.info' if app_host.blank?
+  app_host = 'it52.info' if app_host.blank? || app_host.include?('host.docker.internal')
   config.action_controller.default_url_options = { host: app_host, protocol: 'https' }
   OmniAuth.config.full_host = "https://#{app_host}"
 
@@ -115,7 +116,9 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  host = ENV.fetch('mailing_host', 'it52.info')
+  # host.docker.internal в Linux-контейнере не резолвится — используем реальный домен, иначе Sidekiq падает при десериализации писем.
+  host = ENV.fetch('mailing_host', 'it52.info').to_s.strip
+  host = 'it52.info' if host.blank? || host.include?('host.docker.internal')
   config.action_mailer.default_url_options = { host: host }
   config.action_mailer.default_options = { from: ENV.fetch('YANDEX_SMTP_FROM', 'events@it52.info') }
   config.action_mailer.perform_deliveries = true
