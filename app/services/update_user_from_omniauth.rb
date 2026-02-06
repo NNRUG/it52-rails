@@ -46,7 +46,9 @@ class UpdateUserFromOmniauth
     image_url = raw.to_s.strip
     return if image_url.empty? || !image_url.start_with?('http')
     image_url = image_url.gsub(/sz\=\d+/, 'sz=1024') if provider == 'google_oauth2'
-    user.remote_avatar_image_url = image_url
+    user.remote_avatar_image_url = image_url.dup
+  rescue TypeError
+    # Skip avatar when CarrierWave or instrumentation (e.g. New Relic) raises "Can't convert Module into String"
   end
 
   def set_nickname
