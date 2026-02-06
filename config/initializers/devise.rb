@@ -267,11 +267,19 @@ Devise.setup do |config|
                   info_fields: 'email,name',
                   secure_image_url: true,
                   image_size: 'large'
-  # VK OAuth: из .env — VK_APP_ID, VK_APP_SECRET (или vk_id, vk_secret)
+  # VK OAuth: из .env — VK_APP_ID, VK_APP_SECRET. Явные client_options чтобы избежать TypeError (Module into String).
   config.omniauth :vkontakte,
-                  ENV.fetch('VK_APP_ID') { ENV.fetch('vk_id') { 'vk_id' } },
-                  ENV.fetch('VK_APP_SECRET') { ENV.fetch('vk_secret') { 'vk_secret' } },
-                  scope: 'email'
+                  ENV.fetch('VK_APP_ID') { ENV.fetch('vk_id') { 'vk_id' } }.to_s,
+                  ENV.fetch('VK_APP_SECRET') { ENV.fetch('vk_secret') { 'vk_secret' } }.to_s,
+                  scope: 'email',
+                  display: 'page',
+                  lang: 'ru',
+                  client_options: {
+                    site: 'https://api.vk.ru/',
+                    token_url: 'https://oauth.vk.ru/access_token',
+                    authorize_url: 'https://oauth.vk.ru/authorize',
+                    auth_scheme: :request_body
+                  }
   config.omniauth :twitter, ENV.fetch('twitter_key') { 'twitter_key' }, ENV.fetch('twitter_secret') { 'twitter_secret' },
                   image_size: 'original'
 end
