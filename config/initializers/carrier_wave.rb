@@ -1,11 +1,21 @@
 # frozen_string_literal: true
 
-# require 'carrierwave/storage/abstract'
+# Uploads (event title_image, user avatar, startup logo) go to Yandex Cloud when
+# remote_storage is true. Set in production: aws_bucket, aws_access_key_id, aws_secret_access_key.
+# Optional: fog_region (default ru-central1), fog_endpoint, fog_host, aws_host (CDN URL).
 remote_storage =
   (Rails.env.production? || Rails.env.staging?) &&
   ENV['aws_bucket'].to_s.strip != '' &&
   ENV['aws_access_key_id'].to_s.strip != '' &&
   ENV['aws_secret_access_key'].to_s.strip != ''
+
+if Rails.env.production? && !remote_storage
+  missing = []
+  missing << 'aws_bucket' if ENV['aws_bucket'].to_s.strip == ''
+  missing << 'aws_access_key_id' if ENV['aws_access_key_id'].to_s.strip == ''
+  missing << 'aws_secret_access_key' if ENV['aws_secret_access_key'].to_s.strip == ''
+  Rails.logger.warn "[CarrierWave] Remote storage (Yandex) disabled: missing ENV #{missing.join(', ')}. Uploads will be stored locally."
+end
 
 if remote_storage
   require 'carrierwave/storage/fog'
