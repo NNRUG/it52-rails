@@ -31,8 +31,11 @@ Rails.application.config.content_security_policy do |policy|
   # end
 end
 
-# If you are using UJS then enable automatic nonce generation
-Rails.application.config.content_security_policy_nonce_generator = ->(_request) { SecureRandom.base64(16) }
+# Nonce из сессии: один и тот же nonce на всю сессию, чтобы при подгрузке страницы через Turbolinks
+# инлайн-скрипты в ответе имели тот же nonce, что и в заголовке CSP основного документа.
+Rails.application.config.content_security_policy_nonce_generator = ->(request) {
+  request.session[:csp_nonce] ||= SecureRandom.base64(16)
+}
 
 # Report CSP violations to a specified URI
 # For further information see the following documentation:
