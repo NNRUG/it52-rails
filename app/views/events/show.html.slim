@@ -12,7 +12,7 @@ script type="application/ld+json" == @structured_data.to_json
       - if @event.address_comment.present?
         div = @event.address_comment
 
-- if can?(:edit, @event.object) || can?(:publish, @event.object)
+- if can?(:edit, @event.object) || can?(:publish, @event.object) || current_user&.admin?
   .row: .col-xs-12
     .pull-right
       - if can? :edit, @event.object
@@ -23,6 +23,9 @@ script type="application/ld+json" == @structured_data.to_json
           = link_to t('.publish'), publish_event_path(@event), class: 'btn btn-warning', method: :patch
         - else
           = link_to t('.cancel_publication'), cancel_publication_event_path(@event), class: 'btn btn-warning', method: :patch
+      - if current_user&.admin?
+        | &nbsp;
+        = link_to t('.delete'), event_path(@event), class: 'btn btn-danger', method: :delete, data: { confirm: t('.delete_confirm') }
 
 .events-show.event data={ id: @event.id }
   .row

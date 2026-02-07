@@ -76,16 +76,14 @@ class EventsController < ApplicationController
   end
 
   def destroy
-    if @event.published?
-      redirect_back(fallback_location: root_path, alert: 'Вы не можете удалить опубликованное событие') && return
+    unless current_user.admin?
+      return redirect_back(fallback_location: root_path, alert: 'Удалять события может только администратор')
     end
-    notice_text = if @event.destroy
-                    'Событие удалено'
-                  else
-                    "Невозможно удалить событие. #{@event.errors.error_messages.to_sentence}"
+    if @event.destroy
+      redirect_to events_path, notice: 'Событие удалено'
+    else
+      redirect_back(fallback_location: root_path, alert: "Невозможно удалить событие. #{@event.errors.full_messages.to_sentence}")
     end
-
-    redirect_back(fallback_location: root_path, notice: 'Событие удалено')
   end
 
   def update

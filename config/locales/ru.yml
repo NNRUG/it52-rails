@@ -222,6 +222,8 @@ ru:
     show:
       publish: Опубликовать
       cancel_publication: Отменить публикацию
+      delete: Удалить
+      delete_confirm: Вы уверены, что хотите удалить это событие?
       waiting_for_approval: Событие ещё не прошло модерацию и доступно только создателю и модераторам.
       participants_export: Выгрузить участников
     publish:

@@ -19,7 +19,8 @@ class Ability
       can :read, Event, organizer_id: user.id
       can :update, Event, organizer_id: user.id
       can :download_participants, Event, organizer_id: user.id
-      can :destroy, Event, organizer_id: user.id
+      # destroy только у admin (см. events_controller#destroy)
+      cannot :destroy, Event
       cannot :publish, Event
 
       can :create, EventParticipation
