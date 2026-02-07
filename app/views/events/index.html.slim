@@ -9,6 +9,21 @@
 
   a.material-icons.mdc-top-app-bar__action-item href=new_event_path title='Добавить событие' add
 
+.welcome-block.container
+  .welcome-block__text
+    h2.welcome-block__title = t('.welcome_title')
+    p.welcome-block__paragraph = t('.welcome_text')
+    p.welcome-block__paragraph
+      = t('.welcome_text_subscribe')
+      = link_to 'IT52', t('.welcome_telegram_link'), target: '_blank', rel: 'noopener noreferrer', class: 'welcome-block__link'
+  .welcome-block__buttons
+    = link_to t('.welcome_add_event'), new_event_path, class: 'mdc-button mdc-button--raised'
+    = link_to t('.welcome_it_map'), 'https://itgorky.ru/', target: '_blank', rel: 'noopener noreferrer', class: 'mdc-button mdc-button--outlined'
+    = link_to t('.welcome_developed'), 'https://itgorky.ru/made-in-nn', target: '_blank', rel: 'noopener noreferrer', class: 'mdc-button mdc-button--outlined'
+    = link_to t('.welcome_vacancies'), 'https://t.me/jobsit52', target: '_blank', rel: 'noopener noreferrer', class: 'mdc-button mdc-button--outlined'
+    = link_to t('.welcome_telegram_channel'), 'https://t.me/it52info', target: '_blank', rel: 'noopener noreferrer', class: 'mdc-button mdc-button--outlined'
+    = link_to t('.welcome_flood'), 'https://t.me/nn_rug', target: '_blank', rel: 'noopener noreferrer', class: 'mdc-button mdc-button--outlined'
+
 .events-select-menu-wrapper
   #events-select-menu.events-select-menu.mdc-select.mdc-menu-surface--anchor
     input type="hidden" name="enhanced-select" role="button" aria-haspopup="listbox"

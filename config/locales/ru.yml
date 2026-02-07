@@ -211,6 +211,16 @@ ru:
       unapproved_events: На модерации
       new_event: Добавить
       go_home: На главную
+      welcome_title: Добро пожаловать в IT-сообщество Нижнего Новгорода!
+      welcome_text: "Тут вы найдете информацию о действующих сообществах города, мероприятиях, вакансиях, аналитику и много другое."
+      welcome_text_subscribe: "Мы всегда открыты для сотрудничества, подписывайтесь на наш канал "
+      welcome_telegram_link: "https://t.me/it52info"
+      welcome_add_event: Добавить мероприятие
+      welcome_it_map: IT-карта Нижнего Новгорода
+      welcome_developed: Разработано в Нижнем Новгороде
+      welcome_vacancies: Вакансии
+      welcome_telegram_channel: Основной канал
+      welcome_flood: Флудилка
       kind_filter:
         all: Все события
         event: Митапы
