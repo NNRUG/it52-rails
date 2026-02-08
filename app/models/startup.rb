@@ -4,6 +4,7 @@ class Startup < ApplicationRecord
   validates :title, presence: true
   validates :description, presence: true
   validates :author_id, presence: true, numericality: true
+  validate :logo_file_size
 
   belongs_to :author, class_name: 'User'
 
@@ -11,6 +12,17 @@ class Startup < ApplicationRecord
 
   extend FriendlyId
   friendly_id :slug_candidates, use: :history
+
+  def logo_file_size
+    return if logo.blank?
+
+    file = logo.file
+    return unless file.respond_to?(:size) && file.size
+
+    return if file.size <= 800.kilobytes
+
+    errors.add(:logo, :file_too_large, max: 800)
+  end
 
   def slug_candidates
     [I18n.transliterate(title),

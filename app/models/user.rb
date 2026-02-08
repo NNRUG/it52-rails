@@ -65,6 +65,7 @@ class User < ApplicationRecord
 
   validates :website, format: { with: URI.regexp(%w[http https]) }, allow_nil: true
   validate :should_have_email_before_subscription
+  validate :avatar_image_file_size
 
   scope :subscribed, -> { where(subscription: true) }
 
@@ -83,6 +84,17 @@ class User < ApplicationRecord
 
   def to_s
     full_name
+  end
+
+  def avatar_image_file_size
+    return if avatar_image.blank?
+
+    file = avatar_image.file
+    return unless file.respond_to?(:size) && file.size
+
+    return if file.size <= 800.kilobytes
+
+    errors.add(:avatar_image, :file_too_large, max: 800)
   end
 
   def slug_candidates

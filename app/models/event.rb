@@ -52,6 +52,7 @@ class Event < ApplicationRecord
   validates :place, presence: true
   validates :description, presence: true
   validates :started_at, presence: true
+  validate :title_image_file_size
 
   scope :ordered_desc, -> { order(started_at: :desc) }
   scope :ordered_asc,  -> { order(started_at: :asc) }
@@ -203,6 +204,17 @@ class Event < ApplicationRecord
     return value if value.match?(/\Ahttps?:\/\//i)
 
     "https://t.me/#{value.delete_prefix('@')}"
+  end
+
+  def title_image_file_size
+    return if title_image.blank?
+
+    file = title_image.file
+    return unless file.respond_to?(:size) && file.size
+
+    return if file.size <= 800.kilobytes
+
+    errors.add(:title_image, :file_too_large, max: 800)
   end
 
   def migrate_to_address
