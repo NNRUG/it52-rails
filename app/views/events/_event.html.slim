@@ -21,6 +21,10 @@
           .event-place: p title="Место проведения"
             i.fas.fa-fw.fa-map-marker>
             = event.link_to_place
+        - if event.online_broadcast.present?
+          .event-online-broadcast: p title="Онлайн трансляция"
+            i.fas.fa-fw.fa-video>
+            = link_to t('activerecord.attributes.event.online_broadcast'), event.online_broadcast, target: '_blank', rel: 'noopener noreferrer'
         .event-organizer: p title="Организатор"
           i.fas.fa-fw.fa-user>
           span> Организатор

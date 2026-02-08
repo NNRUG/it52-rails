@@ -115,6 +115,7 @@ ru:
         address_comment: Место проведения
         place: Адрес
         foreign_link: Ссылка на стороннюю регистрацию
+        online_broadcast: Онлайн трансляция
       startup:
         title: Название
         url: Сайт

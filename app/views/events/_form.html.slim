@@ -18,6 +18,7 @@
     .col-sm-6
       = f.input :place
       = f.input :address_comment, as: :text
+      = f.input :online_broadcast, as: :string, input_html: { type: :url }
       = f.input :location, as: :hidden
       = check_box_tag :has_foreign_link, !@event.foreign_link.blank?, !@event.foreign_link.blank?
       = label_tag :has_foreign_link, t("my.events.has_foreign_link"), style: "padding-left: 10px;"
