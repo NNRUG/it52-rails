@@ -234,6 +234,8 @@ ru:
       cancel_publication: Отменить публикацию
       delete: Удалить
       delete_confirm: Вы уверены, что хотите удалить это событие?
+      watch_broadcast: Смотреть трансляцию
+      telegram_channel_btn: Telegram
       waiting_for_approval: Событие ещё не прошло модерацию и доступно только создателю и модераторам.
       participants_export: Выгрузить участников
     publish:

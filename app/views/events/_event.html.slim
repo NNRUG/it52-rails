@@ -45,6 +45,16 @@
           i.fas.fa-fw.fa-eye>
           span.event-views-counter data={ 'event-path' => event_path(event) } = event.pageviews
       .col-sm-8
+        - if event.online_broadcast.present? || (event.respond_to?(:telegram_channel) && event.telegram_channel.present?)
+          .event-broadcast-actions
+            - if event.online_broadcast.present?
+              = link_to event.online_broadcast, class: 'btn btn-primary', target: '_blank', rel: 'noopener noreferrer' do
+                i.fas.fa-fw.fa-video
+                span = t('events.show.watch_broadcast')
+            - if event.respond_to?(:telegram_channel) && event.telegram_channel.present?
+              = link_to event.telegram_channel_url, class: 'btn btn-default', target: '_blank', rel: 'noopener noreferrer' do
+                i.fab.fa-fw.fa-telegram
+                span = t('events.show.telegram_channel_btn')
         .event-description = event.rendered_description
 
   - if event.participants.any?

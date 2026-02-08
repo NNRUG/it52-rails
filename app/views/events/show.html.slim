@@ -72,6 +72,16 @@ script type="application/ld+json" == @structured_data.to_json
 
       = render partial: 'participate_block', object: @event, as: :event
   hr
+  - if @event.online_broadcast.present? || (@event.respond_to?(:telegram_channel) && @event.telegram_channel.present?)
+    .event-broadcast-actions
+      - if @event.online_broadcast.present?
+        = link_to @event.online_broadcast, class: 'btn btn-primary', target: '_blank', rel: 'noopener noreferrer' do
+          i.fas.fa-fw.fa-video
+          span = t('.watch_broadcast')
+      - if @event.respond_to?(:telegram_channel) && @event.telegram_channel.present?
+        = link_to @event.telegram_channel_url, class: 'btn btn-default', target: '_blank', rel: 'noopener noreferrer' do
+          i.fab.fa-fw.fa-telegram
+          span = t('.telegram_channel_btn')
   .event-description = @event.rendered_description
 
 
