@@ -45,6 +45,10 @@ script type="application/ld+json" == @structured_data.to_json
         .event-online-broadcast: p title="Онлайн трансляция"
           i.fas.fa-fw.fa-video>
           = link_to t('activerecord.attributes.event.online_broadcast'), @event.online_broadcast, target: '_blank', rel: 'noopener noreferrer'
+      - if @event.respond_to?(:telegram_channel) && @event.telegram_channel.present?
+        .event-telegram-channel: p title="Telegram канал или группа"
+          i.fab.fa-fw.fa-telegram>
+          = link_to @event.telegram_channel, @event.telegram_channel_url, target: '_blank', rel: 'noopener noreferrer'
       .event-organizer: p title="Организатор"
         i.fas.fa-fw.fa-user>
         span> Организатор:

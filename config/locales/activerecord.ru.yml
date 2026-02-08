@@ -116,6 +116,7 @@ ru:
         place: Адрес
         foreign_link: Ссылка на стороннюю регистрацию
         online_broadcast: Онлайн трансляция
+        telegram_channel: Telegram канал или группа
       startup:
         title: Название
         url: Сайт

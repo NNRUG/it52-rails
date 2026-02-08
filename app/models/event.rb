@@ -196,6 +196,15 @@ class Event < ApplicationRecord
     build_foreign_link(user)
   end
 
+  def telegram_channel_url
+    return nil if telegram_channel.blank?
+
+    value = telegram_channel.strip
+    return value if value.match?(/\Ahttps?:\/\//i)
+
+    "https://t.me/#{value.delete_prefix('@')}"
+  end
+
   def migrate_to_address
     suggestions = DaData::Request.suggest_address("Нижний Новгород, #{place}")
     main_suggestions = DaData::Request.suggest_address(suggestions['suggestions'].first['unrestricted_value'], count: 1)
