@@ -51,9 +51,9 @@
             i.material-icons.mdc-icon-button__icon aria-hidden="true" rss_feed
 
       nav.events-nav
-        a.mdc-button href=events_path(filter_params.merge(status: 'future')) class=('mdc-button--outlined' unless filter_params[:status].nil? || filter_params[:status] == 'future')
+        a.mdc-button class=('mdc-button--outlined' if filter_params[:status].nil? || filter_params[:status] == 'future') href=events_path(filter_params.merge(status: 'future'))
           span.mdc-button__label = t('.future_events')
-        a.mdc-button href=events_path(filter_params.merge(status: 'past')) class=('mdc-button--outlined' unless filter_params[:status] == 'past')
+        a.mdc-button class=('mdc-button--outlined' unless filter_params[:status].nil? || filter_params[:status] == 'future') href=events_path(filter_params.merge(status: 'past'))
           span.mdc-button__label = t('.past_events')
 
   - if @events.empty?
