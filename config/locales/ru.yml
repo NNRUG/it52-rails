@@ -225,6 +225,20 @@ ru:
         all: Все события
         event: Митапы
         education: Обучение
+        conference: Конференция
+        summit: Саммит
+        drinkup: DrinkUp
+        hackathon: Hackathon
+        closed_meeting: Закрытая встреча
+        webinar: Webinar
+        festival: Фестиваль
+        online_training: Online training
+        expo: Expo
+        forum: Forum
+        workshop: Workshop
+        ctf: CTF
+        bootcamp: Bootcamp
+        training: Training
     new:
       title: Новое мероприятие
     edit:

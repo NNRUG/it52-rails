@@ -1,7 +1,11 @@
 .event.panel.panel-default data={ id: event.id }
   .panel-body
     .row: .col-sm-12
-      h2.event-header = link_to event.title, event_path(event)
+      h2.event-header
+        span.event-kind
+          | [#{t("activerecord.attributes.event.kinds.#{event.kind}")}]
+        span.event-header-separator< 
+        = link_to event.title, event_path(event)
       h4.event-subheader
         span<> title="Время проведения" = event.link_to_time
         - if event.place.present?

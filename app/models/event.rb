@@ -42,7 +42,24 @@ class Event < ApplicationRecord
   belongs_to :organizer, class_name: 'User'
   belongs_to :address, optional: true
 
-  enum kind: { event: 0, education: 1 }
+  enum kind: {
+    event: 0,
+    education: 1,
+    conference: 2,
+    summit: 3,
+    drinkup: 4,
+    hackathon: 5,
+    closed_meeting: 6,
+    webinar: 7,
+    festival: 8,
+    online_training: 9,
+    expo: 10,
+    forum: 11,
+    workshop: 12,
+    ctf: 13,
+    bootcamp: 14,
+    training: 15
+  }
 
   has_many :event_participations
   has_many :participants, class_name: 'User', through: :event_participations, source: :user
@@ -79,7 +96,19 @@ class Event < ApplicationRecord
   friendly_id :slug_candidates, use: :history
 
   def self.humanized_kinds_map
-    kinds.map { |kind| [I18n.t("activerecord.attributes.event.kinds.#{kind[0]}"), kind[0]] }
+    all_pairs = kinds.keys.map { |k| [I18n.t("activerecord.attributes.event.kinds.#{k}"), k] }
+    event_pair = all_pairs.find { |_, key| key == 'event' }
+    rest = all_pairs.reject { |_, key| key == 'event' }.sort_by(&:first)
+    event_pair ? [event_pair] + rest : rest
+  end
+
+  def self.sorted_kind_filter_options
+    keys = %w[all] + kinds.keys
+    options = keys.map { |k| [k, I18n.t("events.index.kind_filter.#{k}")] }
+    all_pair = options.find { |key, _| key == 'all' }
+    event_pair = options.find { |key, _| key == 'event' }
+    rest = options.reject { |key, _| %w[all event].include?(key) }.sort_by(&:last)
+    [all_pair, event_pair].compact + rest
   end
 
   def self.filter_by(kind: 'all', status: 'future', tag: nil)

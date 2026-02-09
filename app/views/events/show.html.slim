@@ -6,7 +6,11 @@ script type="application/ld+json" == @structured_data.to_json
       = @event.local_started_at
       div = @event.human_time_distance
 
-    h1 = @event.title
+    h1.event-header
+      span.event-kind
+        | [#{t("activerecord.attributes.event.kinds.#{@event.kind}")}]
+      span.event-header-separator< 
+      = @event.title
     h3
       = @event.place
       - if @event.address_comment.present?

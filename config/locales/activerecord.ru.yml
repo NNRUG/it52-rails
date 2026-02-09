@@ -56,8 +56,8 @@ ru:
               too_long: "Комментарий должен уместиться в %{count} символов."
     models:
       event:
-        one:    Событие
-        other:  События
+        one:    Митап
+        other:  Митапы
       idea:
         one:    Идея
         other:  Идеи
@@ -104,8 +104,22 @@ ru:
       event:
         kind: Тип
         kinds:
-          event: Событие
+          event: Митап
           education: Обучение
+          conference: Конференция
+          summit: Саммит
+          drinkup: DrinkUp
+          hackathon: Hackathon
+          closed_meeting: Закрытая встреча
+          webinar: Webinar
+          festival: Фестиваль
+          online_training: Online training
+          expo: Expo
+          forum: Forum
+          workshop: Workshop
+          ctf: CTF
+          bootcamp: Bootcamp
+          training: Training
         tag_list: Тэги
         title: Название
         published: Мероприятие опубликовано
