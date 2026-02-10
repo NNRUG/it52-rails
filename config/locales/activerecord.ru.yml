@@ -29,6 +29,7 @@ ru:
         too_many_words: 'Слишком много слов. Сформулируйте покороче.'
         not_cyrillic: 'Можно использовать только кириллицу'
         file_too_large: 'размер файла не должен превышать %{max} КБ'
+        categories_required: 'Необходимо выбрать хотя бы одну категорию'
         record_uneditable: 'Запись нельзя изменить'
         uncreatable:   'Невозможно создать запись с указанными параметрами'
       models:
@@ -73,6 +74,9 @@ ru:
       startup:
         one: Стартап
         other: Стартапы
+      category:
+        one: Категория
+        other: Категории
     attributes:
       user:
         password:     Пароль
@@ -102,6 +106,7 @@ ru:
         subscription: Получать уведомления о событиях
         avatar_image: Аватар
       event:
+        category_ids: ''
         kind: Тип
         kinds:
           event: Митап

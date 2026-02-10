@@ -65,6 +65,10 @@ script type="application/ld+json" == @structured_data.to_json
         .event-tags: p title="Тэги"
             i.fas.fa-fw.fa-tag>
             == @event.tag_list.map { |tag| link_to "##{tag}", tag_path(tag)}.join(', ')
+      - if @event.categories.any?
+        .event-categories: p title="Категории"
+          i.fas.fa-fw.fa-folder>
+          = @event.categories.map(&:name).join(', ')
       .event-share: p title="Поделиться"
         i.fas.fa-fw.fa-share-alt>
         span> Поделиться в

@@ -239,6 +239,8 @@ ru:
         ctf: CTF
         bootcamp: Bootcamp
         training: Training
+    form:
+      not_all_fields_filled: Не все поля заполнены корректно. Проверьте форму ниже.
     new:
       title: Новое мероприятие
     edit:

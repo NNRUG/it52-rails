@@ -1,6 +1,10 @@
 - content_for :dynamic_javascripts
   = javascript_pack_tag 'editor', 'data-turbolinks-track': true, defer: true
 
+- if @event.errors.any?
+  .alert.alert-danger
+    = t('events.form.not_all_fields_filled')
+
 = simple_form_for @event do |f|
   = f.input :title
   .row
@@ -29,4 +33,19 @@
 
   .row: .col-sm-12
     = f.input :description, input_html: { rows: 10, class: 'mde-textarea' }
+    .event-categories-block.form-group class=('has-error' if @event.errors[:category_ids].any?)
+      label.control-label = t('activerecord.models.category.other')
+      - if @event.errors[:category_ids].any?
+        span.help-block = @event.errors.full_messages_for(:category_ids).first
+      .event-categories-inner
+        .row
+          - categories = Category.order(:name).to_a
+          - column_count = 4
+          - categories.each_slice((categories.size.to_f / column_count).ceil) do |column_categories|
+            .col-xs-6.col-md-3
+              - column_categories.each do |category|
+                .checkbox
+                  label
+                    = f.check_box :category_ids, { multiple: true }, category.id, nil
+                    = category.name
     = f.submit class: 'btn btn-primary'

@@ -63,6 +63,8 @@ class Event < ApplicationRecord
 
   has_many :event_participations
   has_many :participants, class_name: 'User', through: :event_participations, source: :user
+  has_many :event_categories, dependent: :destroy
+  has_many :categories, through: :event_categories
 
   validates :title, presence: true
   validates :organizer, presence: true
@@ -70,6 +72,7 @@ class Event < ApplicationRecord
   validates :description, presence: true
   validates :started_at, presence: true
   validate :title_image_file_size
+  validate :categories_presence
 
   scope :ordered_desc, -> { order(started_at: :desc) }
   scope :ordered_asc,  -> { order(started_at: :asc) }
@@ -244,6 +247,12 @@ class Event < ApplicationRecord
     return if file.size <= 800.kilobytes
 
     errors.add(:title_image, :file_too_large, max: 800)
+  end
+
+  def categories_presence
+    return if category_ids.reject(&:blank?).any?
+
+    errors.add(:category_ids, :categories_required)
   end
 
   def migrate_to_address

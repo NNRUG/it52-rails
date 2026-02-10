@@ -211,7 +211,7 @@ class EventsController < ApplicationController
       tag_list address_comment online_broadcast telegram_channel
     ]
     params[:event].delete(:location) if params[:event][:location].blank?
-    params.require(:event).permit(*permitted_attrs)
+    params.require(:event).permit(*permitted_attrs, category_ids: [])
   end
 
   def unapproved_count

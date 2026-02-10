@@ -45,6 +45,10 @@
           .event-tags: p title="Тэги"
               i.fas.fa-fw.fa-tag>
               == event.tag_list.map { |tag| link_to "##{tag}", tag_path(tag)}.join(', ')
+        - if event.categories.any?
+          .event-categories: p title="Категории"
+            i.fas.fa-fw.fa-folder>
+            = event.categories.map(&:name).join(', ')
         .event-views: p title="Просмотры"
           i.fas.fa-fw.fa-eye>
           span.event-views-counter data={ 'event-path' => event_path(event) } = event.pageviews
