@@ -288,6 +288,7 @@ ru:
         edit_registration: Сменить email и пароль
       edit:
         title: Профиль
+        interested_categories_label: Мне интересны мероприятия из следующих категорий
     events:
       has_foreign_link: Сторонняя регистрация
 

@@ -33,6 +33,22 @@
             a.alert-link href=edit_user_registration_path укажите вашу почту
             |, чтобы подписаться на уведомления.
 
+      .event-categories-block.form-group class=('has-error' if @user.errors[:interested_category_ids].any?)
+        label.control-label = t('.interested_categories_label')
+        - if @user.errors[:interested_category_ids].any?
+          span.help-block = @user.errors.full_messages_for(:interested_category_ids).first
+        .event-categories-inner
+          .row
+            - categories = Category.order(:name).to_a
+            - column_count = 4
+            - selected_ids = @user.interested_category_ids.presence || Category.pluck(:id)
+            - categories.each_slice((categories.size.to_f / column_count).ceil) do |column_categories|
+              .col-xs-6.col-md-3
+                - column_categories.each do |category|
+                  .checkbox
+                    label
+                      = check_box_tag 'user[interested_category_ids][]', category.id, selected_ids.include?(category.id), id: "user_interested_category_ids_#{category.id}"
+                      = category.name
 
       = f.submit class: 'btn btn-primary'
       ' &nbsp;

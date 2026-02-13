@@ -30,6 +30,7 @@ ru:
         not_cyrillic: 'Можно использовать только кириллицу'
         file_too_large: 'размер файла не должен превышать %{max} КБ'
         categories_required: 'Необходимо выбрать хотя бы одну категорию'
+        user_categories_required: 'Вы должны выбрать хотя бы одну категорию'
         record_uneditable: 'Запись нельзя изменить'
         uncreatable:   'Невозможно создать запись с указанными параметрами'
       models:
@@ -105,6 +106,7 @@ ru:
         employment: Место работы
         subscription: Получать уведомления о событиях
         avatar_image: Аватар
+        interested_category_ids: ''
       event:
         category_ids: ''
         kind: Тип

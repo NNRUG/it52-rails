@@ -55,6 +55,8 @@ class User < ApplicationRecord
   has_many :owner_of_events, -> { order(started_at: :desc) }, class_name: 'Event', foreign_key: 'organizer_id'
   has_many :event_participations
   has_many :member_in_events, -> { order(started_at: :desc).published }, class_name: 'Event', through: :event_participations, source: :event
+  has_many :user_categories, dependent: :destroy
+  has_many :interested_categories, through: :user_categories, source: :category
 
   before_create :assign_default_role, if: -> { role.nil? }
   before_create :set_subscription, if: -> { email.present? && subscription.nil? }
@@ -66,6 +68,7 @@ class User < ApplicationRecord
   validates :website, format: { with: URI.regexp(%w[http https]) }, allow_nil: true
   validate :should_have_email_before_subscription
   validate :avatar_image_file_size
+  validate :interested_categories_presence
 
   scope :subscribed, -> { where(subscription: true) }
 
@@ -95,6 +98,12 @@ class User < ApplicationRecord
     return if file.size <= 800.kilobytes
 
     errors.add(:avatar_image, :file_too_large, max: 800)
+  end
+
+  def interested_categories_presence
+    return if interested_category_ids.reject(&:blank?).any?
+
+    errors.add(:interested_category_ids, :user_categories_required)
   end
 
   def slug_candidates

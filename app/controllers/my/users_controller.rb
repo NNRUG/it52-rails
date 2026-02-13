@@ -18,7 +18,9 @@ module My
     end
 
     def update
-      location = @user.update(user_profile_params) ? my_profile_path : edit_my_profile_path
+      profile_params = user_profile_params
+      profile_params[:interested_category_ids] ||= []
+      location = @user.update(profile_params) ? my_profile_path : edit_my_profile_path
       respond_with @user, location: location
     end
 
@@ -31,7 +33,8 @@ module My
 
     def user_profile_params
       params.require(:user).permit(:first_name, :last_name, :nickname, :employment,
-                                   :website, :bio, :avatar_image, :avatar_image_cache, :subscription)
+                                   :website, :bio, :avatar_image, :avatar_image_cache, :subscription,
+                                   interested_category_ids: [])
     end
 
     def sync_with_mailchimp
