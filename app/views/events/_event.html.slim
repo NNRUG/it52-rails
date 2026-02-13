@@ -53,8 +53,13 @@
           i.fas.fa-fw.fa-eye>
           span.event-views-counter data={ 'event-path' => event_path(event) } = event.pageviews
       .col-sm-8
-        - if event.online_broadcast.present? || (event.respond_to?(:telegram_channel) && event.telegram_channel.present?)
+        - if event.paid? && event.price.present? || event.online_broadcast.present? || (event.respond_to?(:telegram_channel) && event.telegram_channel.present?)
           .event-broadcast-actions
+            - if event.paid? && event.price.present?
+              .event-price-info
+                i.fas.fa-fw.fa-money-bill.event-price-icon
+                span.event-price-label = t('events.show.participation_price_label')
+                span = t('events.show.participation_price_value', price: event.price)
             - if event.online_broadcast.present?
               = link_to event.online_broadcast, class: 'btn btn-primary', target: '_blank', rel: 'noopener noreferrer' do
                 i.fas.fa-fw.fa-video

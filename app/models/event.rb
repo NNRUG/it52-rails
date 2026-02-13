@@ -36,6 +36,7 @@ class Event < ApplicationRecord
 
   mount_uploader :title_image, EventTitleImageUploader
 
+  before_validation :clear_price_unless_paid
   before_create :migrate_to_address, if: :place_changed?
   before_update :migrate_to_address, if: :place_changed?
 
@@ -71,8 +72,10 @@ class Event < ApplicationRecord
   validates :place, presence: true
   validates :description, presence: true
   validates :started_at, presence: true
+  validates :price, numericality: { only_integer: true, greater_than_or_equal_to: 0 }, allow_nil: true
   validate :title_image_file_size
   validate :categories_presence
+  validate :price_presence_when_paid
 
   scope :ordered_desc, -> { order(started_at: :desc) }
   scope :ordered_asc,  -> { order(started_at: :asc) }
@@ -253,6 +256,16 @@ class Event < ApplicationRecord
     return if category_ids.reject(&:blank?).any?
 
     errors.add(:category_ids, :categories_required)
+  end
+
+  def price_presence_when_paid
+    return unless paid?
+
+    errors.add(:price, :blank) if price.blank?
+  end
+
+  def clear_price_unless_paid
+    self.price = nil unless paid?
   end
 
   def migrate_to_address

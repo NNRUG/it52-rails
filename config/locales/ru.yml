@@ -241,6 +241,7 @@ ru:
         training: Training
     form:
       not_all_fields_filled: Не все поля заполнены корректно. Проверьте форму ниже.
+      price_hint: Укажите стоимость в рублях.
     new:
       title: Новое мероприятие
     edit:
@@ -252,6 +253,9 @@ ru:
       delete_confirm: Вы уверены, что хотите удалить это событие?
       watch_broadcast: Смотреть трансляцию
       telegram_channel_btn: Telegram
+      participation_price: "Стоимость участия: %{price} RUB"
+      participation_price_label: Стоимость участия
+      participation_price_value: ": %{price} RUB"
       waiting_for_approval: Событие ещё не прошло модерацию и доступно только создателю и модераторам.
       participants_export: Выгрузить участников
     publish:

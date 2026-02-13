@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2025_01_20_200003) do
+ActiveRecord::Schema.define(version: 2025_01_20_200004) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -93,6 +93,8 @@ ActiveRecord::Schema.define(version: 2025_01_20_200003) do
     t.string "address_comment"
     t.string "online_broadcast"
     t.string "telegram_channel"
+    t.boolean "paid", default: false, null: false
+    t.integer "price"
     t.index ["address_id"], name: "index_events_on_address_id"
     t.index ["organizer_id"], name: "index_events_on_organizer_id"
     t.index ["slug"], name: "index_events_on_slug", unique: true

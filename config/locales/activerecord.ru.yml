@@ -139,6 +139,8 @@ ru:
         foreign_link: Ссылка на стороннюю регистрацию
         online_broadcast: Онлайн трансляция
         telegram_channel: Telegram канал или группа
+        paid: Платное мероприятие
+        price: Стоимость
       startup:
         title: Название
         url: Сайт

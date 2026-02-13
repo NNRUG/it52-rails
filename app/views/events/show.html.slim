@@ -80,8 +80,13 @@ script type="application/ld+json" == @structured_data.to_json
 
       = render partial: 'participate_block', object: @event, as: :event
   hr
-  - if @event.online_broadcast.present? || (@event.respond_to?(:telegram_channel) && @event.telegram_channel.present?)
+  - if (@event.paid? && @event.price.present?) || @event.online_broadcast.present? || (@event.respond_to?(:telegram_channel) && @event.telegram_channel.present?)
     .event-broadcast-actions
+      - if @event.paid? && @event.price.present?
+        .event-price-info
+          i.fas.fa-fw.fa-money-bill.event-price-icon
+          span.event-price-label = t('.participation_price_label')
+          span = t('.participation_price_value', price: @event.price)
       - if @event.online_broadcast.present?
         = link_to @event.online_broadcast, class: 'btn btn-primary', target: '_blank', rel: 'noopener noreferrer' do
           i.fas.fa-fw.fa-video

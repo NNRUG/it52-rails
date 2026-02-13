@@ -209,6 +209,7 @@ class EventsController < ApplicationController
       title description started_at title_image place kind
       title_image title_image_cache location foreign_link
       tag_list address_comment online_broadcast telegram_channel
+      paid price
     ]
     params[:event].delete(:location) if params[:event][:location].blank?
     params.require(:event).permit(*permitted_attrs, category_ids: [])
