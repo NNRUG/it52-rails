@@ -61,6 +61,7 @@ class User < ApplicationRecord
   before_create :assign_default_role, if: -> { role.nil? }
   before_create :set_subscription, if: -> { email.present? && subscription.nil? }
 
+  before_validation :set_default_interested_categories, on: :create
   before_validation :normalize_url, if: :website_changed?
 
   after_create :sync_with_mailchimp
@@ -184,6 +185,14 @@ class User < ApplicationRecord
   end
 
   private
+
+  def set_default_interested_categories
+    return unless new_record?
+    return if interested_category_ids.reject(&:blank?).any?
+
+    ids = Category.pluck(:id)
+    self.interested_category_ids = ids if ids.any?
+  end
 
   def set_subscription
     self.subscription = true
