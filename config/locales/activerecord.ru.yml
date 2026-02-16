@@ -141,6 +141,8 @@ ru:
         telegram_channel: Telegram канал или группа
         paid: Платное мероприятие
         price: Стоимость
+        registration_limit_enabled: Ограничение числа участников
+        participants_limit: Максимальное число участников
       startup:
         title: Название
         url: Сайт

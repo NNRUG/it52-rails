@@ -3,9 +3,17 @@
 class EventDecorator < Draper::Decorator
   delegate_all
 
+  def registration_full?
+    return false unless object.registration_limit_enabled? && object.participants_limit.present?
+
+    object.participants.size >= object.participants_limit
+  end
+
   def participate_submit_title
     if past?
       h.t('.participate_past_submit_title')
+    elsif registration_full?
+      h.t('.registration_closed_title')
     else
       h.t('.participate_submit_title')
     end

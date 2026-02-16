@@ -80,13 +80,19 @@ script type="application/ld+json" == @structured_data.to_json
 
       = render partial: 'participate_block', object: @event, as: :event
   hr
-  - if (@event.paid? && @event.price.present?) || @event.online_broadcast.present? || (@event.respond_to?(:telegram_channel) && @event.telegram_channel.present?)
+  - if (@event.paid? && @event.price.present?) || (@event.registration_limit_enabled? && @event.participants_limit.present?) || @event.online_broadcast.present? || (@event.respond_to?(:telegram_channel) && @event.telegram_channel.present?)
     .event-broadcast-actions
-      - if @event.paid? && @event.price.present?
-        .event-price-info
-          i.fas.fa-fw.fa-money-bill.event-price-icon
-          span.event-price-label = t('.participation_price_label')
-          span = t('.participation_price_value', price: @event.price)
+      .event-price-and-limit
+        - if @event.paid? && @event.price.present?
+          .event-price-info
+            i.fas.fa-fw.fa-money-bill.event-price-icon
+            span.event-price-label = t('.participation_price_label')
+            span = t('.participation_price_value', price: @event.price)
+        - if @event.registration_limit_enabled? && @event.participants_limit.present?
+          .event-participants-limit-info
+            i.fas.fa-fw.fa-users.event-participants-limit-icon
+            span.event-participants-limit-label = t('.participants_limit_label')
+            span = t('.participants_limit_value', count: @event.participants_limit)
       - if @event.online_broadcast.present?
         = link_to @event.online_broadcast, class: 'btn btn-primary', target: '_blank', rel: 'noopener noreferrer' do
           i.fas.fa-fw.fa-video
@@ -103,7 +109,10 @@ script type="application/ld+json" == @structured_data.to_json
       .panel-heading.clearfix
         h4.pull-left
           => Event.human_attribute_name(:participants)
-          small = @event.participants.size
+          small
+            = @event.participants.size
+            - if @event.registration_limit_enabled? && @event.participants_limit.present?
+              = " | #{@event.participants_limit}"
         .pull-right
           - if can? :download_participants, @event.object
             = link_to t('.participants_export'), participants_event_path(@event, format: :csv), class: 'btn btn-warning'

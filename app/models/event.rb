@@ -37,6 +37,7 @@ class Event < ApplicationRecord
   mount_uploader :title_image, EventTitleImageUploader
 
   before_validation :clear_price_unless_paid
+  before_validation :clear_participants_limit_unless_enabled
   before_create :migrate_to_address, if: :place_changed?
   before_update :migrate_to_address, if: :place_changed?
 
@@ -73,9 +74,11 @@ class Event < ApplicationRecord
   validates :description, presence: true
   validates :started_at, presence: true
   validates :price, numericality: { only_integer: true, greater_than_or_equal_to: 0 }, allow_nil: true
+  validates :participants_limit, numericality: { only_integer: true, greater_than: 0 }, allow_nil: true
   validate :title_image_file_size
   validate :categories_presence
   validate :price_presence_when_paid
+  validate :participants_limit_presence_when_enabled
 
   scope :ordered_desc, -> { order(started_at: :desc) }
   scope :ordered_asc,  -> { order(started_at: :asc) }
@@ -266,6 +269,16 @@ class Event < ApplicationRecord
 
   def clear_price_unless_paid
     self.price = nil unless paid?
+  end
+
+  def participants_limit_presence_when_enabled
+    return unless registration_limit_enabled?
+
+    errors.add(:participants_limit, :blank) if participants_limit.blank?
+  end
+
+  def clear_participants_limit_unless_enabled
+    self.participants_limit = nil unless registration_limit_enabled?
   end
 
   def migrate_to_address

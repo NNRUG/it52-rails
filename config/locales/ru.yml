@@ -242,6 +242,7 @@ ru:
     form:
       not_all_fields_filled: Не все поля заполнены корректно. Проверьте форму ниже.
       price_hint: Укажите стоимость в рублях.
+      participants_limit_hint: Укажите максимальное количество участников.
     new:
       title: Новое мероприятие
     edit:
@@ -256,6 +257,8 @@ ru:
       participation_price: "Стоимость участия: %{price} RUB"
       participation_price_label: Стоимость участия
       participation_price_value: ": %{price} RUB"
+      participants_limit_label: Максимум участников
+      participants_limit_value: "%{count} чел."
       waiting_for_approval: Событие ещё не прошло модерацию и доступно только создателю и модераторам.
       participants_export: Выгрузить участников
     publish:
@@ -266,6 +269,7 @@ ru:
       more: Подробнее...
     participate_block:
       participate_submit_title: Зарегистрироваться
+      registration_closed_title: Регистрация закрыта
       cancel_participation_submit_title: Отказаться от участия
       participate_past_submit_title: Я участвовал
       cancel_past_participation_submit_title: Меня не было на мероприятии

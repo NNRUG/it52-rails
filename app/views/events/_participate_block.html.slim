@@ -6,9 +6,13 @@
     - if event.foreign_link.present?
       p.foreign-link-disclaimer Используется сторонняя регистрация. Свяжитесь с организатором, чтобы отказаться от участия.
   - else
-    = form_tag participate_in_event_path do
-      = hidden_field_tag 'event_participation[event_id]', event.id
-      button.mdc-button.mdc-button--wide.mdc-button--success type='submit'
+    - if event.registration_full?
+      button.mdc-button.mdc-button--wide.mdc-button--outlined type='button' disabled=true
         span.mdc-button__label = event.participate_submit_title
-    - if event.foreign_link.present?
+    - else
+      = form_tag participate_in_event_path do
+        = hidden_field_tag 'event_participation[event_id]', event.id
+        button.mdc-button.mdc-button--wide.mdc-button--success type='submit'
+          span.mdc-button__label = event.participate_submit_title
+    - if event.foreign_link.present? && !event.registration_full?
       p.foreign-link-disclaimer Используется сторонняя регистрация. После клика вы будете перенаправлены на другой сайт, не пугайтесь.

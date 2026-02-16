@@ -92,11 +92,24 @@ form.edit_event, form.new_event
   display: flex
   flex-wrap: wrap
   align-items: center
-  justify-content: flex-end
+  justify-content: flex-start
   gap: 0.75rem
+  min-width: 0
+  max-width: 100%
+
+  .event-price-and-limit
+    margin-right: 0
+    display: flex
+    flex-wrap: wrap
+    align-items: center
+    gap: 0.75rem
+    min-width: 0
+    max-width: 100%
 
   .event-price-info
-    margin-right: auto
+    flex-shrink: 0
+    min-width: 0
+    max-width: 100%
     display: inline-flex
     align-items: center
     gap: 1rem
@@ -117,20 +130,53 @@ form.edit_event, form.new_event
     .event-price-label
       font-weight: bold
 
+  .event-participants-limit-info
+    flex-shrink: 0
+    min-width: 0
+    max-width: 100%
+    display: inline-flex
+    align-items: center
+    gap: 1rem
+    padding: 0.5rem 0.75rem
+    background: #333
+    color: #fff
+    font-size: 14px
+    font-weight: 400
+    cursor: default
+    pointer-events: none
+    border: none
+
+    .event-participants-limit-icon
+      font-size: 1.35rem
+      vertical-align: middle
+      color: #fff
+
+    .event-participants-limit-label
+      font-weight: bold
+
   .btn
+    flex-shrink: 0
+    min-width: 0
+    max-width: 100%
     i
       margin-right: 0.25em
 
   @media (max-width: 767px)
-    flex-direction: column
+    flex-wrap: wrap
+    flex-direction: row
 
-    .event-price-info
-      width: 100%
+    .event-price-and-limit
+      width: auto
+      margin-right: 0
+
+    .event-price-info,
+    .event-participants-limit-info
+      width: auto
       margin-right: 0
       box-sizing: border-box
 
     .btn
-      width: 100%
+      width: auto
       box-sizing: border-box
 
 .event-categories-block

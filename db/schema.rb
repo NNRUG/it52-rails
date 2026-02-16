@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2025_01_20_200004) do
+ActiveRecord::Schema.define(version: 2025_01_20_200006) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,21 @@ ActiveRecord::Schema.define(version: 2025_01_20_200004) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_categories_on_name", unique: true
+  end
+
+  create_table "communities", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "telegram_link"
+    t.string "slug"
+    t.string "logo"
+    t.string "intro"
+    t.jsonb "contacts", default: {"name"=>"", "telegram"=>"", "description"=>""}
+    t.bigint "author_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["author_id"], name: "index_communities_on_author_id"
+    t.index ["name"], name: "index_communities_on_name"
+    t.index ["slug"], name: "index_communities_on_slug"
   end
 
   create_table "donations", force: :cascade do |t|
@@ -95,6 +110,8 @@ ActiveRecord::Schema.define(version: 2025_01_20_200004) do
     t.string "telegram_channel"
     t.boolean "paid", default: false, null: false
     t.integer "price"
+    t.boolean "registration_limit_enabled", default: false, null: false
+    t.integer "participants_limit"
     t.index ["address_id"], name: "index_events_on_address_id"
     t.index ["organizer_id"], name: "index_events_on_organizer_id"
     t.index ["slug"], name: "index_events_on_slug", unique: true
@@ -197,6 +214,7 @@ ActiveRecord::Schema.define(version: 2025_01_20_200004) do
     t.index ["slug"], name: "index_users_on_slug", unique: true
   end
 
+  add_foreign_key "communities", "users", column: "author_id"
   add_foreign_key "event_categories", "categories"
   add_foreign_key "event_categories", "events"
   add_foreign_key "events", "addresses"

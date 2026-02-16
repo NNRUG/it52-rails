@@ -46,3 +46,52 @@ export class PaidEventSwitcher {
     }
   }
 }
+
+export class ParticipantsLimitSwitcher {
+  private static instance: ParticipantsLimitSwitcher | null = null;
+
+  private static initPage: string | null = location.href;
+
+  private block: HTMLElement | null;
+
+  private checkbox: HTMLInputElement | null;
+
+  private limitInput: HTMLInputElement | null;
+
+  static init(): void {
+    const block = document.getElementById('event_participants_limit_block');
+    if (!block) return;
+
+    if (
+      !ParticipantsLimitSwitcher.instance ||
+      ParticipantsLimitSwitcher.initPage !== location.href
+    ) {
+      ParticipantsLimitSwitcher.initPage = location.href;
+      ParticipantsLimitSwitcher.instance = new ParticipantsLimitSwitcher();
+      document.addEventListener('turbolinks:request-start', () => {
+        ParticipantsLimitSwitcher.initPage = null;
+      });
+    }
+  }
+
+  private constructor() {
+    this.block = document.getElementById('event_participants_limit_block');
+    this.checkbox = this.block?.querySelector('input[type="checkbox"]') ?? null;
+    this.limitInput = document.getElementById('event_participants_limit_input') as HTMLInputElement | null;
+
+    this.syncLimitDisabled();
+    this.bindEvents();
+  }
+
+  private syncLimitDisabled(): void {
+    if (this.limitInput && this.checkbox) {
+      this.limitInput.disabled = !this.checkbox.checked;
+    }
+  }
+
+  private bindEvents(): void {
+    if (this.checkbox) {
+      this.checkbox.addEventListener('change', () => this.syncLimitDisabled());
+    }
+  }
+}

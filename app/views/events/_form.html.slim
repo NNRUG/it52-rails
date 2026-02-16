@@ -29,6 +29,10 @@
         = f.input :paid, wrapper: :vertical_boolean
         #event_price_wrapper
           = f.input :price, input_html: { id: 'event_price_input', type: 'number', min: 0, step: 1, disabled: !f.object.paid }, hint: t('events.form.price_hint')
+      #event_participants_limit_block.event-participants-limit-block
+        = f.input :registration_limit_enabled, wrapper: :vertical_boolean, label: Event.human_attribute_name(:registration_limit_enabled)
+        #event_participants_limit_wrapper
+          = f.input :participants_limit, input_html: { id: 'event_participants_limit_input', type: 'number', min: 1, step: 1, disabled: !f.object.registration_limit_enabled }, hint: t('events.form.participants_limit_hint')
       = f.input :location, as: :hidden
       = check_box_tag :has_foreign_link, !@event.foreign_link.blank?, !@event.foreign_link.blank?
       = label_tag :has_foreign_link, t("my.events.has_foreign_link"), style: "padding-left: 10px;"
