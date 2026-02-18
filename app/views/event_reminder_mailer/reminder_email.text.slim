@@ -1,0 +1,11 @@
+- if @user.to_s.present?
+  = t('devise.emails.reminder.greetings.named', name: @user.to_s)
+- else
+  = t('devise.emails.reminder.greetings.anon')
+
+= t('devise.emails.reminder.body', title: @event.title, date: l(@event.started_at, format: :date_time_full), place: @event.place)
+
+= t('devise.emails.reminder.event_link') + ': ' + event_url(@event)
+
+--
+= t('devise.emails.signature_text')

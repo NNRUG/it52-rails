@@ -27,6 +27,8 @@ ru:
     mailer:
       confirmation_instructions:
         subject: "Инструкции по подтверждению учётной записи"
+      reminder:
+        subject: "Напоминание: вы зарегистрированы на мероприятие «%{title}»"
       reset_password_instructions:
         subject: "Инструкции по восстановлению пароля"
       unlock_instructions:
@@ -69,6 +71,13 @@ ru:
           other: "%{resource}: сохранение не удалось из-за %{count} ошибки"
     emails:
       signature: 'С уважением, <br /> команда it52.'
+      signature_text: 'С уважением, команда it52.'
+      reminder:
+        greetings:
+          named: "Приветствую, %{name}!"
+          anon: "Приветствуем!"
+        body: "Вы зарегистрированы на мероприятие «%{title}», которое состоится %{date} по адресу: %{place}."
+        event_link: "Страница мероприятия"
       reset_password:
         greetings:
           named:  "Приветствую, %{name}!"
