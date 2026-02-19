@@ -1,0 +1,12 @@
+# frozen_string_literal: true
+
+class EventPublishedMailer < ApplicationMailer
+  def published_event_email(user, event)
+    @user = user
+    @event = event
+    mail(
+      to: user.email,
+      subject: I18n.t('devise.mailer.event_published.subject', title: event.title)
+    )
+  end
+end

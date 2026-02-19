@@ -1,0 +1,13 @@
+- if @user.to_s.present?
+  = t('devise.emails.event_published.greetings.named', name: @user.to_s)
+- else
+  = t('devise.emails.event_published.greetings.anon')
+
+= t('devise.emails.event_published.body', title: @event.title, date: l(@event.started_at, format: :date_time_full), place: @event.place)
+
+= t('devise.emails.event_published.event_link') + ': ' + event_url(@event)
+
+= 'P.S. ' + t('devise.emails.event_published.ps_text', profile_url: edit_my_profile_url)
+
+--
+= t('devise.emails.signature_text')

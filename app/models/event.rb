@@ -39,6 +39,8 @@ class Event < ApplicationRecord
   before_validation :clear_price_unless_paid
   before_validation :clear_participants_limit_unless_enabled
   before_create :migrate_to_address, if: :place_changed?
+
+  after_save :enqueue_published_notification, if: :saved_change_to_published?
   before_update :migrate_to_address, if: :place_changed?
 
   belongs_to :organizer, class_name: 'User'
@@ -162,6 +164,19 @@ class Event < ApplicationRecord
     self.published_at = Time.zone.now
     toggle :published
     save!
+  end
+
+  def enqueue_published_notification
+    return unless published?
+
+    NotifySubscribersAboutEventPublicationJob.perform_later(id)
+    SendEventToTelegramJob.perform_later(id) if telegram_configured?
+  end
+
+  def telegram_configured?
+    token = ENV['telegram_bot_token']
+    chat_id = ENV['telegram_chat_id']
+    token.present? && token != 'telegram_bot_token' && chat_id.present? && chat_id != 'telegram_chat_id'
   end
 
   def cancel_publication!

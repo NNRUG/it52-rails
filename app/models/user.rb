@@ -73,6 +73,13 @@ class User < ApplicationRecord
 
   scope :subscribed, -> { where(subscription: true) }
 
+  # Пользователи, у которых в профиле указана хотя бы одна из переданных категорий
+  scope :interested_in_categories, ->(category_ids) {
+    return none if category_ids.blank?
+
+    joins(:user_categories).where(user_categories: { category_id: category_ids }).distinct
+  }
+
   extend FriendlyId
   friendly_id :slug_candidates, use: :slugged
 
@@ -103,8 +110,19 @@ class User < ApplicationRecord
 
   def interested_categories_presence
     return if interested_category_ids.reject(&:blank?).any?
+    return if only_password_attributes_changed?
 
     errors.add(:interested_category_ids, :user_categories_required)
+  end
+
+  # При смене пароля через Devise (например, «Кажется, я забыл пароль») обновляются только
+  # пароль и токен — не проверяем категории, чтобы не блокировать сброс пароля.
+  def only_password_attributes_changed?
+    return false unless persisted?
+
+    changed_attrs = changed
+    password_related = %w[encrypted_password reset_password_token reset_password_sent_at updated_at]
+    (changed_attrs - password_related).empty?
   end
 
   def slug_candidates

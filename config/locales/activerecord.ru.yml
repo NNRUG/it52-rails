@@ -44,6 +44,8 @@ ru:
               not_found: 'У нас нет зарегистрированной почты с таким адресом. Возможно, вы не подтвердили её.'
             confirmation_token:
               invalid: 'Такой код подтверждения нам неизвестен'
+            reset_password_token:
+              invalid: 'недействителен или устарел. Запросите новую ссылку по кнопке «Кажется, я забыл пароль».'
             user_reset_password_token:
               invalid: 'Запросите актуальную ссылку для смены пароля.'
             current_password:
@@ -94,6 +96,7 @@ ru:
         created_at: Создан
         updated_at: Изменён
         reset_password_sent_at: Токен выслан
+        reset_password_token: Ссылка для смены пароля
         sign_in_count: Входов
         current_sign_in_at: Текущий вход
         current_sign_in_ip: Текущий IP
