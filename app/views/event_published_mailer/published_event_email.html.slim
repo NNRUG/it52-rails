@@ -1,8 +1,5 @@
 p
-  - if @user.to_s.present?
-    = t('devise.emails.event_published.greetings.named', name: @user.to_s)
-  - else
-    = t('devise.emails.event_published.greetings.anon')
+  = @user.to_s.present? ? t('devise.emails.event_published.greetings.named', name: @user.to_s) : t('devise.emails.event_published.greetings.anon')
 
 p = t('devise.emails.event_published.body', title: @event.title, date: l(@event.started_at, format: :date_time_full), place: @event.place)
 
