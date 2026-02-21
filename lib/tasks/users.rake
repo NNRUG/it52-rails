@@ -11,10 +11,13 @@ namespace :users do
 
     updated = 0
     User.find_each do |user|
-      next if (user.interested_category_ids - category_ids).empty? && (category_ids - user.interested_category_ids).empty?
+      existing_ids = user.user_categories.pluck(:category_id)
+      next if (existing_ids - category_ids).empty? && (category_ids - existing_ids).empty?
 
-      user.interested_category_ids = category_ids
-      user.save!
+      user.user_categories.where.not(category_id: category_ids).delete_all
+      (category_ids - existing_ids).each do |category_id|
+        user.user_categories.find_or_create_by!(category_id: category_id)
+      end
       updated += 1
     end
     puts "Готово. Обновлено пользователей: #{updated}."
