@@ -85,6 +85,13 @@ ru:
   'false': нет
   or: или
 
+  mailers:
+    event_created_for_moderation:
+      subject: 'Новое мероприятие на модерации: «%{title}»'
+      greeting: 'Здравствуйте, %{name}!'
+      body: 'На сайте создано новое мероприятие «%{title}» (организатор: %{organizer}, дата: %{date}, место: %{place}). Оно ожидает модерации.'
+      moderate_link: 'Перейти к редактированию и публикации'
+
   social:
     facebook:
       name: Facebook

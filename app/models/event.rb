@@ -41,6 +41,7 @@ class Event < ApplicationRecord
   before_create :migrate_to_address, if: :place_changed?
 
   after_save :enqueue_published_notification, if: :saved_change_to_published?
+  after_create :enqueue_new_event_notification_to_admins
   before_update :migrate_to_address, if: :place_changed?
 
   belongs_to :organizer, class_name: 'User'
@@ -314,6 +315,10 @@ class Event < ApplicationRecord
   end
 
   private
+
+  def enqueue_new_event_notification_to_admins
+    NotifyAdminsAboutNewEventJob.perform_later(id)
+  end
 
   def build_foreign_link(user)
     return nil if foreign_link.blank?
