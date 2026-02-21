@@ -7,7 +7,7 @@ class NotifyAdminsAboutNewEventJob < ApplicationJob
     event = Event.find_by(id: event_id)
     return unless event
 
-    User.admins.where.not(email: [nil, '']).find_each do |admin|
+    User.admin.where.not(email: [nil, '']).find_each do |admin|
       EventCreatedForModerationMailer.new_event_created(admin, event).deliver_later
     end
   end
