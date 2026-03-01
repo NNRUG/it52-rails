@@ -29,6 +29,12 @@ class EventsController < ApplicationController
 
     @events = @events.page(params[:page]).decorate
     @rss_events = @model.published.order(published_at: :desc).limit(100).decorate
+
+    if request.format.html?
+      @users_count = User.count
+      @events_count = Event.published.count
+    end
+
     respond_to do |format|
       format.html
       format.json { render json: @model.published.order(started_at: :asc).page(params[:page]).to_json }

@@ -222,6 +222,8 @@ ru:
       welcome_text: "Тут вы найдете информацию о действующих сообществах города, мероприятиях, вакансиях, аналитику и много другое."
       welcome_text_subscribe: "Мы всегда открыты для сотрудничества, подписывайтесь на наш канал "
       welcome_telegram_link: "https://t.me/it52info"
+      welcome_stats: "На сайте уже зарегистрировано %{users_count} пользователей, с 2014 года мы рассказали о %{events_count} ИТ-мероприятиях."
+      welcome_stats_html: "На сайте уже зарегистрировано <span class='welcome-block__stats-number'>%{users_count}</span> пользователей, с 2014 года мы рассказали о <span class='welcome-block__stats-number'>%{events_count}</span> ИТ-мероприятиях."
       welcome_add_event: Добавить мероприятие
       welcome_it_map: IT-карта Нижнего Новгорода
       welcome_developed: Разработано в Нижнем Новгороде

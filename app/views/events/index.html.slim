@@ -16,6 +16,7 @@
     p.welcome-block__paragraph
       = t('.welcome_text_subscribe')
       = link_to 'IT52', t('.welcome_telegram_link'), target: '_blank', rel: 'noopener noreferrer', class: 'welcome-block__link'
+    p.welcome-block__paragraph.welcome-block__stats == t('.welcome_stats_html', users_count: @users_count, events_count: @events_count).html_safe
   .welcome-block__buttons
     = link_to t('.welcome_add_event'), new_event_path, class: 'mdc-button mdc-button--raised'
     = link_to t('.welcome_it_map'), 'https://itgorky.ru/', target: '_blank', rel: 'noopener noreferrer', class: 'mdc-button mdc-button--outlined'
