@@ -118,18 +118,18 @@ ru:
           education: Обучение
           conference: Конференция
           summit: Саммит
-          drinkup: DrinkUp
-          hackathon: Hackathon
+          drinkup: Посиделки в баре
+          hackathon: Хакатон
           closed_meeting: Закрытая встреча
-          webinar: Webinar
+          webinar: Вебинар
           festival: Фестиваль
-          online_training: Online training
-          expo: Expo
-          forum: Forum
-          workshop: Workshop
+          online_training: Онлайн тренинг
+          expo: Экспо
+          forum: Форум
+          workshop: Интерактивное мероприятие
           ctf: CTF
-          bootcamp: Bootcamp
-          training: Training
+          bootcamp: Учебный лагерь
+          training: Тренинг
         tag_list: Тэги
         title: Название
         published: Мероприятие опубликовано
