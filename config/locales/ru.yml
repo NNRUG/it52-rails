@@ -232,7 +232,7 @@ ru:
       welcome_developed: Разработано в Нижнем Новгороде
       welcome_vacancies: Вакансии
       welcome_telegram_channel: Основной канал
-      welcome_flood: Флудилка
+      welcome_flood: Обсудить с коллегами
       kind_filter:
         all: Все события
         event: Митапы
@@ -248,12 +248,13 @@ ru:
         expo: Expo
         forum: Forum
         workshop: Workshop
-        ctf: CTF
+        ctf: Соревнование «Захват флага»
         bootcamp: Bootcamp
         training: Training
+        accelerator: Акселератор
     form:
       not_all_fields_filled: Не все поля заполнены корректно. Проверьте форму ниже.
-      price_hint: Укажите стоимость в рублях.
+      price_hint: Укажите стоимость в валюте рубль.
       participants_limit_hint: Укажите максимальное количество участников.
     new:
       title: Новое мероприятие

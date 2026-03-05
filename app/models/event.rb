@@ -63,7 +63,8 @@ class Event < ApplicationRecord
     workshop: 12,
     ctf: 13,
     bootcamp: 14,
-    training: 15
+    training: 15,
+    accelerator: 16
   }
 
   has_many :event_participations
