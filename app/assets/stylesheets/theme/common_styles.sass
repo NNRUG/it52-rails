@@ -186,3 +186,31 @@ body
 
   &--small
     width: 100px
+
+.cookie-consent
+  position: fixed
+  left: 0
+  right: 0
+  bottom: 0
+  z-index: 1100
+  padding: 0.75rem 0
+  background: rgba(0, 0, 0, 0.92)
+  color: #fefefe
+  font-size: 1rem
+  display: none
+
+  &.cookie-consent--visible
+    display: block
+
+  .cookie-consent__inner
+    display: flex
+    align-items: center
+    justify-content: space-between
+    gap: 1rem
+
+  .cookie-consent__text
+    margin: 0
+
+  .cookie-consent__button
+    white-space: nowrap
+    font-weight: 600

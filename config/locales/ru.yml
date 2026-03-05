@@ -85,6 +85,9 @@ ru:
   'false': нет
   or: или
 
+  cookie_consent:
+    accept: 'Принять'
+
   mailers:
     event_created_for_moderation:
       subject: 'Новое мероприятие на модерации: «%{title}»'

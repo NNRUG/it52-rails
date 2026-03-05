@@ -25,6 +25,33 @@ function init(): void {
     ga('set', 'location', location.href);
     ga('send', 'pageview');
   }
+
+   const cookieBanner = document.getElementById('cookie-consent');
+   if (cookieBanner) {
+     const storageKey = 'it52_cookie_consent';
+     let accepted = false;
+     try {
+       accepted = window.localStorage.getItem(storageKey) === '1';
+     } catch (e) {
+       accepted = false;
+     }
+
+     if (!accepted) {
+       cookieBanner.classList.add('cookie-consent--visible');
+     }
+
+     const acceptButton = document.getElementById('cookie-consent-accept');
+     if (acceptButton) {
+       acceptButton.addEventListener('click', () => {
+         try {
+           window.localStorage.setItem(storageKey, '1');
+         } catch (e) {
+           // ignore
+         }
+         cookieBanner.classList.remove('cookie-consent--visible');
+       });
+     }
+   }
 }
 
 document.addEventListener('turbolinks:load', init);
