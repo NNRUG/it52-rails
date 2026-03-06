@@ -62,6 +62,7 @@ ru:
     - суббота
     formats:
       default: "%d.%m.%Y"
+      date: "%d.%m.%Y"
       long: "%-d %B %Y"
       short: "%-d %b"
       timepicker: "%d/%m/%Y"
