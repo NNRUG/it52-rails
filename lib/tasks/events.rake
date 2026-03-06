@@ -17,4 +17,9 @@ namespace :events do
       end
     end
   end
+
+  desc 'Отправить в Telegram анонсы мероприятий на ближайшую неделю'
+  task send_next_week_to_telegram: :environment do
+    SendNextWeekEventsToTelegramJob.perform_later
+  end
 end

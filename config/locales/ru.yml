@@ -14,6 +14,12 @@ ru:
   - стартап
   - '52'
 
+  telegram_digest:
+    title: "Мероприятия на неделю (%{from} — %{to})"
+    cost: "Стоимость: %{price} ₽"
+    participants_limit: "Участников: до %{count}"
+    telegram_channel: "Телеграм"
+
   time:
     formats:
       default: "%d %B %Y %H:%M"
