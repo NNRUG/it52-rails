@@ -38,8 +38,7 @@
   def format_event_block(event)
     event_link = event_url(event)
     kind_label = I18n.t("activerecord.attributes.event.kinds.#{event.kind}")
-    title_with_link = "[#{event.title.strip}](#{event_link})"
-    line1 = "*🏛 [#{kind_label}] — #{title_with_link}*"
+    line1 = "*🏛 [#{kind_label}] #{event.title.strip}*"
     date_place = "#{I18n.l(event.started_at, format: :date_time_full)}, #{event.place}"
 
     lines = [line1, date_place]

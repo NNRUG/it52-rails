@@ -14,6 +14,7 @@ gem 'redis'
 
 # Queue
 gem 'sidekiq', '>= 5.2.7'
+gem 'sidekiq-cron'
 
 # Integrations
 gem 'http'
@@ -115,6 +116,7 @@ group :development do
   gem 'annotate', '>= 3.0.3', require: false
   gem 'capistrano', require: false
   gem 'letter_opener'
+  gem 'whenever', require: false
 end
 
 group :development, :test do
