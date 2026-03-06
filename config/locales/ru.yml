@@ -15,10 +15,11 @@ ru:
   - '52'
 
   telegram_digest:
-    title: "Мероприятия на неделю (%{from} — %{to})"
+    title: "📅 Мероприятия на неделю (%{from} — %{to})"
     cost: "Стоимость: %{price} ₽"
     participants_limit: "Участников: до %{count}"
     telegram_channel: "Телеграм"
+    register: "Зарегистрироваться"
 
   time:
     formats:

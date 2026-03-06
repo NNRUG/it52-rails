@@ -32,14 +32,14 @@
 
     blocks = events.map { |event| format_event_block(event) }
 
-    ([header, ''] + blocks).join("\n\n")
+    ([header] + blocks).join("\n\n")
   end
 
   def format_event_block(event)
     event_link = event_url(event)
     kind_label = I18n.t("activerecord.attributes.event.kinds.#{event.kind}")
     title_with_link = "[#{event.title.strip}](#{event_link})"
-    line1 = "*#{kind_label} — #{title_with_link}*"
+    line1 = "*🏛 [#{kind_label}] — #{title_with_link}*"
     date_place = "#{I18n.l(event.started_at, format: :date_time_full)}, #{event.place}"
 
     lines = [line1, date_place]
@@ -55,6 +55,8 @@
     if event.registration_limit_enabled? && event.participants_limit.present?
       lines << I18n.t('telegram_digest.participants_limit', count: event.participants_limit)
     end
+
+    lines << "[#{I18n.t('telegram_digest.register')}](#{event_link})"
 
     lines.join("\n")
   end
