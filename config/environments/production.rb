@@ -120,25 +120,27 @@ Rails.application.configure do
   host = ENV.fetch('mailing_host', 'it52.info').to_s.strip
   host = 'it52.info' if host.blank? || host.include?('host.docker.internal')
   config.action_mailer.default_url_options = { host: host }
-  config.action_mailer.default_options = { from: ENV.fetch('YANDEX_SMTP_FROM', 'events@it52.info') }
+
+  # Основной способ отправки: noreply@it52.tech через mail.it52.tech (SMTPS, порт 465, SSL)
+  # ENV: SMTP_FROM, SMTP_ADDRESS (mail.it52.tech), SMTP_USER_NAME, SMTP_PASSWORD, SMTP_PORT (465)
+  smtp_from = ENV.fetch('SMTP_FROM', 'noreply@it52.tech')
+  config.action_mailer.default_options = { from: smtp_from }
   config.action_mailer.perform_deliveries = true
   config.action_mailer.logger = ActiveSupport::Logger.new(Rails.root.join('log', 'mailer.log'))
   config.action_mailer.logger.level = Logger::DEBUG
 
-  # Отправка почты через аккаунт Яндекс.Почты (по умолчанию events@it52.info). Учётные данные — из ENV.
-  # ENV: YANDEX_SMTP_USER (по умолчанию events@it52.info), YANDEX_SMTP_PASSWORD (пароль приложения).
-  yandex_user = ENV['YANDEX_SMTP_USER'].to_s.presence || 'events@it52.info'
-  yandex_password = ENV['YANDEX_SMTP_PASSWORD'].to_s.presence
+  smtp_user = ENV['SMTP_USER_NAME'].to_s.presence || smtp_from
+  smtp_password = ENV['SMTP_PASSWORD'].to_s.presence
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
+    address: ENV.fetch('SMTP_ADDRESS', 'mail.it52.tech'),
+    port: (ENV['SMTP_PORT'] || '465').to_i,
+    domain: ENV.fetch('SMTP_DOMAIN', 'it52.tech'),
     tls: true,
-    address: ENV.fetch('YANDEX_SMTP_ADDRESS', 'smtp.yandex.com'),
-    port: (ENV['YANDEX_SMTP_PORT'] || '465').to_i,
-    domain: 'yandex.com',
-    authentication: 'plain',
-    enable_starttls_auto: true,
-    user_name: yandex_user,
-    password: yandex_password
-  }
+    enable_starttls_auto: false,
+    openssl_verify_mode: OpenSSL::SSL::VERIFY_PEER
+  }.merge(
+    smtp_password.present? ? { user_name: smtp_user, password: smtp_password, authentication: 'plain' } : {}
+  )
 end

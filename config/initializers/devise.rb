@@ -11,8 +11,8 @@ Devise.setup do |config|
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
-  # with default "from" parameter.
-  config.mailer_sender = "events@#{ENV.fetch('mailing_host') { 'it52.info' }}"
+  # with default "from" parameter. В production задайте SMTP_FROM (по умолчанию noreply@it52.tech).
+  config.mailer_sender = ENV.fetch('SMTP_FROM', 'noreply@it52.tech')
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'

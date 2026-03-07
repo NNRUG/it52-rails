@@ -61,11 +61,27 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
-  # Письма: при YANDEX_SMTP_USER и YANDEX_SMTP_PASSWORD в ENV — отправка через Яндекс.Почту, иначе letter_opener
-  if ENV['YANDEX_SMTP_USER'].present? && ENV['YANDEX_SMTP_PASSWORD'].present?
+  # Письма: основной SMTPS (mail.it52.tech:465), при наличии SMTP_ADDRESS или SMTP_PASSWORD; иначе Яндекс; иначе letter_opener
+  smtp_from = ENV.fetch('SMTP_FROM', 'noreply@it52.tech')
+  smtp_password = ENV['SMTP_PASSWORD'].to_s.presence
+  use_it52_smtp = ENV['SMTP_ADDRESS'].present? || smtp_password.present?
+
+  if use_it52_smtp
+    config.action_mailer.default_options = { from: smtp_from }
     config.action_mailer.delivery_method = :smtp
     config.action_mailer.smtp_settings = {
+      address: ENV.fetch('SMTP_ADDRESS', 'mail.it52.tech'),
+      port: (ENV['SMTP_PORT'] || '465').to_i,
+      domain: ENV.fetch('SMTP_DOMAIN', 'it52.tech'),
       tls: true,
+      enable_starttls_auto: false,
+      user_name: ENV['SMTP_USER_NAME'].presence || smtp_from,
+      password: smtp_password,
+      authentication: smtp_password.present? ? 'plain' : nil
+    }.compact
+  elsif ENV['YANDEX_SMTP_USER'].present? && ENV['YANDEX_SMTP_PASSWORD'].present?
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.smtp_settings = {
       address: ENV.fetch('YANDEX_SMTP_ADDRESS', 'smtp.yandex.com'),
       port: (ENV['YANDEX_SMTP_PORT'] || '465').to_i,
       domain: 'yandex.com',

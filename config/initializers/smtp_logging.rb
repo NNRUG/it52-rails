@@ -21,8 +21,8 @@ Rails.application.config.after_initialize do
       enable_starttls_auto: settings[:enable_starttls_auto]
     }.compact
     smtp_logger.info("[SMTP] config loaded: #{conn_info.inspect}")
-    yandex_login = settings[:user_name].to_s.presence
-    smtp_logger.info("[SMTP] Yandex SMTP auth login: #{yandex_login.present? ? yandex_login : '(not set)'}")
+    smtp_user = settings[:user_name].to_s.presence
+    smtp_logger.info("[SMTP] user: #{smtp_user.present? ? smtp_user : '(not set)'}")
   end
 
   ActiveSupport::Notifications.subscribe('deliver.action_mailer') do |_name, start, finish, _id, payload|
