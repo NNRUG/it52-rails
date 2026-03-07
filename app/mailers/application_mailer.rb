@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
 class ApplicationMailer < ActionMailer::Base
-  default from: -> { ENV.fetch('YANDEX_SMTP_FROM', 'events@it52.info') }
+  default from: -> { ENV.fetch('SMTP_FROM', 'noreply@it52.tech') }
   layout 'mailer'
 end
