@@ -30,6 +30,9 @@ script type="application/ld+json" == @structured_data.to_json
       - if current_user&.admin?
         | &nbsp;
         = link_to t('.delete'), event_path(@event), class: 'btn btn-danger', method: :delete, data: { confirm: t('.delete_confirm') }
+        - if @event.published?
+          | &nbsp;
+          = link_to t('.send_publication_notifications'), send_publication_notifications_event_path(@event), method: :post, class: 'btn btn-primary'
 
 .events-show.event data={ id: @event.id }
   .row

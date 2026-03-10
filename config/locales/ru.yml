@@ -273,6 +273,7 @@ ru:
       cancel_publication: Отменить публикацию
       delete: Удалить
       delete_confirm: Вы уверены, что хотите удалить это событие?
+      send_publication_notifications: Выполнить рассылку
       watch_broadcast: Смотреть трансляцию
       telegram_channel_btn: Telegram
       participation_price: "Стоимость участия: %{price} RUB"

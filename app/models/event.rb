@@ -171,7 +171,6 @@ class Event < ApplicationRecord
   def enqueue_published_notification
     return unless published?
 
-    NotifySubscribersAboutEventPublicationJob.perform_later(id)
     SendEventToTelegramJob.perform_later(id) if telegram_configured?
   end
 

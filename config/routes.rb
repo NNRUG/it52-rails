@@ -33,6 +33,7 @@ Rails.application.routes.draw do
     get :participants, on: :member
     patch :publish, on: :member
     patch :cancel_publication, on: :member
+    post :send_publication_notifications, on: :member
   end
 
   post '/participate_in_event' => 'event_participations#create'

@@ -10,7 +10,7 @@ class EventsController < ApplicationController
 
   before_action :authenticate_user!, except: %i[index show]
   before_action :set_model, only: %i[index]
-  before_action :set_event, only: %i[show edit destroy update publish cancel_publication participants]
+  before_action :set_event, only: %i[show edit destroy update publish cancel_publication participants send_publication_notifications]
   before_action :check_actual_slug, only: :show
   before_action :define_meta_tags, only: %i[show edit]
   before_action :set_organizer, only: :create
@@ -107,6 +107,21 @@ class EventsController < ApplicationController
     @event.cancel_publication!
     flash[:success] = t('.success_message')
     redirect_to action: :show
+  end
+
+  def send_publication_notifications
+    unless current_user&.admin?
+      return redirect_back(fallback_location: root_path, alert: t('events.send_publication_notifications.forbidden', default: 'Только администратор может выполнять рассылку'))
+    end
+
+    if @event.published?
+      NotifySubscribersAboutEventPublicationJob.perform_later(@event.id)
+      flash[:success] = t('events.send_publication_notifications.success_message', default: 'Рассылка по подписчикам запущена')
+    else
+      flash[:alert] = t('events.send_publication_notifications.not_published', default: 'Сначала опубликуйте событие, затем запустите рассылку')
+    end
+
+    redirect_to event_path(@event)
   end
 
   private
