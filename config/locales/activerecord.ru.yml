@@ -60,8 +60,8 @@ ru:
               too_long: "Комментарий должен уместиться в %{count} символов."
     models:
       event:
-        one:    Митап
-        other:  Митапы
+        one:    Встреча
+        other:  Встречи
       idea:
         one:    Идея
         other:  Идеи
@@ -114,12 +114,12 @@ ru:
         category_ids: ''
         kind: Тип
         kinds:
-          event: Митап
+          event: Встреча
           education: Обучение
           conference: Конференция
           summit: Саммит
           drinkup: Посиделки в баре
-          hackathon: Хакатон
+          hackathon: Соревнование
           closed_meeting: Закрытая встреча
           webinar: Вебинар
           festival: Фестиваль
@@ -127,7 +127,7 @@ ru:
           expo: Экспо
           forum: Форум
           workshop: Интерактивное мероприятие
-          ctf: CTF
+          ctf: Захват флага
           bootcamp: Учебный лагерь
           training: Тренинг
           accelerator: Акселератор

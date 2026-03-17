@@ -243,22 +243,22 @@ ru:
       welcome_flood: Обсудить с коллегами
       kind_filter:
         all: Все события
-        event: Митапы
+        event: Встречи
         education: Обучение
         conference: Конференция
         summit: Саммит
-        drinkup: DrinkUp
-        hackathon: Hackathon
+        drinkup: Посиделки в баре
+        hackathon: Соревнование
         closed_meeting: Закрытая встреча
-        webinar: Webinar
+        webinar: Вебинар
         festival: Фестиваль
-        online_training: Online training
-        expo: Expo
-        forum: Forum
-        workshop: Workshop
-        ctf: Соревнование «Захват флага»
-        bootcamp: Bootcamp
-        training: Training
+        online_training: Онлайн тренинг
+        expo: Экспо
+        forum: Форум
+        workshop: Интерактивное мероприятие
+        ctf: Захват флага
+        bootcamp: Учебный лагерь
+        training: Тренинг
         accelerator: Акселератор
     form:
       not_all_fields_filled: Не все поля заполнены корректно. Проверьте форму ниже.
