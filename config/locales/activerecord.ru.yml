@@ -107,6 +107,7 @@ ru:
         bio: О себе
         nickname: Ник
         employment: Место работы
+        hidden: Скрыть мой аккаунт от других пользователей
         subscription: Получать уведомления о событиях
         avatar_image: Аватар
         interested_category_ids: ''

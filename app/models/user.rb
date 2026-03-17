@@ -72,6 +72,9 @@ class User < ApplicationRecord
   validate :interested_categories_presence
 
   scope :subscribed, -> { where(subscription: true) }
+  scope :visible, -> {
+    where(hidden: [false, nil])
+  }
 
   # Пользователи, у которых в профиле указана хотя бы одна из переданных категорий
   scope :interested_in_categories, ->(category_ids) {

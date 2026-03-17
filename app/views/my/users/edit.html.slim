@@ -23,6 +23,8 @@
 
       = f.input :bio, input_html: { rows: 7, class: 'mde-textarea' }
 
+      = f.input :hidden, wrapper: :vertical_boolean
+
       - if current_user.email.present?
         = f.input :subscription, wrapper: :vertical_boolean
       - else
