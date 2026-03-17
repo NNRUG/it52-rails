@@ -45,6 +45,9 @@ Rails.application.routes.draw do
     get '/mailchimp_hooks/:token' => 'mailchimp_hooks#check'
   end
 
+  # Отписка от email-рассылки
+  get '/unsubscribe/:token' => 'subscriptions#unsubscribe', as: :unsubscribe
+
   # Telegram hooks
   constraints token: ENV.fetch('telegram_bot_token') { 'telegram_bot_token' } do
     post '/telegram_hooks/:token' => 'telegram_hooks#process_bot_request'

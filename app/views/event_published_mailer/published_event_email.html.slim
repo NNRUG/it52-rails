@@ -8,6 +8,9 @@ p = link_to t('devise.emails.event_published.event_link'), event_url(@event)
 p
   strong P.S.
   == " " + t('devise.emails.event_published.ps_html', profile_link: link_to(t('devise.emails.event_published.profile_link_text'), edit_my_profile_url)).html_safe
-'--
-br
+p
+  = t('devise.emails.event_published.unsubscribe_html', link: link_to(t('devise.emails.event_published.unsubscribe_link_text'), unsubscribe_url(@user.signed_id(purpose: :unsubscribe))))
+br/
+== '--'
+br/
 == t('devise.emails.signature')
