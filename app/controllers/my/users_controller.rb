@@ -33,7 +33,7 @@ module My
 
     def user_profile_params
       params.require(:user).permit(:first_name, :last_name, :nickname, :employment,
-                                   :website, :bio, :avatar_image, :avatar_image_cache, :subscription,
+                                   :website, :bio, :avatar_image, :avatar_image_cache, :subscription, :hidden,
                                    interested_category_ids: [])
     end
 
