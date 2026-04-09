@@ -97,6 +97,9 @@ ru:
     accept: 'Принять'
 
   mailers:
+    footer:
+      legal_suffix: ' — ИТ-сообщество Нижнего Новгорода.'
+      legal_text: 'IT52 — ИТ-сообщество Нижнего Новгорода: %{site_url}'
     event_created_for_moderation:
       subject: 'Новое мероприятие на модерации: «%{title}»'
       greeting: 'Здравствуйте, %{name}!'

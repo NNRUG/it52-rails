@@ -1,0 +1,9 @@
+- show_unsubscribe = instance_variable_defined?(:@user) && @user.present?
+- if show_unsubscribe
+  = t('devise.emails.event_published.unsubscribe_text', link: unsubscribe_url(@user.signed_id(purpose: :unsubscribe)))
+  = "\n\n"
+= '—'
+= "\n"
+= t('mailers.footer.legal_text', site_url: root_url)
+= "\n"
+= t('devise.emails.signature_text')

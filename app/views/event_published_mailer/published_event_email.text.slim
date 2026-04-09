@@ -5,8 +5,3 @@
 = t('devise.emails.event_published.event_link') + ': ' + event_url(@event)
 
 = 'P.S. ' + t('devise.emails.event_published.ps_text', profile_url: edit_my_profile_url)
-
-= t('devise.emails.event_published.unsubscribe_text', link: unsubscribe_url(@user.signed_id(purpose: :unsubscribe)))
-
-= '--'
-= t('devise.emails.signature_text')

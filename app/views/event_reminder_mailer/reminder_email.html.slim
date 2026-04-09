@@ -7,7 +7,3 @@ p
 p = t('devise.emails.reminder.body', title: @event.title, date: l(@event.started_at, format: :date_time_full), place: @event.place)
 
 p = link_to t('devise.emails.reminder.event_link'), event_url(@event)
-
-'--
-br
-== t('devise.emails.signature')

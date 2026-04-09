@@ -1,0 +1,10 @@
+- show_unsubscribe = instance_variable_defined?(:@user) && @user.present?
+- if show_unsubscribe
+  p style="margin-top:1.5em; font-size:13px; line-height:1.5; color:#555;"
+    == t('devise.emails.event_published.unsubscribe_html', link: link_to(t('devise.emails.event_published.unsubscribe_link_text'), unsubscribe_url(@user.signed_id(purpose: :unsubscribe))))
+hr style="border:none;border-top:1px solid #e0e0e0;margin:1.5em 0;"
+p style="font-size:12px; line-height:1.5; color:#666;"
+  = link_to 'IT52', root_url
+  = t('mailers.footer.legal_suffix')
+p style="font-size:12px; line-height:1.5; color:#666;"
+  == t('devise.emails.signature')

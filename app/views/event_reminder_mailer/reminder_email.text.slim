@@ -6,6 +6,3 @@
 = t('devise.emails.reminder.body', title: @event.title, date: l(@event.started_at, format: :date_time_full), place: @event.place)
 
 = t('devise.emails.reminder.event_link') + ': ' + event_url(@event)
-
---
-= t('devise.emails.signature_text')

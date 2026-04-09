@@ -3,5 +3,3 @@ p = t('mailers.event_created_for_moderation.greeting', name: @admin.to_s.presenc
 p = t('mailers.event_created_for_moderation.body', title: @event.title, organizer: @event.organizer.to_s, date: l(@event.started_at, format: :date_time_full), place: @event.place)
 
 p = link_to t('mailers.event_created_for_moderation.moderate_link'), edit_event_url(@event)
-
-p.footer = t('devise.emails.signature').html_safe
