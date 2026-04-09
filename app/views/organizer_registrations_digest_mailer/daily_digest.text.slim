@@ -1,0 +1,17 @@
+= t('mailers.organizer_registrations_digest.greeting', name: @organizer.to_s.presence || @organizer.email)
+
+= "\n\n"
+= t('mailers.organizer_registrations_digest.intro')
+= "\n\n"
+- @event_rows.each do |row|
+  = "• #{row[:event].title}\n"
+  = "  #{l(row[:event].started_at, format: :date_time_full)}\n"
+  = "  #{t('mailers.organizer_registrations_digest.registrations_count', count: row[:count])}\n"
+  = "  #{event_url(row[:event])}\n\n"
+
+= t('mailers.organizer_registrations_digest.export_hint')
+= "\n\n"
+= t('mailers.organizer_registrations_digest.why_received')
+= "\n\n"
+= t('mailers.organizer_registrations_digest.promo_text')
+= "\n"

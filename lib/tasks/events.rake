@@ -11,6 +11,11 @@ namespace :events do
     EventRemindersSender.call
   end
 
+  desc 'Отправить организаторам ежедневную сводку по числу зарегистрировавшихся на их мероприятия'
+  task send_organizer_registrations_digest: :environment do
+    OrganizerRegistrationsDigestSender.call
+  end
+
   desc 'Отправить в Telegram анонсы мероприятий на ближайшую неделю'
   task send_next_week_to_telegram: :environment do
     SendNextWeekEventsToTelegramJob.perform_later

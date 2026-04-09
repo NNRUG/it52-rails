@@ -20,6 +20,12 @@ Sidekiq.configure_server do |config|
         'class' => 'SendEventRemindersCronWorker',
         'cron' => '0 6 * * *',
         'description' => 'Напоминания участникам о мероприятиях на завтра'
+      },
+      # 07:00 UTC ≈ 10:00 МСК: сводка организаторам по регистрациям
+      'send_organizer_registrations_digest' => {
+        'class' => 'SendOrganizerRegistrationsDigestCronWorker',
+        'cron' => '0 7 * * *',
+        'description' => 'Сводка организаторам: число зарегистрировавшихся на мероприятия'
       }
     )
   end

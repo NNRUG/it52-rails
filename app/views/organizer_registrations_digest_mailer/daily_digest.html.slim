@@ -1,0 +1,23 @@
+p = t('mailers.organizer_registrations_digest.greeting', name: @organizer.to_s.presence || @organizer.email)
+
+p = t('mailers.organizer_registrations_digest.intro')
+
+ul style="margin:0 0 1em 1.2em; padding:0;"
+  - @event_rows.each do |row|
+    li style="margin-bottom:0.5em;"
+      = link_to row[:event].title, event_url(row[:event])
+      = " — "
+      = t('mailers.organizer_registrations_digest.registrations_count', count: row[:count])
+      br
+      span style="font-size:13px;color:#666;"
+        = l(row[:event].started_at, format: :date_time_full)
+
+p style="margin-top:1.25em; font-size:14px; line-height:1.5; color:#333;"
+  = t('mailers.organizer_registrations_digest.export_hint')
+
+p style="margin-top:1.25em; font-size:13px; line-height:1.5; color:#555;"
+  = t('mailers.organizer_registrations_digest.why_received')
+
+p style="margin-top:1.5em; font-size:14px; line-height:1.5; color:#333;"
+  = t('mailers.organizer_registrations_digest.promo_prefix')
+  = link_to 'events@it52.info', 'mailto:events@it52.info'
