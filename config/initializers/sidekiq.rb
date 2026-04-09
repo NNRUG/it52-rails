@@ -14,6 +14,12 @@ Sidekiq.configure_server do |config|
         'class' => 'SendNextWeekEventsToTelegramCronWorker',
         'cron' => '0 19 * * 0',
         'description' => 'Дайджест мероприятий на неделю в Telegram'
+      },
+      # 06:00 UTC ≈ 09:00 МСК: напоминания о регистрации на мероприятия завтрашнего дня
+      'send_event_reminders' => {
+        'class' => 'SendEventRemindersCronWorker',
+        'cron' => '0 6 * * *',
+        'description' => 'Напоминания участникам о мероприятиях на завтра'
       }
     )
   end

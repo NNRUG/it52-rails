@@ -6,16 +6,9 @@ namespace :events do
     UpdateEventPageviews.perform
   end
 
-  desc 'Отправить напоминания участникам мероприятий, которые начинаются через 2 дня'
+  desc 'Отправить напоминания участникам о регистрации на мероприятия, которые состоятся завтра'
   task send_reminders: :environment do
-    events = Event.published.starting_in_2_days
-    events.find_each do |event|
-      event.participants.find_each do |user|
-        next if user.email.blank?
-
-        EventReminderMailer.reminder_email(user, event).deliver_later
-      end
-    end
+    EventRemindersSender.call
   end
 
   desc 'Отправить в Telegram анонсы мероприятий на ближайшую неделю'

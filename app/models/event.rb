@@ -93,10 +93,10 @@ class Event < ApplicationRecord
   scope :past,    -> { ordered_desc.where('started_at < ?', Time.current.beginning_of_day).ordered_desc }
   scope :future,  -> { ordered_asc.where('started_at >= ?', Time.current.beginning_of_day).ordered_asc }
 
-  # События, которые начинаются ровно через 2 дня (для отправки напоминаний участникам)
-  scope :starting_in_2_days, -> {
-    day = 2.days.from_now
-    where(started_at: day.beginning_of_day..day.end_of_day)
+  # События, которые состоятся завтра (напоминание участникам за день до начала)
+  scope :starting_tomorrow, -> {
+    tomorrow = Time.zone.tomorrow
+    where(started_at: tomorrow.beginning_of_day..tomorrow.end_of_day)
   }
 
   scope :held_in, lambda { |year, month|
