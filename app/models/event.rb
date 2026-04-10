@@ -93,9 +93,8 @@ class Event < ApplicationRecord
   scope :past,    -> { ordered_desc.where('started_at < ?', Time.current.beginning_of_day).ordered_desc }
   scope :future,  -> { ordered_asc.where('started_at >= ?', Time.current.beginning_of_day).ordered_asc }
 
-  # Предстоящие опубликованные события без «сегодняшних» — в день начала рассылка организатору не нужна
   scope :future_excluding_today, -> {
-    ordered_asc.where('started_at >= ?', Time.zone.tomorrow.beginning_of_day)
+    where('started_at >= ?', Time.zone.tomorrow.beginning_of_day)
   }
 
   # События, которые состоятся завтра (напоминание участникам за день до начала)
