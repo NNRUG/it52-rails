@@ -14,7 +14,7 @@ gem 'redis'
 
 # Queue
 gem 'sidekiq', '>= 5.2.7'
-gem 'sidekiq-cron'
+gem 'sidekiq-cron', '>= 1.10.0'
 
 # Integrations
 gem 'http'
