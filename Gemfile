@@ -5,7 +5,7 @@ ruby '3.2.2'
 source 'https://rubygems.org'
 
 gem 'rails', '~> 6.1'
-gem 'rails-i18n', '~> 6.0'
+gem 'rails-i18n', '~> 8.0', '>= 8.0.0'
 
 # Databases
 gem 'hiredis'
@@ -99,7 +99,7 @@ gem 'silencer'
 gem 'kaminari', '>= 1.2.1'
 
 # tags
-gem 'acts-as-taggable-on', '>= 6.5.0'
+gem 'acts-as-taggable-on', '>= 12.0.0'
 
 # Utils
 gem 'icalendar'
