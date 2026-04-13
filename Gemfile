@@ -145,7 +145,7 @@ end
 group :test do
   gem 'codecov', require: false
   gem 'database_cleaner', require: false
-  gem 'shoulda-matchers', '>= 4.2.0', require: false
+  gem 'shoulda-matchers', '>= 6.0.0', require: false
   gem 'simplecov', require: false
   gem 'test-prof', require: false
   gem 'webmock', require: false
