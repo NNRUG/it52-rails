@@ -1,0 +1,23 @@
+.reg__Item h1 {
+    font-weight: 400;
+    letter-spacing: -2px;
+    font-size: 36px;
+    line-height: 1.1;
+    color: #333333;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.form__conteiner {
+    max-width: 460px;
+}
+
+.form__conteiner a {
+    text-decoration: underline;
+}
+
+.form__conteiner a:hover {
+    color: #fff;
+    background-color: #000;
+    text-decoration: none;
+}

@@ -1,0 +1,360 @@
+header {
+    height: 48px;
+    width: 100vw;
+    background-color: #111111;
+    transition: box-shadow 200ms linear;
+}
+
+.conteiner__header {
+    max-width: 1194px;
+    margin: 0 auto;
+    padding: 0 4px 0 20px;
+
+}
+
+.header__inner {
+    width: 100%;
+    max-height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header__inner-logoNav {
+    display: inline-flex;
+    align-items: center;
+}
+
+.logo__link {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.logo {
+    font-family: fira mono;
+    font-weight: 500;
+    font-size: 26px;
+    line-height: 1.4;
+    color: #fefefe;
+    position: relative;
+    letter-spacing: -1px;
+    margin: 0 20px 0 4px;
+}
+
+.logo::before {
+    content: '>';
+    position: absolute;
+    left: -0.97rem;
+    color: #fff;
+}
+
+.logo::after {
+    content: '2';
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 0.95rem;
+    background: #fefefe;
+    color: #111;
+    text-align: center;
+}
+
+.logo:hover:before {
+    animation: blinker 1s step-start infinite;
+}
+
+.vhod {
+    font-family: fira mono;
+    font-weight: 500;
+    font-size: 26px;
+    line-height: 1.4;
+    color: #fefefe;
+    position: relative;
+    letter-spacing: -1px;
+    margin-right: 20px;
+}
+
+.vhod::before {
+    content: '~';
+    position: absolute;
+    left: -0.97rem;
+    color: #fff;
+}
+
+.vhod::after {
+    content: '2';
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 0.95rem;
+    background: #fefefe;
+    color: #111;
+    text-align: center;
+}
+
+.vhod:hover:before {
+    animation: blinker 1s step-start infinite;
+}
+
+@keyframes blinker {
+    50% {
+        opacity: 0;
+    }
+}
+
+.nav {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    height: 36px;
+    font-weight: 500;
+    font-size: 26px;
+    text-transform: uppercase;
+    font-family: fira mono, Roboto, Helvetica, sans-serif;
+}
+
+.nav_mobile {
+    display: none;
+}
+
+.name__email {
+    display: flex;
+    flex-direction: column;
+    padding: 15px 16px 4px;
+    min-height: 64px;
+}
+
+.name__email h3 {
+    font-weight: 500;
+    letter-spacing: 0.0125em;
+    font-family: "Fira Mono", Roboto, Helvetica, sans-serif;
+    color: rgba(255, 255, 255, 0.87);
+    font-size: 20px;
+}
+
+.name__email h6 {
+    font-weight: 400;
+    letter-spacing: 0.0125em;
+    font-family: "Fira Mono", Roboto, Helvetica, sans-serif;
+    color: rgba(255, 255, 255, 0.507);
+    font-size: 15px;
+}
+
+.nav__link {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: white;
+    text-decoration: none !important;
+    font-family: fira mono, Roboto, Helvetica, sans-serif;
+    letter-spacing: .0892857143em;
+    font-size: 0.75rem;
+    font-weight: 500;
+    line-height: 2.25rem;
+    padding: 0 15px;
+    min-width: 64px;
+    border-radius: 5px;
+}
+
+.nav__link:hover {
+    background: #242424;
+}
+
+.header__inner-btnLoginMenu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login_button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 0 15px;
+    border: 1px solid #fff;
+    border-radius: 4px;
+    height: 36px;
+    letter-spacing: .0892857143em;
+    font-weight: 500;
+    text-transform: uppercase;
+    cursor: pointer;
+
+    color: #fff;
+    background: #111;
+}
+
+.login_button:hover {
+    background: #242424;
+}
+
+.ico__login {
+    height: 18px;
+    width: 18px;
+    margin: 0 8px 0 -4px;
+}
+
+.text__login {
+    font-family: fira mono, Roboto, Helvetica, sans-serif;
+    font-size: 12px;
+
+}
+
+.menu__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.3rem;
+    width: 48px;
+    min-height: 48px;
+    padding: 11px 12px;
+    outline: none;
+    background: none;
+    color: #fff;
+    cursor: pointer;
+    border: none;
+    border-radius: 50%;
+}
+
+.menu__button:hover {
+    background: #242424;
+}
+
+.addTransiton {
+    transform: translateX(-255px);
+    transition: transform 0.5s ease-in-out;
+}
+
+.removeTransition {
+    transform: translateX(0px);
+    transition: transform 0.5s ease-in-out;
+}
+
+#sidebar__list {
+    background-color: #222222;
+    height: 100vh;
+    width: 255px;
+    position: absolute;
+    z-index: 100;
+    left: 0;
+    top: 0;
+}
+
+.mdc__drawer__scrim {
+    background-color: rgba(0, 0, 0, .32);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition-property: opacity;
+    transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+    z-index: 5;
+}
+
+.navSmall {
+    margin: auto;
+    padding: 8px 0;
+}
+
+.navSmall hr {
+    height: 1px;
+    margin: 3px 0 8px;
+    background: rgba(0, 0, 0, .12);
+    border: none;
+}
+
+.icoLink {
+    display: flex;
+    margin: 8px 8px;
+    align-items: center;
+    padding: 0 8px;
+    color: rgba(255, 255, 255, 0.705);
+    height: calc(48px - 2* 4px);
+}
+
+.icoLink:hover {
+    background: #111111;
+    border-radius: 4px;
+}
+
+.icoLink:first-child {
+    display: flex;
+    margin: 2px 8px 8px;
+    align-items: center;
+    padding: 0 8px;
+    color: rgba(255, 255, 255, 0.705);
+    height: calc(48px - 2* 4px);
+}
+
+.icoLind__conteiner {
+    height: 24px;
+    width: 24px;
+
+}
+
+.navSmall__link {
+    margin-left: 32px;
+    display: flex;
+    align-items: center;
+    text-decoration: none !important;
+    cursor: pointer;
+    height: 16px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.75rem;
+    letter-spacing: .0071428571em;
+    color: rgba(255, 255, 255, 0.705);
+    ;
+    font-family: fira mono, sans-serif;
+    height: calc(48px - 2 * 4px);
+}
+
+
+.aside__footer {
+    margin: auto;
+    position: absolute;
+    bottom: 0;
+    margin: auto;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.instll__nav {
+    display: inline-block;
+    width: 152px;
+    height: 46px;
+    background: center center no-repeat;
+}
+
+
+.plus {
+    padding: 12px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border: none;
+    border-radius: 50%;
+}
+
+.plus:hover {
+    background: #242424;
+}
+
+.avatar__profile {
+    padding: 12px;
+    cursor: pointer;
+    border: none;
+    border-radius: 50%;
+}
+
+.avatar__profile:hover {
+    background: #242424;
+}

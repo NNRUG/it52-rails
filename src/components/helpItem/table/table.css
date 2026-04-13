@@ -1,0 +1,80 @@
+.table__conteiner {
+    margin-top: 20px;
+    max-width: 704px;
+    /* Прописываем высоту контейнера */
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+    border-left: 2px solid #ddd;
+    border-top: 2px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-radius: 4px;
+    font-weight: 400;
+    font-family: Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
+
+}
+
+.table__wrapper {
+    max-width: 704px;
+    overflow: auto;
+}
+
+.table__title {
+    border-bottom: 1px solid #ccc;
+    padding: 6px 3px 6px;
+    width: 100%;
+    font-size: 15px;
+}
+
+table {
+    width: 700px;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+    table-layout: auto;
+    overflow-x: auto;
+}
+
+th,
+td {
+    position: sticky;
+    line-height: 1;
+    color: #000;
+    padding: 2px 3px;
+    text-align: left;
+    height: 21px;
+
+}
+
+th:not(:first-child) {
+    background-color: #f2f2f2;
+    text-align: right;
+    border-left: 1px solid #ddd;
+
+}
+
+td:not(:first-child) {
+    text-align: right;
+    border-left: 1px solid #ddd;
+}
+
+tr:not(:last-child) {
+    border-bottom: 1px solid #ddd;
+}
+
+
+th {
+    background-color: #f2f2f2;
+}
+
+tbody td:hover:before {
+    content: "";
+
+}
+
+.zero {
+    color: #cccccc;
+}
+
+tr:nth-last-of-type(-n+2) {
+    background-color: #f3f3f3;
+    font-weight: bold;
+}

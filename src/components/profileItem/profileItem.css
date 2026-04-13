@@ -1,0 +1,139 @@
+.block__conteiner {
+    display: flex;
+    position: relative;
+    padding: 50px 50px 30px 10px;
+    margin-top: 60px;
+    margin-bottom: 80px;
+    min-height: 775px;
+    width: 100%;
+    box-shadow: 0px 0px 100px -22px rgba(0, 0, 0, 0.37);
+    background: #f7f7f7;
+}
+
+.image__block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 35%;
+}
+
+.information__block {
+    min-width: 65%;
+}
+
+.input__block {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.btn__save {
+    cursor: pointer;
+    margin-top: 15px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-family: fira mono, sans-serif;
+    letter-spacing: 1.1px;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    background-color: #428bca;
+}
+
+.btn__save:hover {
+    color: #fff;
+    background-color: #3071a9;
+}
+
+.profilexit {
+    margin-top: 20px;
+    font-family: fira mono, sans-serif;
+    letter-spacing: 1.1px;
+    text-transform: uppercase;
+    appearance: none;
+    border: 1px solid #000;
+    box-shadow: none;
+    border-radius: 10px;
+    background: #ffffff;
+    color: #000000;
+    cursor: pointer;
+    padding: 10px 35px;
+    font-size: 14px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+
+.profilexit:hover {
+
+    background: radial-gradient(circle at 24.1% 68.8%, rgb(50, 50, 50) 0%, rgb(0, 0, 0) 99.4%);
+    color: #fff;
+}
+
+
+.profile-tabs {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.tabs {
+    font-size: 16px;
+    display: flex;
+    width: 100%;
+    border-bottom: 1px solid #ccc;
+}
+
+.tab {
+    font-family: fira mono, sans-serif;
+    font-size: 16px;
+    flex: 1;
+    text-align: center;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.tab.active {
+    font-family: fira mono, sans-serif;
+    font-size: 16px;
+    flex: 1;
+    text-align: center;
+    color: #0077b6;
+}
+
+.tab-pane {
+    display: none;
+}
+
+.tab-pane.active {
+    display: block;
+}
+
+.tab-indicator {
+
+    height: 1px;
+    background-color: #0077b6;
+    width: 50%;
+    transition: transform 0.3s;
+}
+
+@media (max-width: 992px) {
+    .block__conteiner {
+        padding: 50px 10px 30px 10px;
+        margin: 0;
+        width: 100%;
+        flex-direction: column;
+        gap: 30px;
+
+    }
+}
+
+@media (max-width: 768px) {
+    .image__block {
+        min-width: 100%;
+    }
+
+
+}

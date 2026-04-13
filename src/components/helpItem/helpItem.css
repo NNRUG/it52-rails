@@ -1,0 +1,72 @@
+.help__item {
+    padding-bottom: 48px;
+}
+
+.help__item h1 {
+    font-weight: 400;
+    letter-spacing: -2px;
+    font-size: 36px;
+    line-height: 1.1;
+    color: #333333;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.paypal {
+    margin-bottom: 10px;
+
+}
+
+.donate {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.donate__img {
+    width: 92px;
+    height: 47px;
+    display: inline-block;
+    background: center center no-repeat;
+
+}
+
+
+.help__item__a {
+    text-decoration: underline;
+}
+
+.help__item__a:hover {
+    color: #fff;
+    background-color: #000;
+    text-decoration: none;
+}
+
+.donate__img:hover {
+    background-color: #fff;
+}
+
+
+.help__item ul {
+    margin-top: 10px;
+    padding-left: 40px;
+}
+
+.help__item li {
+    list-style-type: disc;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 470px) {
+    .help__item ul {
+        padding-left: 10px;
+    }
+}
+
+.where__money {
+    font-weight: 500;
+    letter-spacing: -1px;
+    font-size: 18px;
+    margin-bottom: 10px;
+}

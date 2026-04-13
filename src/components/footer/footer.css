@@ -1,0 +1,139 @@
+footer {
+    background-color: #111111;
+    color: #fff;
+    font-family: fira mono, sans-serif;
+}
+
+.container__1 {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+
+.container__2 {
+    margin-bottom: 20px;
+}
+
+.container:before,
+.container:after {
+    display: table;
+    content: " ";
+}
+
+.footer__cell__1 {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0;
+    color: #fff;
+}
+
+.footer__cell__2 {
+    display: flex;
+    justify-content: right;
+    min-width: 224px;
+    padding: 10px 0;
+    color: #fff;
+}
+
+
+
+.container__1 a {
+    color: #555555;
+    font-family: fira mono, sans-serif;
+    font-size: 14px;
+    line-height: 1.428571429;
+}
+
+.container__1 a:hover {
+    color: #eeeeee;
+}
+
+.sociall__icons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.social__iconsLink {
+    width: 48px;
+    height: 48px;
+    padding: 12px;
+    font-size: 24px;
+    display: flex;
+    position: relative;
+    color: inherit;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    cursor: pointer;
+    user-select: none;
+}
+
+.mcs__logo img {
+    max-width: 100%;
+}
+
+
+.mcs__logo {
+    max-width: 100%;
+    display: inline-block;
+    opacity: .6;
+}
+
+.mcs__logo:hover {
+    opacity: 1;
+}
+
+img {
+    overflow-clip-margin: content-box;
+    overflow: clip;
+    vertical-align: middle;
+}
+
+.mcs__logo small {
+    display: block;
+    color: #555;
+    line-height: 2.2;
+    white-space: nowrap;
+    font-family: fira mono, sans-serif;
+    font-size: 12px;
+    text-align: right;
+}
+
+.copyrights small {
+    font-size: 12px;
+    font-family: fira mono, sans-serif;
+    color: #333;
+}
+
+
+@media (max-width: 768px) {
+    .footer__cell__1 {
+        align-items: center;
+    }
+
+    .sociall__icons {
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 768px) {
+    .container__1 {
+        flex-direction: column;
+    }
+
+    .footer__cell__2 {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .container__1 {
+        flex-direction: column;
+    }
+
+    .footer__cell__2 {
+        justify-content: center;
+    }
+}

@@ -1,0 +1,44 @@
+.commItem {
+    margin-top: 20px;
+    margin-bottom: 58px;
+}
+
+.commItem h1 {
+    font-weight: 400;
+    letter-spacing: -2px;
+    font-size: 36px;
+    line-height: 1.1;
+    color: #333333;
+    margin-bottom: 20px;
+}
+
+.commItem h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-weight: 500;
+    letter-spacing: -1px;
+    font-size: 24px;
+    line-height: 1.1;
+    color: #333333;
+}
+
+.content__row {
+    position: relative;
+    padding-left: 15px;
+}
+
+.content__row::before {
+    position: absolute;
+    left: 0;
+    font-weight: 700;
+    content: '>';
+}
+
+.content__rowLink {
+    text-decoration: underline;
+}
+
+.content__rowLink:hover {
+    color: #fff;
+    background-color: #000;
+}

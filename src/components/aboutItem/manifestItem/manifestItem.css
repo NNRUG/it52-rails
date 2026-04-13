@@ -1,0 +1,35 @@
+.manifest {
+    margin-top: 20px;
+    margin-bottom: 67px;
+}
+
+.manifest h1 {
+    font-weight: 400;
+    letter-spacing: -2px;
+    font-size: 36px;
+    line-height: 1.1;
+    color: #333333;
+    margin-bottom: 10px;
+}
+
+.manifest p {
+    margin-bottom: 10px;
+    color: #333333;
+}
+
+.manifest h2 {
+    font-weight: 400;
+    letter-spacing: -2px;
+    font-size: 30px;
+    line-height: 1.1;
+    color: inherit;
+    color: #333333;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.manifest ul {
+    margin-top: 0;
+    margin-bottom: 10px;
+    padding-left: 40px;
+}

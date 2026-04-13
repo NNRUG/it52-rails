@@ -1,0 +1,121 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+header {
+  position: fixed;
+  align-items: center;
+  z-index: 1000;
+
+}
+
+.Main {
+  margin-top: 48px;
+  flex: 1 0 auto;
+  padding-left: calc(100vw - 100%);
+}
+
+footer {
+  flex: 0 0 auto;
+  padding-left: calc(100vw - 100%);
+}
+
+body {
+  font-family: fira mono, sans-serif;
+  font-size: 14px;
+  line-height: 1.428571429;
+  color: #333;
+}
+
+ul,
+ul li {
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  /* Цвет ссылок становится таким же, как цвет родительского элемента */
+  text-decoration: none;
+  /* Убираем подчёркивание */
+  background-color: transparent;
+  /* Фон прозрачный, чтобы не выделяться */
+  cursor: pointer;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  overflow: hidden;
+}
+
+.conteiner {
+  max-width: 1170px;
+  margin: 0 auto;
+  padding: 0 15px 0 15px;
+}
+
+.conteiner__eventPage {
+  max-width: 1170px;
+  margin: 0 auto;
+  padding: 0 15px 0 15px;
+}
+
+@media (max-width: 1200px) {
+  .conteiner__header {
+    width: 989px;
+  }
+
+  .conteiner {
+    width: 970px;
+  }
+
+  .conteiner__eventPage {
+    width: 970px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .conteiner__header {
+    width: 758px;
+  }
+}
+
+@media (max-width: 992px) {
+
+  .conteiner {
+    width: 750px;
+  }
+
+  .conteiner__eventPage {
+    width: 750px;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .conteiner__header {
+    width: 100%;
+  }
+
+  .conteiner {
+    width: 100%;
+  }
+
+  .conteiner__eventPage {
+    width: 100%;
+    padding: 0;
+  }
+}

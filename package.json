@@ -1,61 +1,53 @@
 {
-  "name": "it52-rails",
-  "version": "1.0.0",
-  "main": "index.js",
-  "repository": "git@github.com:NNRUG/it52-rails.git",
-  "author": "Nick Kugaevsky <nick@kugaevsky.ru>",
-  "license": "MIT",
+  "name": "it_52",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
-    "@babel/core": "^7.6.2",
-    "@babel/plugin-proposal-class-properties": "^7.5.5",
-    "@babel/plugin-proposal-private-methods": "^7.16.11",
-    "@babel/plugin-transform-runtime": "^7.6.2",
-    "@babel/preset-env": "^7.6.2",
-    "@babel/preset-typescript": "^7.16.7",
-    "@material/button": "^2.3.0",
-    "@material/card": "^2.3.0",
-    "@material/chips": "^2.3.0",
-    "@material/drawer": "^2.3.0",
-    "@material/fab": "^2.3.0",
-    "@material/icon-button": "^2.3.0",
-    "@material/layout-grid": "^0.41.0",
-    "@material/list": "^2.3.0",
-    "@material/menu": "^2.3.0",
-    "@material/menu-surface": "^2.3.0",
-    "@material/ripple": "^2.3.0",
-    "@material/select": "^2.3.0",
-    "@material/tab-bar": "^2.3.0",
-    "@material/theme": "^1.1.0",
-    "@material/top-app-bar": "^2.3.0",
-    "@material/typography": "^2.3.0",
-    "@rails/ujs": "^7.0.2-2",
-    "@rails/webpacker": "^5.4.0",
-    "@tarekraafat/autocomplete.js": "^7.0.1",
-    "@types/google.analytics": "^0.0.42",
-    "babel-loader": "^8.0.6",
-    "bootstrap-sass": "3.4.1",
-    "flatpickr": "^4.6.1",
-    "simplemde": "^1.11.2",
-    "snyk": "^1.611.0",
-    "turbolinks": "^5.2.0",
-    "typescript": "^4.5.5",
-    "webpack": "^4.46.0",
-    "webpack-cli": "^4.9.2",
-    "webpack-dev-server": "^4.7.4"
-  },
-  "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.12.1",
-    "@typescript-eslint/parser": "^5.12.1",
-    "eslint": "^8.10.0",
-    "eslint-config-airbnb": "^19.0.4",
-    "eslint-plugin-import": "^2.25.4",
-    "eslint-plugin-jsx-a11y": "^6.5.1",
-    "eslint-plugin-react": "^7.29.2",
-    "eslint-plugin-react-hooks": "^4.3.0"
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "@mui/icons-material": "^5.15.19",
+    "@mui/material": "^5.15.17",
+    "@pbe/react-yandex-maps": "^1.2.5",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@tinymce/tinymce-react": "^5.0.1",
+    "crypto-js": "^4.2.0",
+    "html-react-parser": "^5.1.10",
+    "path": "^0.12.7",
+    "react": "^18.2.0",
+    "react-content-loader": "^7.0.2",
+    "react-dom": "^18.2.0",
+    "react-fetch-hook": "^1.9.5",
+    "react-icons": "^5.0.1",
+    "react-router-dom": "^6.22.3",
+    "react-scripts": "5.0.1",
+    "react-table": "^7.8.0",
+    "react-toastify": "^10.0.5",
+    "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "snyk-protect": "snyk protect",
-    "lint": "eslint 'app/javascript/**/*.ts'"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
-  "snyk": false
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }

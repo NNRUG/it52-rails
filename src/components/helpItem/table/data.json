@@ -1,0 +1,101 @@
+[
+    {
+        "id": 1,
+        "name": "Heroku application hosting",
+        "four": 0,
+        "fife": 0,
+        "six": 0,
+        "seven": 0,
+        "eght": 0,
+        "nine": 42
+    },
+    {
+        "id": 2,
+        "name": "Heroku DB hosting",
+        "four": 0,
+        "fife": 0,
+        "six": 0,
+        "seven": 0,
+        "eght": 0,
+        "nine": 104
+    },
+    {
+        "id": 3,
+        "name": "Heroku Redis hosting",
+        "four": 0,
+        "fife": 0,
+        "six": 0,
+        "seven": 0,
+        "eght": 0,
+        "nine": 60
+    },
+    {
+        "id": 4,
+        "name": "DO hosting (proxies)",
+        "four": 0,
+        "fife": 0,
+        "six": 0,
+        "seven": 60,
+        "eght": 60,
+        "nine": 60
+    },
+    {
+        "id": 5,
+        "name": "AWS S3+Cloudfront",
+        "four": 2,
+        "fife": 3,
+        "six": 4,
+        "seven": 6,
+        "eght": 8,
+        "nine": 10
+    },
+    {
+        "id": 6,
+        "name": "AWS Route 53",
+        "four": 6,
+        "fife": 6,
+        "six": 6,
+        "seven": 6,
+        "eght": 6,
+        "nine": 3
+    },
+    {
+        "id": 7,
+        "name": "Domain",
+        "four": 2.50,
+        "fife": 2.50,
+        "six": 2.50,
+        "seven": 2.50,
+        "eght": 2.50,
+        "nine": 2.50
+    },
+    {
+        "id": 8,
+        "name": "Stickers",
+        "eght": 27.00,
+        "nine": 40.00
+    },
+    {
+        "id": 9
+    },
+    {
+        "id": 10,
+        "name": "Total",
+        "four": 10.5,
+        "fife": 11.5,
+        "six": 12.5,
+        "seven": 74.5,
+        "eght": 103.5,
+        "nine": 321.5
+    },
+    {
+        "id": 11,
+        "name": "Cumulative Total",
+        "four": 10.5,
+        "fife": 22.0,
+        "six": 34.5,
+        "seven": 109.0,
+        "eght": 212.5,
+        "nine": 534.0
+    }
+]
